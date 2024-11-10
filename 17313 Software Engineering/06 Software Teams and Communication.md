@@ -1,0 +1,43 @@
+- **Establish communication patterns** 
+	- Asana, Trello, Microsoft Projects, … 
+	- Github Wiki, Google Docs, Notion, … 
+	- Github Issues, Jira, … 
+	- Email, Slack, Facebook groups, …
+	- Zoom, Microsoft Teams, Skype, Phone call, … 
+	- Face-to-face meetings
+	- ![[Screen Shot 2024-10-07 at 06.38.33.png]]
+
+- **Running a (good) meeting**
+	- The Three Rules of Running a Meeting 
+		- Set the Agenda 
+		- Start on Time. End on Time. 
+		- End with Action Items (and share them - Github Issues, Meeting Notes, …)
+	- Set and document clear responsibilities and expectations 
+	- Make everyone contribute 
+		- Possible Roles: Coordinator, Scribe, Checker 
+		- Manage Personalities 
+		- Be Vulnerable
+	- Note takers have a lot of power to steer the meeting 
+		- Collaborative notes are even better! 
+	- Different meeting types have different best practices 
+		- Decision-making meeting 
+		- Brainstorming meeting 
+		- One-on-one meeting 
+		- Working sessions
+
+- **Useful feedback** 
+	- If you disagree strongly, consider giving it a few minutes before responding; think before you react. 
+	- Ask, don’t tell. (“What do you think about trying…?” rather than “Don’t do…”) 
+	- Explain your reasons why code should be changed. (Not in line with the style guide? A personal preference?) 
+	- Be humble. (“I’m not sure, let’s try…”) 
+	- Avoid hyperbole. (“NEVER do…”) 
+	- Be aware of negative bias with online communication.
+
+- **Knowledge Sharing**
+	- Know your audience 
+		- Internal document for your team (e.g., meeting note) 
+		- Documentation for project contributors 
+		- Documentation for non-developer collaborators (e.g., UX researchers) 
+		- Documentation for developer users 
+		- Documentation for clients with no software knowledge 
+		- User manual for end users

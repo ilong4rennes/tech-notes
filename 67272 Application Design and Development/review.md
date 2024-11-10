@@ -1,0 +1,36 @@
+抢答环节
+- constructor method in ruby: def initialize
+- model inherit from applicationRecord
+- eigenclass: object first look here for methods, then go up the object inheritance chain
+- regex question 会考 让我们interpret 不让我们写，lab5
+- %w
+- self = current object
+- api 会考
+	- concept + technical都考。。。。
+- always order by
+- HTTP verbs
+- regex shortcut `\w` = any letter or digit
+- process logic -- controller
+- controller会考
+- SQL clause for patch: update
+- setup -- test --prior to each test
+- size of a network increases, network's value increases exponentially.
+- public api - types of api
+- what are partials? concepts+code ....
+- getter and setter method created by (attr_accessor) method
+- authenticate -- provided by has_secure_password
+- local variables in ruby begin with lower-case letter. 
+- superclass for Float: numeric
+- add modules to eigenclass of the object and is often used to add class method to a give class -- extend method
+- include: add instance method
+- extends: add class method
+- search tool: forgiving, fast, accurate
+- end of a line or string - $ or `\z`
+- get http verb: show index new edit
+- authenticate_or_request_with_http_basic
+	- allow user to authenticate with a base64 encoded string of username:password
+- Lab / PATS / code already written / phase 3 / class exercise
+
+- basic, document api -- swagger doc (why?), customize api (why? to prevent users from a lot of load, no mega call to a lot things)
+- why serializers? to decrease number of calls, nice to get all information in one call 
+- why filters in api? 

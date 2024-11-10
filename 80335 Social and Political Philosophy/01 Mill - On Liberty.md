@@ -1,0 +1,9 @@
+1. **Individual Liberty**: Mill argues that individuals should have the right to act as they want, provided they do not harm others. This principle of individual liberty is foundational to his philosophy.
+    
+2. **Harm Principle**: Central to Mill's argument is the 'harm principle' which states that the only purpose for which power can be rightfully exercised over any member of a civilized community, against his will, is to prevent harm to others. His own good, either physical or moral, is not a sufficient warrant.
+    
+3. **Freedom of Speech and Expression**: Mill is a strong advocate for freedom of speech and expression. He believes that free discourse is necessary for social and individual progress. He argues that all silenced opinions might contain some truth and that even wrong opinions are useful for the clearer perception and livelier impression of truth, produced by its collision with error.
+    
+4. **The Tyranny of the Majority**: Mill warns against the "tyranny of the majority," emphasizing that popular opinion or social norms should not compel individuals to act or refrain from acting in certain ways unless it prevents harm to others. He highlights the importance of protecting individual liberties against societal conformism.
+    
+5. **Limits of Authority**: Mill explores the limits to the authority that society can exercise over the individual. He discusses the nature and limits of the power which can be legitimately exercised by society over the individual and criticizes any intervention by society in the personal domain where individual actions do not cause harm to others.

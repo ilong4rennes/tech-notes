@@ -1,0 +1,43 @@
+- **Vasa Syndrome**:
+	- A famous historical failure in shipbuilding is used as an analogy for software projects that suffer from unclear requirements, shifting specifications, and inadequate testing.
+	- Requirements
+		- Changing shipbuilding orders 
+		- No specifications for modified keel 
+		- Shifting armaments requirements
+	- Teams
+		- Shipwright’s death
+	- Metrics
+		- No way to calculate stability, stiffness, or sailing characteristics
+	- Quality Assurance (QA): Testing, reviewing
+		- Failed pre-launch stability tests
+
+- **Complex software engineering issues**
+	- Requirements (Architecture & Design)
+		- **Software running with kernel-level privilege can crash the system (BSOD) and prevent booting**: High-privileged software can cause catastrophic system failures, like a Blue Screen of Death (BSOD), making the system unusable.
+		- **Content updates more continuous than software updates**: Continuous content updates outpaced the software's ability to accommodate them, introducing instability.
+	- QA
+		- **Insufficient testing of content _and_ parser**: Lack of thorough testing of both the content and the parsers (which interpret the content) allowed defects to go unnoticed.
+	- DevOps
+		- **No staged roll-outs**: The absence of gradual deployment of updates (staging) increased the risk of introducing wide-scale issues.
+		- **No way to fix issue remotely after impact**: Once problems were introduced, there was no mechanism to resolve them remotely, leading to greater operational downtime.
+	- Metrics
+		- **Skewed incentives**: Misaligned goals or motivations across teams or stakeholders led to decisions that negatively impacted the product's quality or performance.
+	- Licenses
+		- **Limited liability**: A lack of accountability or liability limits may have discouraged sufficient quality assurance, leading to negligence in testing or development.
+
+- **CrowdStrike Incident**:
+	- A modern example of software engineering failure due to insufficient testing, lack of staged rollouts, and difficulty in addressing post-release issues remotely.
+
+- **Key Themes**:
+	- Software engineering as a human process 
+	- Requirements and Specifications 
+	- Metrics and Measurement 
+	- Software Quality: Testing + CI + Security 
+	- Continuous Deployment and DevOps 
+	- Software Project Teams
+	- Managing Time, Teams, and Risks 
+	- Software Architecture and Design Docs 
+	- Scaling and Performance, Trade-offs 
+	- AI/ML in Software Engineering 
+	- Open-Source Software 
+	- Strategic Thinking about Software

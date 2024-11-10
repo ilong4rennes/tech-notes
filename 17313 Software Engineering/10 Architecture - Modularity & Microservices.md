@@ -1,0 +1,2 @@
+- **Process of Architecture Design**: ![[Screen Shot 2024-10-08 at 05.54.58.png]]
+- 

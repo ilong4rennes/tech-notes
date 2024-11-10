@@ -1,0 +1,21 @@
+- What is different for developing LLM-powered features?
+	- Non-determinism: Outputs may vary for the same input.
+	- Costly: Development and operation costs are high.
+	- Slow: Processing times can be long.
+	- Safety and Privacy: Sensitive information and how to handle it.
+	- Testing: Difficulty in fully assessing and testing the performance.
+
+- What is the user problem we are trying to solve?
+- When is the AI "good enough"?
+- How to monitor when it goes off track?
+
+- When $1,000,000,000 is not enough 
+- We built this cool thing… can we ship it? 
+- Ok, we shipped… why aren’t people using it? 
+	- Discussion on why, even after launching, products may fail to gain traction or usage.
+- Ok, we shipped… how do we know if it is helpful? 
+	- The next challenge: measuring if the shipped AI product is truly beneficial to users.
+- Let’s try 50 different UIs 
+	- Suggests experimenting with multiple UIs to test user engagement and functionality.
+- How do we enable other developers to ship AI?
+	- Focuses on tools or frameworks that make it easier for developers to create and ship AI features.

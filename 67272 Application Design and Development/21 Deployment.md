@@ -1,0 +1,8 @@
+- Server
+- Work fine in dev mode, but the problem is that it makes too many (100+) calls to the database for one person's matter, too much load in the server. 
+- `gem bullet` - more efficient querying
+- `gem brakeman` - security tool for RoR
+- users cannot change their role, 但是user可以通过某种方式把自己的role换成admin
+- operational requirements:
+	- eg. must use certain versions of ruby / rails
+- acceptance test -- cucumber test
