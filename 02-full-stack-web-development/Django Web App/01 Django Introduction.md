@@ -1,4 +1,3 @@
-### Step 0: Install Python3, Django, MySQL, PyCharm
 ### Step 1: Install Django and Set Up Virtual Environment
 
 1. Create a virtual environment to isolate your project dependencies:

@@ -1,52 +1,6 @@
-## Deploying NodeBB on Azure with GitHub Actions ([link](https://docs.google.com/document/d/1WXRbEXMJf_9IIAsbYFqjfkUsnAXJk6NQ0v7OVDIBClM/edit?usp=sharing))
+## Step 1: Deployment on Azure with GitHub Actions ([link](https://docs.google.com/document/d/1WXRbEXMJf_9IIAsbYFqjfkUsnAXJk6NQ0v7OVDIBClM/edit?usp=sharing))
 
-#### 1. Register and Set Up Azure
-- Log in to Azure, see subscription.
-#### 2. Create Azure Redis Instance
-1. **Create New Resource**: Navigate to "Create a resource" and search for "Azure Cache for Redis."
-2. **Configure the Redis Instance**:
-   - Select your lab subscription.
-   - Use a unique DNS name like `<team_name>-db`.
-   - Choose the lowest cache size available.
-   - Enable "Public Endpoint" and "Non-TLS port" on port 6379.
-   - Disable Microsoft Entra authentication and enable "Access Keys."
-3. **Retrieve Connection Details**:
-   - Copy the Redis host name and one of the access keys (primary or secondary) from the "Authentication" section.
-4. **Test the Redis Instance**:
-   - Use the `redis-cli` tool from your terminal: `redis-cli -h <host-name> -p 6379 -a <access_key>`.
-   - Type `info` to check if the connection works. If not, double-check your configuration settings.
-#### 3. Create Azure Web App
-1. **Create New Resource**: Choose "Web App" from the Azure dashboard.
-2. **Enable Continuous Deployment**:
-   - Link to your GitHub account and choose the NodeBB repository.
-   - Ensure "Continuous Deployment" is enabled.
-
-#### 4. Set Up Secrets in GitHub
-1. **Access GitHub Secrets**: In your repository, navigate to `Settings > Secrets and Variables > Actions`.
-2. **Add Secrets**:
-   - **ADMIN_PASSWORD**: Set a secure password.
-   - **REDIS_HOST**: Use the full domain of your Redis instance.
-   - **REDIS_PASSWORD**: Use the access key from your Redis instance.
-   - **AZUREAPPSERVICE_PUBLISHPROFILE**: This should have been automatically added by Azure. Verify it.
-
-#### 5. Configure GitHub Actions Workflow
-1. **Edit Workflow File**: Modify `.github/workflows/azure-deploy-f24.yml`.
-   - **Set NodeBB Setup URL**: Match your Azure web app domain.
-   - **Update Node.js Version**: Use `20.17.0` explicitly.
-   - **Edit Secrets Reference**: Ensure correct naming for `AZUREAPPSERVICE_PUBLISHPROFILE`.
-
-2. **Add Steps to [Workflow](https://github.com/CMU-313/nodebb-f24-the-turtles/blob/f24/.github/workflows/azure-deploy-f24.yml)**:
-   - Install packages and set up NodeBB.
-   - Install the frontend, rebuild NodeBB, and deploy to Azure.
-
-3. **Commit and Push**: This triggers the GitHub Action for deployment.
-
-#### **6. Monitor and Debug Deployment**
-1. **Check GitHub Actions**: Verify if the workflow ran successfully. If it fails, review the logs for errors.
-2. **Use Azure Logs**: Go to "Deployment Center" and view logs or use "Log Stream" for debugging.
-3. **Restart Web App**: If needed, restart from the Azure dashboard.
-
-## Workflow File
+## Step 2: Add the Workflow File
 
 ### Key Concepts
 

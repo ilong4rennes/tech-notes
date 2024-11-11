@@ -87,11 +87,3 @@ Now, developers can run JSHint on their codebase by typing `npm run lint` in the
            run: npm run lint
    ```
    This configuration ensures that JSHint automatically runs each time a pull request is made to the main branch. If JSHint flags any syntax issues, the action will fail, prompting developers to address the issues before the code can be merged.
-
-#### Step 5: Verify and Adjust Configuration
-
-1. **Initial Run**:
-   Test the JSHint configuration locally and on a sample pull request to verify that the integration is working correctly. Address any configuration adjustments needed to balance catching syntax errors without flagging unnecessary issues.
-
-2. **Ongoing Maintenance**:
-   As the project evolves, periodically review and update the `.jshintrc` file to accommodate new coding standards or additional global variables. This keeps JSHint aligned with the project’s syntax requirements and development environment.
