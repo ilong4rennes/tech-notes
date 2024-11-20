@@ -7,18 +7,29 @@
 
 #### Software Engineering for ML (Microsoft View)
 ![[Screenshot 2024-11-19 at 5.21.27 PM.png]]
-- 3 Key differences:
-	- Data discovery and management.
-	- Customization and reuse.
-	- Lack of modular development for the model itself.
+- 3 Key differences btw Machine Learning development and Traditional Software Development:
+	- 1. **Data Discovery and Management**:
+	    - Traditional software relies on predefined logic and algorithms.
+	    - ML systems heavily depend on data for training and predictions, requiring extensive processes for data collection, cleaning, labeling, and management
+	- 2. **Customization and Reuse**:
+	    - Traditional software components can often be reused across different projects with minimal customization.
+	    - ML systems often require models to be retrained or tuned with task-specific data, limiting reuse.
+	- 3. **No Modular Development of the Model Itself**
+	    - Traditional software is typically modular, enabling separation of concerns and easier maintenance.
+	    - ML models are holistic and interdependent, making modular development challenging. The model is treated as a single block, where changes often require retraining the entire system.
 
 #### Typical ML Pipeline
-1. Data Collection (static or production).
-2. Feature Engineering.
-3. Splitting into training/evaluation sets.
-4. Model Training.
-5. Model Evaluation.
-6. Monitoring and updating models in production.
+- Static
+	- Get labeled data (data collection, cleaning and, labeling)
+	- Identify and extract features (feature engineering)
+	- Split data into training and evaluation set
+	- Learn model from training data (model training)
+	- Evaluate model on evaluation data (model evaluation)
+	- Repeat, revising features
+- with production data
+	- Evaluate model on production data; monitor (model monitoring)
+	- Select production data for retraining (model training + evaluation)
+	- Update model regularly (model deployment)
 
 #### **Feature Engineering**
 - Includes:
