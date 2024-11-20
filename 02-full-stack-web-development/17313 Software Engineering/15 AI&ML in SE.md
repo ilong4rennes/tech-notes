@@ -7,14 +7,12 @@
 
 #### Software Engineering for ML (Microsoft View)
 ![[Screenshot 2024-11-19 at 5.21.27 PM.png]]
+- 3 Key differences:
+	- Data discovery and management.
+	- Customization and reuse.
+	- Lack of modular development for the model itself.
 
-
-- Key differences:
-  - Data discovery and management.
-  - Customization and reuse.
-  - Lack of modular development for the model itself.
-
-#### **Typical ML Pipeline**
+#### Typical ML Pipeline
 1. Data Collection (static or production).
 2. Feature Engineering.
 3. Splitting into training/evaluation sets.
