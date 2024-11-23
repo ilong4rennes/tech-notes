@@ -287,16 +287,10 @@ Language Modeling: Measure probability of a sequence of words (Text sequence →
 - Effective feedback: Goal-oriented; Actionable, Specific and Timely; Supportive, Truthful and Useful; Delivered privately in a neutral, non-judgemental tone
     
 - Developmental Feedback
-    
-
-- Situation: Set the context. Help the person focus on what you are referring to.
-    
-- Behavior: Focus on the objective behavior to be repeated or changed.
-    
-- Impact: Share the direct impact of the behavior.
-    
-- Alternative: Share an alternative behavior to use next time.
-    
+	- Situation: Set the context. Help the person focus on what you are referring to.
+	- Behavior: Focus on the objective behavior to be repeated or changed.
+	- Impact: Share the direct impact of the behavior.
+	- Alternative: Share an alternative behavior to use next time.
 
 ## 5) Technical Debt 
 
@@ -334,56 +328,24 @@ Language Modeling: Measure probability of a sequence of words (Text sequence →
 ### Test Design Techniques
 
 - Exploratory Testing: Testing without scripts, using intuition to find bugs.
-    
-
-- Pro: Flexible, good for unexpected issues.
-    
-
+	- Pro: Flexible, good for unexpected issues.
 - Specification-Based ("Black Box") Testing: Tests based on specifications, ignoring code details.
-    
-
-- Pro: Avoids bias, robust to code changes, requires no code familiarity.
-    
-
+	- Pro: Avoids bias, robust to code changes, requires no code familiarity.
 - Structural ("White Box") Testing: Tests designed with full code knowledge, focusing on structure.
-    
-
-- Pro: Ensures thorough code coverage.
-    
-
+	- Pro: Ensures thorough code coverage.
 - Exhaustive Testing:
-    
-
-- Issues: Need to be small enough to finish in a useful amount of time + Need to be large enough to provide a useful amount of validation
-    
-- Alternatives: Heuristics (Focus on the most likely or important scenarios)
-    
-
+	- Issues: Need to be small enough to finish in a useful amount of time + Need to be large enough to provide a useful amount of validation
+	- Alternatives: Heuristics (Focus on the most likely or important scenarios)
 - Equivalence Partitioning:
-    
-
-- What: Group inputs into equivalence classes with similar behavior and test one per class.
-    
-- Equivalence classes derived from specifications (e.g., cases, input ranges, error conditions, fault models) 
-    
-- Pro: Reduces test cases, requires domain knowledge.
-    
-
+	- What: Group inputs into equivalence classes with similar behavior and test one per class.
+	- Equivalence classes derived from specifications (e.g., cases, input ranges, error conditions, fault models) 
+	- Pro: Reduces test cases, requires domain knowledge.
 - Boundary-value analysis
-    
-
-- Key Insight: Errors often occur at the boundaries of a variable value 
-    
-- For each variable, select: minimum, min+1, medium, max-1, maximum; possibly also invalid values min-1, max+1
-    
-
+	- Key Insight: Errors often occur at the boundaries of a variable value 
+	- For each variable, select: minimum, min+1, medium, max-1, maximum; possibly also invalid values min-1, max+1
 - Pairwise testing (can find 50% - 90% defects)
-    
-
-- Key Insight: some problems only occur as the result of an interaction between parameters/components 
-    
-- E.g.: The bug occurs for senior citizens traveling on weekends (pairwise interaction) 
-    
+	- Key Insight: some problems only occur as the result of an interaction between parameters/components 
+	- E.g.: The bug occurs for senior citizens traveling on weekends (pairwise interaction) 
 
 ### Technical Debt
 
@@ -392,113 +354,63 @@ Organizations need to address the following challenges continuously:  1. Recogn
 #### Types of Technical Debt:
 
 1. Deliberate:
-    
-
-- Reckless: "We don’t have time for design."
-    
-- Prudent: "We must ship now and deal with consequences later."
-    
-
-3. Inadvertent:
-    
-
-- Reckless: "What’s layering?"
-    
-- Prudent: "Now we know how we should have done it."
-    
+	- Reckless: "We don’t have time for design."
+	- Prudent: "We must ship now and deal with consequences later."
+2. Inadvertent:
+	- Reckless: "What’s layering?"
+	- Prudent: "Now we know how we should have done it."
 
 ## 6) Open Source Software
 
 ### Why Go Open Source (vs. Proprietary) ?
 
 - Advantages 
-    
-
-- Transparency, gain user trust 
-    
-- Many eyes: crowd-source bug reports and fixes 
-    
-- Security: more likely for vulnerabilities to be quickly identified 
-    
-- Community and adoption: get others to contribute features, build stuff around you, or fork your project
-    
+	- Transparency, gain user trust 
+	- Many eyes: crowd-source bug reports and fixes 
+	- Security: more likely for vulnerabilities to be quickly identified 
+	- Community and adoption: get others to contribute features, build stuff around you, or fork your project
 
 - Disadvantages 
-    
-
-- Reveal implementation secrets 
-    
-- Many eyes: users can find faults more easily 
-    
-- Security: more likely for others to find vulnerabilities first 
-    
-- Control: You may not be able to influence the long-term direction of your platform
-    
+	- Reveal implementation secrets 
+	- Many eyes: users can find faults more easily 
+	- Security: more likely for others to find vulnerabilities first 
+	- Control: You may not be able to influence the long-term direction of your platform
 
 ### License & Law
 
-  
-
-|   |   |   |
-|---|---|---|
-|License/Law|Key Purpose|Key Features|
-|Copyright|Protects expressions of work|Automatic for books, music, code; exceptions for trivial ideas.|
-|Intellectual Property (IP)|Protects ideas and inventions|Patents, machine designs, algorithms; licenses and expiry dates.|
-|GNU General Public License (GPL)|Ensures software freedom|Four freedoms: use, change, share, and share modifications. Requires derivatives to use GPL.|
-|Risks of GPL (Copyleft)|Enforces openness but can complicate usage|Derivatives must use the same license; companies may avoid GPL due to viral effects.|
-|LGPL (Lesser GPL)|Allows use of libraries in proprietary code|Dynamic linking allowed; no derivative restrictions.|
-|MIT License|Simple, commercial-friendly open-source|Must credit author; no liability; no restrictions on usage.|
-|Apache License|Industry-friendly open-source|Allows use without source code sharing; no trademark permissions.|
-|BSD License|Minimal restrictions|Requires copyright notice; no liability; allows modifications freely.|
-|Creative Commons (CC)|Licensing for non-code content|Used for datasets, images, videos, documentation, etc.|
-
-  
+| License/Law                      | Key Purpose                                 | Key Features                                                                                 |
+| -------------------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Copyright                        | Protects expressions of work                | Automatic for books, music, code; exceptions for trivial ideas.                              |
+| Intellectual Property (IP)       | Protects ideas and inventions               | Patents, machine designs, algorithms; licenses and expiry dates.                             |
+| GNU General Public License (GPL) | Ensures software freedom                    | Four freedoms: use, change, share, and share modifications. Requires derivatives to use GPL. |
+| Risks of GPL (Copyleft)          | Enforces openness but can complicate usage  | Derivatives must use the same license; companies may avoid GPL due to viral effects.         |
+| LGPL (Lesser GPL)                | Allows use of libraries in proprietary code | Dynamic linking allowed; no derivative restrictions.                                         |
+| MIT License                      | Simple, commercial-friendly open-source     | Must credit author; no liability; no restrictions on usage.                                  |
+| Apache License                   | Industry-friendly open-source               | Allows use without source code sharing; no trademark permissions.                            |
+| BSD License                      | Minimal restrictions                        | Requires copyright notice; no liability; allows modifications freely.                        |
+| Creative Commons (CC)            | Licensing for non-code content              | Used for datasets, images, videos, documentation, etc.                                       |
 
 ## 7) Dependency Management
 
 What is a Dependency?
-
 - Core of what most build systems do. 
-    
-
 - Example: Foo->Bar: To build Foo, you need to built Bar. "Bar" is a dependency of "Foo."
-    
 - Scopes:
-    
-
-- Compile: Use Bar’s classes/functions during compilation.
-    
-- Runtime: Use abstract APIs provided by Bar during execution (e.g., logging, database).
-    
-- Test: Use Bar for testing only (e.g., JUnit, mocks).
-    
-
+	- Compile: Use Bar’s classes/functions during compilation.
+	- Runtime: Use abstract APIs provided by Bar during execution (e.g., logging, database).
+	- Test: Use Bar for testing only (e.g., JUnit, mocks).
 - Internal: Built/maintained by your organization.
-    
 - External: Downloaded via package managers
-    
 - Dependencies are typically hosted on servers and downloaded using package managers, requiring unique identifiers for each package. 
-    
 - Most package managers support custom repositories, which require proper management.
-    
-
 ### Dependency Pinning vs. Floating
 
 - Pinning Dependencies (e.g. 1.5.3) - Specific version of the dependency. Frozen in time. 
-    
-
-- Pro: Reproducible builds; Stable network effects
-    
-- Con: Can become vulnerable due to dependency bugs; Have to keep updating dependents as dependencies evolve
-    
-
+	- Pro: Reproducible builds; Stable network effects
+	- Con: Can become vulnerable due to dependency bugs; Have to keep updating dependents as dependencies evolve
 - Floating Dependencies (e.g. 1.x) - Each build will pull the latest available libFoo version 
-    
-
-- Pro: Latest security patches & bug fixes; Less manual maintenance 
-    
-- Con: Flaky builds (breaking changes) ; Floats leak transitively (A pin to B floating C; then A still sees changing version of C) 
-    
+	- Pro: Latest security patches & bug fixes; Less manual maintenance 
+	- Con: Flaky builds (breaking changes) ; Floats leak transitively (A pin to B floating C; then A still sees changing version of C) 
 
 ### Types of Dependencies
 
@@ -506,8 +418,7 @@ What is a Dependency?
     
 2. Diamond Dependencies: multiple intermediate dependencies have the same transitive dependency.
     
-
-- Problem: Different intermediate dependencies may require different versions of the same transitive dependency.
+	- Problem: Different intermediate dependencies may require different versions of the same transitive dependency.
     
 
 3. Cyclic Dependencies: Avoid at all costs, but sometimes unavoidable or intentional (e.g. GCC is written in C - needs a C compiler; Apache Maven uses the Maven build system)
