@@ -1,5 +1,3 @@
-
-
 ## 1) SE Ethics
 
 - Human Flourishing: happiness and life satisfaction, mental and physical health, meaning and purpose, character and virtue, and close social relationships
@@ -514,5 +512,3 @@ What is a Dependency?
 
 3. Cyclic Dependencies: Avoid at all costs, but sometimes unavoidable or intentional (e.g. GCC is written in C - needs a C compiler; Apache Maven uses the Maven build system)
     
-
-**
