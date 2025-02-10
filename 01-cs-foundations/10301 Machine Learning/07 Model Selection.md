@@ -14,7 +14,7 @@
 - no parameters learned from training data; can still have hyper-parameters 
 - training data needs to be stored to make predictions 
 - can recover any target function given enough data
-# Model Selection with Validation Sets
+# Model Selection with `Validation Sets
 
 ![[Screen Shot 2024-02-18 at 20.45.26.png]]
 1. Split $D=D_{train}\cup D_{val}\cup D_{test}$, we have candidate models: $H_1, ..., H_M$
