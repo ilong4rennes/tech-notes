@@ -167,3 +167,4 @@ Example Task: Word Count on Wikipedia Pages
     - Each line of input generates a separate mapper.
     - Each unique key (tag) from the mapper corresponds to a reducer.
 
+### Expressing JOIN With MAPREDUCE
