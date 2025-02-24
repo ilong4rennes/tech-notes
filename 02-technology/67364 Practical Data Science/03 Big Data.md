@@ -331,14 +331,16 @@ If Memory = Minute, Network = Weeks, Flash = Months, Disk = Years
 - **Immutable**: Once created, it cannot be changed (new RDDs are created for transformations).
 - **Lazily evaluated**: Only executes computations when needed (when an action is called).
 - **Resilient**: Automatically recomputes data if a failure occurs.
+	- Fault Tolerance: 
+		- Hadoop: via HDFS replication
+		- Spark: RDD lineage recovery
 
-### **How RDD Works:**
-
+**How RDD Works:**
 - Transformations (like `map`, `filter`) create new RDDs.
 - Actions (like `count`, `collect`) trigger computation.
 - Tracks **lineage**: A history of transformations to help with fault recovery.
 
-##### Three Ways to Create an RDD
+**Three Ways to Create an RDD:**
 1. **Loading from an external file:**
 ```python
 lines = sc.textFile("file.txt")
@@ -357,56 +359,4 @@ pyLines = lines.filter(lambda line: "Python" in line)
 ```
 - Filters the RDD to only include lines containing the word `"Python"`.
 
-## 🔥 **Comprehensive Introduction to Apache Spark**
-
-### 💻 **What is Apache Spark?**
-
-- **Apache Spark** is an open-source distributed data processing engine designed for speed and ease of use.
-- It processes data **in-memory** for faster computation, making it ideal for iterative algorithms (like machine learning).
-
-### ⚙️ **Key Components:**
-
-1. **Spark Core**: Manages memory and distributed task scheduling.
-2. **Spark SQL**: Processes structured data using SQL queries.
-3. **Spark Streaming**: Processes real-time data streams.
-4. **MLlib**: Machine learning library with algorithms like clustering, classification, and regression.
-5. **GraphX**: Library for graph processing.
-
-### 🚀 **Why Use Spark?**
-
-- **Speed**: 10x faster than Hadoop due to in-memory processing.
-- **Ease of Use**: Supports Java, Scala, Python, and R.
-- **Flexibility**: Works with various data sources (HDFS, Cassandra, S3).
-- **Scalability**: Handles petabytes of data across thousands of nodes.
-
-### 🏁 **How to Run Spark Jobs:**
-
-1. **Install Spark**:
-    
-    - Download from [Apache Spark](https://spark.apache.org/downloads.html).
-    - Set environment variables.
-2. **Start Spark Shell**:
-    
-    ```bash
-    spark-shell
-    ```
-    
-3. **Submit a Spark Job**:
-    
-    ```bash
-    spark-submit your_script.py
-    ```
-    
-4. **Basic Example (Word Count in Python)**:
-    
-    ```python
-    from pyspark import SparkContext
-    
-    sc = SparkContext("local", "WordCount")
-    text_file = sc.textFile("data.txt")
-    counts = text_file.flatMap(lambda line: line.split(" ")) \
-                      .map(lambda word: (word, 1)) \
-                      .reduceByKey(lambda a, b: a + b)
-    counts.saveAsTextFile("output")
-    ```
-    
+#### Exercises
