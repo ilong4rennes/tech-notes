@@ -273,7 +273,6 @@ Design Goals: How were they achieved?
 - Usable: MrJob, Pig, Hive
 - Economical: Commercial off the shelf (COTS) components
 
-
 #### Abstractions in Big Data Processing
 
 **Types of Abstractions:**
