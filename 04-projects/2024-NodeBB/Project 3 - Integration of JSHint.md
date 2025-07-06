@@ -15,7 +15,7 @@ Integrating JSHint into our development process involves setting it up locally f
 #### Step 1: Install JSHint
 
 1. **Local Installation**:
-   To start, install JSHint as a development dependency within your project. This allows developers to use JSHint locally before committing code.
+   To start, install JSHint as a development dependency within your project. This allows developers to use JSHint locally before committing code. 
    ```bash
    npm install jshint --save-dev
    ```
