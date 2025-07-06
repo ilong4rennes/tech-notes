@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "04-projects/Detailed Analysis of the Syllabi Feature.md",
+                "file": "04-projects/2025-CV-Model-Simulator/test.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Detailed Analysis of the Syllabi Feature"
+              "title": "test"
             }
           }
         ]
@@ -117,7 +117,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "04-projects/Detailed Analysis of the Syllabi Feature.md",
+                "file": "04-projects/2025-CV-Model-Simulator/test.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +127,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Detailed Analysis of the Syllabi Feature"
+              "title": "Backlinks for test"
             }
           },
           {
@@ -136,12 +136,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "04-projects/Detailed Analysis of the Syllabi Feature.md",
+                "file": "04-projects/2025-CV-Model-Simulator/test.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Detailed Analysis of the Syllabi Feature"
+              "title": "Outgoing links from test"
             }
           },
           {
@@ -150,13 +150,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "04-projects/Detailed Analysis of the Syllabi Feature.md",
+                "file": "04-projects/2025-CV-Model-Simulator/test.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Detailed Analysis of the Syllabi Feature"
+              "title": "Outline of test"
             }
           },
           {
@@ -189,11 +189,12 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "b3183d1b8dd7f4d0",
+  "active": "6895ea5ab1addfd0",
   "lastOpenFiles": [
+    "04-projects/Detailed Analysis of the Syllabi Feature.md",
+    "04-projects/2025-CV-Model-Simulator/test.md",
     "04-projects/2025-CV-Model-Simulator/20250706-Deployment.md",
     "04-projects/Guide to Find and Download an Embedded Video.md",
-    "04-projects/Detailed Analysis of the Syllabi Feature.md",
     "2025-07-06.md"
   ]
 }
