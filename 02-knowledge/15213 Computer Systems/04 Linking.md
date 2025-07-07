@@ -132,11 +132,6 @@ Section header table - Where different sections start
 
 ## How it works
 
-
-
-
-
-
 **Symbol table**: Assemblers use the symbols exported by compilers to build the table. This means `*.s` files do not have them yet. Each entry is shown below.
 
 ```c
