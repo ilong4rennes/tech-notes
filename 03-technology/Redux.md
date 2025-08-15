@@ -12,3 +12,8 @@ tags:
 ## 我啥时候用得上
 
 ## 一句话用法
+
+```bash
+npm install @reduxjs/toolkit react-redux
+
+```
