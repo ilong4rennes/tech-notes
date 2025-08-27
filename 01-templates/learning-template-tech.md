@@ -1,5 +1,5 @@
 ---
-created: <% tp.date.now("YYYY-MM-DD") %>
+created: 2025-07-12
 tags:
 ---
 ## 我啥时候遇到的
