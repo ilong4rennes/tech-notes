@@ -41,40 +41,24 @@ Two types of information are conveyed (Two main coding strategies):
 - **Spike count encodes intensity:** more spikes = stronger stimulus.
 - **Spike timing encodes rhythm/frequency:** neurons lock onto temporal patterns, especially in auditory and touch systems.
 - Both mechanisms work together: **intensity (how much)** + **timing (when)** → richer encoding of perception.
+# Methods to Study Perception
 
-absolute threshold
-
-
-- **Lecture Outline**
-    
-    - General methods to study perception
-        
-    - Psychophysical methods and their measures
-        
-    - Threshold measurement (absolute & difference)
-        
-    - Supra-threshold measurement (magnitude estimation, binary discrimination – continued next lecture)
-        
-## Methods to Study Perception
-
-- **Controlled behavior**: accuracy, speed (e.g., visual search → response time differences for target present vs absent)
-- **Wearable/observational measures**: eye fixation, body/eye/face movements
+- **Controlled behavior**: accuracy, speed 
+	- e.g., visual search → response time differences for target present vs absent
+	- It takes longer to find the target (red triangle) in conjunction search.
+- **Natural observational measures**: eye fixation, body/eye/face movements
 - **Neural measures**:
 	- Invasive: single neuron recordings
 	- Noninvasive: fMRI (BOLD signal), DTI (white matter tracts), EEG, fNIRS, MEG
 
+# Psychophysics: Linking Physical & Psychological
 
-- **Psychophysics: Linking Physical & Psychological**
-    
-    - Vary physical stimulus, measure psychological response
-        
-    - Two types:
-        
-        - **Threshold** (limits of detection/discrimination)
-            
-        - **Supra-threshold** (responses to clearly perceivable events)
+- Vary physical stimulus, measure psychological response
+- Two types:
+	- **Threshold** (limits of detection/discrimination)
+	- **Supra-threshold** (responses to clearly perceivable events)
 
-## Measuring thresholds: absolute and difference
+# Measuring thresholds: absolute and difference
 
 - **Fundamental Abilities Measured**
     
@@ -86,7 +70,7 @@ absolute threshold
         
     - **Identification**: accuracy of identifying a stimulus
         
-### Thresholds
+## Thresholds
 - **Absolute threshold**: minimum stimulus intensity detectable
 - **Difference threshold (JND)**: minimum change detectable relative to standard
 
@@ -97,7 +81,7 @@ absolute threshold
     - **Weber’s Law**: JND is a constant fraction of baseline stimulus; smaller Weber fraction = greater sensitivity
     - **Applications**: measure perceptual ability, effects of age/impairment, practical uses (hearing loss, interface design)
 
-## Supra-threshold Measures: Magnitude estimation
+# Supra-threshold Measures: Magnitude estimation
 
 - Focus on stimuli clearly detectable
 - Questions: How does perceived intensity scale with physical variation? Does scaling differ by dimension (brightness, weight, taste, etc.)?
@@ -114,21 +98,13 @@ absolute threshold
         
     - Log-log transformation linearizes data, slope = exponent (n)
         
-- **Binary Discrimination (Supra-threshold)**
-    
-    - Different from threshold discrimination
-        
-    - Signal detection approach: measure accuracy distinguishing between two above-threshold stimuli
-        
-    - Vary stimulus differences to find % accuracy at target level (not 100%)
-        
+# Binary Discrimination (Supra-threshold)
+- Different from threshold discrimination
+- Signal detection approach: measure accuracy distinguishing between two above-threshold stimuli
+- Vary stimulus differences to find % accuracy at target level (not 100%)
+
 - **Applications of Psychophysics**
-    
     - Provides core sensory metrics (e.g., Weber fractions)
-        
     - Assesses sensory function and decline (aging, disease)
-        
     - Tests human–computer interfaces and VR systems
-        
     - Goals: maximize detection/discrimination, ensure wide perceptual range
-        
