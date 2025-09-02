@@ -55,29 +55,27 @@ Two types of information are conveyed (Two main coding strategies):
 
 - Vary physical stimulus, measure psychological response
 - Two types:
-	- **Threshold** (limits of detection/discrimination)
+	- **Threshold** (responses just at the limits of perception)
 	- **Supra-threshold** (responses to clearly perceivable events)
 
 # Measuring thresholds: absolute and difference
 
 - **Fundamental Abilities Measured**
-    
     - **Detection threshold**: is something there?
-        
     - **Discrimination threshold**: minimal detectable difference (JND)
-        
     - **Binary choice**: A vs A’ discrimination
-        
     - **Identification**: accuracy of identifying a stimulus
-        
 ## Thresholds
-- **Absolute threshold**: minimum stimulus intensity detectable
-- **Difference threshold (JND)**: minimum change detectable relative to standard
+- **Absolute threshold**: How much input do we need to tell something is happening?
+- **Difference threshold (JND)**: How much of a diﬀerence do we need to tell one input from another?
 
 - **Methods to measure absolute threshold**:
 	- Method of Limits (ascending/descending series)
 	- Method of Adjustment (subject freely adjusts stimulus)
 	- Method of Constant Stimuli (fixed set, % detection across trials, fit function for threshold)
+- **Methods to measure difference threshold**:
+	- JND = “just noticeable difference”
+	- The Weber fraction = $\frac{JND value}{standard value}$
     - **Weber’s Law**: JND is a constant fraction of baseline stimulus; smaller Weber fraction = greater sensitivity
     - **Applications**: measure perceptual ability, effects of age/impairment, practical uses (hearing loss, interface design)
 
@@ -93,11 +91,8 @@ Two types of information are conveyed (Two main coding strategies):
         - n < 1: diminishing returns (e.g., brightness, loudness)
         - n > 1: increasing returns (e.g., shock, heaviness)
     - Different dimensions have characteristic exponents (e.g., brightness ≈ 0.5, heaviness ≈ 1.45, shock ≈ 3.5)
-        
     - Data normalization needed due to individual scaling differences
-        
     - Log-log transformation linearizes data, slope = exponent (n)
-        
 # Binary Discrimination (Supra-threshold)
 - Different from threshold discrimination
 - Signal detection approach: measure accuracy distinguishing between two above-threshold stimuli
