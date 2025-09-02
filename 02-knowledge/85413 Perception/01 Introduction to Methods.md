@@ -83,13 +83,13 @@ Two types of information are conveyed (Two main coding strategies):
 
 - Focus on stimuli clearly detectable
 - Questions: How does perceived intensity scale with physical variation? Does scaling differ by dimension (brightness, weight, taste, etc.)?
-        
+
 - **Magnitude Estimation**
     - Subjects assign numbers proportional to perceived intensity (free scale, above threshold)
     - Produces **power functions**:
         - Perceived magnitude = $$K \times Stimulus^{n}$$
-        - n < 1: diminishing returns (e.g., brightness, loudness)
-        - n > 1: increasing returns (e.g., shock, heaviness)
+        - n < 1: means that each increase in stimulus magnitude counts **less** - diminishing returns (e.g., brightness, loudness)
+        - n > 1: means that each increase in stimulus magnitude counts **more** - increasing returns (e.g., shock, heaviness)![[Screenshot 2025-09-02 at 2.32.20 AM.png]]
     - Different dimensions have characteristic exponents (e.g., brightness ≈ 0.5, heaviness ≈ 1.45, shock ≈ 3.5)
     - Data normalization needed due to individual scaling differences
     - Log-log transformation linearizes data, slope = exponent (n)
