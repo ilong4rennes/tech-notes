@@ -103,3 +103,59 @@ Two types of information are conveyed (Two main coding strategies):
     - Assesses sensory function and decline (aging, disease)
     - Tests human–computer interfaces and VR systems
     - Goals: maximize detection/discrimination, ensure wide perceptual range
+
+## Signal Detection Basics
+
+- Signal detection theory measures how well people discriminate between two conditions (signal vs. noise).
+- On each trial, a signal or no-signal is presented, and the observer responds “signal” or “no signal.”
+- Four possible outcomes: **Hit, Miss, False Alarm, Correct Rejection.**
+
+## Outcomes and Measures
+
+- Outcomes can be expressed as proportions (% hit, % miss, % false alarm, % correct rejection).
+- Key measures:
+    - **d′ (sensitivity):** Distance between signal and noise distributions in SD units.
+    - **Criterion (c or β):** The threshold for deciding “signal.”
+![[Screenshot 2025-09-02 at 10.06.18 AM.png]]
+## Theoretical Model
+
+- Internal responses to signal and noise are modeled as normal distributions.
+- Mean response is higher for signal than for noise.
+- Criterion determines boundary between “signal” and “no signal” judgments.
+- **d′ increases** → distributions separate more → better sensitivity.
+- **Shifting criterion** changes trade-off between hits and false alarms.
+
+## Visualizations
+
+- Probability curves illustrate how hits and false alarms depend on distributions and criterion.
+    ![[Screenshot 2025-09-02 at 10.11.07 AM.png]]
+- Examples:
+    - High d′ → high hits.
+    - Liberal criterion → more hits but also more false alarms.
+    - Conservative criterion → fewer hits, fewer false alarms.
+- $d'= z_1 + z_2$
+## ROC Curves (Receiver Operating Characteristic)
+
+- Moving criterion shifts point along the curve.
+- Higher sensitivity (larger d′) shifts the ROC curve away from the diagonal.
+- **Area under the curve (AUC)** is another measure of sensitivity (A = 0.5 = chance, A close to 1 = high sensitivity).
+- ROC slope relates to β (criterion).
+- confidence???
+
+### Extensions to Machine Learning
+
+- ML classifiers also make binary decisions (e.g., cancer detection).
+- Similar measures apply:
+    - **Precision:** Hits / (Hits + False Alarms).
+    - **Recall:** Same as hit rate.
+    - **Specificity:** Correct rejection rate.
+    - **Accuracy:** Overall proportion correct.
+- Precision/Recall curves are especially useful when signals are rare.
+
+### Computation
+
+- d’ (sensitivity in terms of distance between curves) =NORMSINV(HIT_PROP)-NORMSINV(FA_PROP) 
+- Beta (criterion expressed by ratio of height of curves) =EXP((NORMSINV(FA_PROP)^2)- NORMSINV(HIT_PROP)^2)/2) 
+- C (criterion expressed by x axis position, relative to point where curves cross, ie c = 0 where beta = 1) =-(NORMSINV(HIT_PROP)+NORMSINV(FA_PROP))/2 
+- A (area under ROC curve measure of sensitivity) =NORMSDIST(D_PRIME/SQRT(2))
+- Example worksheet shows calculations with given hit/false alarm rates.
