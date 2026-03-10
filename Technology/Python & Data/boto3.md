@@ -4,7 +4,7 @@ tags: [data-science]
 ---
 
 ## 我啥时候遇到的
-- 在[[20250724-localstack|用localstack跑模型]]的时候，需要连接到S3服务。
+- 在[[tech-notes/Projects/2025-CV-Model-Simulator/04-LocalStack|用localstack跑模型]]的时候，需要连接到S3服务。
 - `boto3` 是 **AWS提供的官方 Python SDK**，可以让你用 Python 代码直接操作各种 AWS 服务，比如 S3。
 ## 用法
 1. 建立S3连接

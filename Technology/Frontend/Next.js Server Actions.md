@@ -7,7 +7,7 @@ tags: [frontend]
 
 ## 我啥时候遇到的
 
-在2025暑假实习的时候，写[[20250706-Frontend|Add Model Button]] 这个功能的时候碰到了相关的bug。
+在2025暑假实习的时候，写[[02-Frontend]] 这个功能的时候碰到了相关的bug。
 
 我遇到 Next.js Server Actions 的问题，是在做前端上传 `.pt` 模型文件的时候。原本是想用 Server Actions 来上传，但因为 YOLO 的模型文件（比如 `yolov8n.pt` 大概 6.2MB）太大，超过了 Next.js 默认 1MB 的请求体限制，所以上传失败。
 

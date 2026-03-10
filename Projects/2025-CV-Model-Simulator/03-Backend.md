@@ -7,7 +7,7 @@ goal: Implement Backend API of the app
 ---
 
 Reference: 
-- [[20250702-Design Doc|Design Doc]]
+- [[01-Design-Doc]]
 
 # Version 1
 ## **POST /api/run**

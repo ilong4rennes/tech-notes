@@ -9,7 +9,7 @@ goal: Implement the frontend using Next.js
 ---
 
 Reference: 
-- [[20250702-Design Doc|Design Doc]]
+- [[01-Design-Doc]]
 
 ## Sidebar
 ### Choose Model from List

@@ -11,7 +11,7 @@ goal: Overall design doc of the project
 ---
 
 # Frontend
-- More Detailed Plans: [[20250706-Frontend]]
+- More Detailed Plans: [[02-Frontend]]
 ### **User Flow - Upload new model**
 
 1. Clicks ‘Upload Model’, select a .pt file
