@@ -591,8 +591,6 @@ Note: While a ton of repeat work is done/space is used in IDS for the lower “f
   
 **Completeness:** With certain heuristic values, greedy search could get stuck in a loop of expanding the same nodes - try making an example!
 
-![image](https://www.cs.cmu.edu/~15281/coursenotes/search/images/button.png)
-
 **Optimality:** Without the right heuristic values, greedy search is not guaranteed to find the optimal solution.
 
   
