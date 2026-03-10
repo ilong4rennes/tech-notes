@@ -2,13 +2,13 @@
 
 | Name | Link | Summary |
 | ---- | ---- | ------- |
-| React Guide (All) | [[React/00 React Guide (All)]] | ES6+, JSX, Virtual DOM, component architecture, lifecycle, hooks |
-| React Basics | [[React/01 React Basics]] | JSX syntax and rules; component fundamentals |
-| React Hooks | [[React/02 React Hooks]] | useState, state management patterns |
-| Memoization | [[React/03 Memoization]] | useMemo; performance optimization for expensive calculations |
-| Routing | [[React/06 Routing]] | React Router; SPA vs multi-page routing |
-| State Management | [[React/07 State Management]] | Component state, global state, Redux patterns |
-| Data Fetching | [[React/08 Data Fetching]] | React Query; useQuery for fetching, caching, syncing server data |
+| React Guide (All) | [[00 React Guide (All)]] | ES6+, JSX, Virtual DOM, component architecture, lifecycle, hooks |
+| React Basics | [[01 React Basics]] | JSX syntax and rules; component fundamentals |
+| React Hooks | [[02 React Hooks]] | useState, state management patterns |
+| Memoization | [[03 Memoization]] | useMemo; performance optimization for expensive calculations |
+| Routing | [[06 Routing]] | React Router; SPA vs multi-page routing |
+| State Management | [[07 State Management]] | Component state, global state, Redux patterns |
+| Data Fetching | [[08 Data Fetching]] | React Query; useQuery for fetching, caching, syncing server data |
 | Next.js | [[Next.js]] | SSR, SSG, file-system routing, full-stack setup, DB integration |
 | Next.js Server Actions | [[Next.js Server Actions]] | File upload size limits; request config for large files |
 | Redux | [[Redux]] | Global state management for React |
@@ -20,10 +20,10 @@
 
 | Name | Link | Summary |
 | ---- | ---- | ------- |
-| Node.js | [[Node.js/Node.js]] | Globals, modules, file system, client/server, deployment basics |
-| Django Setup | [[Django/00 Set up]] | Prerequisites (Python, Homebrew, PostgreSQL), project init |
-| Django Introduction | [[Django/01 Django Introduction]] | Venv, project creation, app installation |
-| Django Database | [[Django/02 Connecting to a Database]] | MySQL setup, client config, connection procedures |
+| Node.js | [[Node.js]] | Globals, modules, file system, client/server, deployment basics |
+| Django Setup | [[00 Set up]] | Prerequisites (Python, Homebrew, PostgreSQL), project init |
+| Django Introduction | [[01 Django Introduction]] | Venv, project creation, app installation |
+| Django Database | [[02 Connecting to a Database]] | MySQL setup, client config, connection procedures |
 | Flask Blueprint | [[Blueprint（Flask）]] | Modularizing Flask routes with Blueprints |
 | View Engine | [[View Engine]] | EJS, Pug, Handlebars, Benchpress in Express.js |
 | Redis | [[Redis]] | In-memory key-value store; caching, queues (lpush/rpop FIFO) |
