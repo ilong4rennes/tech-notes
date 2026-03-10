@@ -9,19 +9,19 @@
 
 ## 80261 Epistemology
 
-| Name | Link | Summary |
-| ---- | ---- | ------- |
-| Course Intro | [[80261 Epistemology/00]] | Course setup; readings list; intro to knowledge and justification |
-| Overview | [[80261 Epistemology/01 Overview]] | What epistemology is; justified true belief; philosophical vs scientific approaches |
-| Empiricism | [[80261 Epistemology/02 Empiricism]] | Knowledge from sensory experience; Hume; tabula rasa |
-| Rationalism | [[80261 Epistemology/03 Rationalism]] | Knowledge from reason; innate ideas; Descartes |
-| Locke | [[80261 Epistemology/05 Locke]] | Locke's empiricist theory of knowledge; primary/secondary qualities |
-| Locke vs. Leibniz | [[80261 Epistemology/06 Locke vs. Leibniz]] | Debate between empiricism and rationalism on the source of ideas |
-| Hypotheses about Unobservables | [[80261 Epistemology/11 Hypotheses about Unobservables]] | Scientific realism; how we reason about things we cannot directly observe |
-| Wesley Salmon on Scientific Realism | [[80261 Epistemology/20 Wesley Salmon's Argument on Scientific Realism and Molecular Reality]] | Salmon's argument for molecular reality; inference to the best explanation |
-| Laws in Social Science | [[80261 Epistemology/21 Laws in Social Science - Dealing with Multiple Causation in Complex Phenomena]] | Causal complexity in social science; why universal laws are hard to establish |
-| Sandra D. Mitchell | [[80261 Epistemology/22 Through the Fractured Looking Glass - Sandra D. Mitchell]] | Integrative pluralism; science doesn't yield simple universal laws |
-| Summary | [[80261 Epistemology/Summary]] | Course summary of key epistemological positions and arguments |
+| Name                                | Link                                                                                                    | Summary                                                                             |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Course Intro                        | [[80261 Epistemology/00]]                                                                               | Course setup; readings list; intro to knowledge and justification                   |
+| Overview                            | [[80261 Epistemology/01 Overview]]                                                                      | What epistemology is; justified true belief; philosophical vs scientific approaches |
+| Empiricism                          | [[80261 Epistemology/02 Empiricism]]                                                                    | Knowledge from sensory experience; Hume; tabula rasa                                |
+| Rationalism                         | [[80261 Epistemology/03 Rationalism]]                                                                   | Knowledge from reason; innate ideas; Descartes                                      |
+| Locke                               | [[80261 Epistemology/05 Locke]]                                                                         | Locke's empiricist theory of knowledge; primary/secondary qualities                 |
+| Locke vs. Leibniz                   | [[80261 Epistemology/06 Locke vs. Leibniz]]                                                             | Debate between empiricism and rationalism on the source of ideas                    |
+| Hypotheses about Unobservables      | [[80261 Epistemology/11 Hypotheses about Unobservables]]                                                | Scientific realism; how we reason about things we cannot directly observe           |
+| Wesley Salmon on Scientific Realism | [[20 Wesley Salmon’s Argument on Scientific Realism and Molecular Reality]]                             | Salmon's argument for molecular reality; inference to the best explanation          |
+| Laws in Social Science              | [[80261 Epistemology/21 Laws in Social Science - Dealing with Multiple Causation in Complex Phenomena]] | Causal complexity in social science; why universal laws are hard to establish       |
+| Sandra D. Mitchell                  | [[80261 Epistemology/22 Through the Fractured Looking Glass - Sandra D. Mitchell]]                      | Integrative pluralism; science doesn't yield simple universal laws                  |
+| Summary                             | [[80261 Epistemology/Summary]]                                                                          | Course summary of key epistemological positions and arguments                       |
 
 ---
 
