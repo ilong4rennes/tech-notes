@@ -1,3 +1,7 @@
+---
+tags: [data-science]
+---
+
 What is Information Systems about?
 - Adding Value to Organizations using Technology
 

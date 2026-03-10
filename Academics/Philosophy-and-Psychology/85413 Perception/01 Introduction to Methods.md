@@ -1,3 +1,7 @@
+---
+tags: [perception]
+---
+
 # Part 1: Measuring neurons and the brain
 
 ## What do we learn from studying perception?

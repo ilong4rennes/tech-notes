@@ -1,6 +1,6 @@
 ---
 created: "2024"
-tags:
+tags: [software-engineering]
   - "#CICD"
   - "#deployment"
   - "#github-actions"
@@ -8,6 +8,7 @@ org:
   - CMU
 goal: Deploy to Azure using GitHub Actions
 ---
+
 ## Step 1: Deployment on Azure with GitHub Actions ([link](https://docs.google.com/document/d/1WXRbEXMJf_9IIAsbYFqjfkUsnAXJk6NQ0v7OVDIBClM/edit?usp=sharing))
 
 ## Step 2: Add the Workflow File

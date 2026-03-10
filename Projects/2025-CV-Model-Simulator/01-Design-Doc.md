@@ -1,6 +1,6 @@
 ---
 created: 2025-07-02
-tags:
+tags: [computer-vision]
   - "#software-architecture"
   - "#frontend"
   - "#backend"
@@ -9,6 +9,7 @@ org:
   - GC
 goal: Overall design doc of the project
 ---
+
 # Frontend
 - More Detailed Plans: [[20250706-Frontend]]
 ### **User Flow - Upload new model**

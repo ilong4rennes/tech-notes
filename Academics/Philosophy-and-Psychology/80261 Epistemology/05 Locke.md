@@ -1,3 +1,7 @@
+---
+tags: [epistemology]
+---
+
 ### Context and Philosophical Background
 - **John Locke (1632-1704)**, an English philosopher, developed much of his work in response to **Rene Descartes**.
 - While both agreed on the existence of the physical world, they disagreed on how humans acquire knowledge and on the existence of innate ideas.

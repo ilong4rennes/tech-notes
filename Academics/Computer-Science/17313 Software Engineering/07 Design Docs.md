@@ -1,3 +1,7 @@
+---
+tags: [software-engineering]
+---
+
 - **Types of documentation** 
 	- Reference documentation (incl. code comments) 
 	- Design documents 

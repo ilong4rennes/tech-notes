@@ -1,3 +1,7 @@
+---
+tags: [artificial-intelligence]
+---
+
 # Linear and Integer Programming
 
 ## Learning Objectives

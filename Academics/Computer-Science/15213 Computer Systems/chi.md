@@ -1,3 +1,7 @@
+---
+tags: [computer-systems]
+---
+
 ### 1. **用户交互：**
    - 你双击了 `PowerPoint.exe` 图标。
 

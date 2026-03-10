@@ -1,3 +1,7 @@
+---
+tags: [software-engineering]
+---
+
 **Common Software Architectures**
 1. Pipes and Filters (Example: Compilers)
 2. Object-Oriented Organization (Example: Eclipse IDE)

@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 # Linear Decision Boundaries
 
 - $w^T x +b = 0$ defines a hyperplane

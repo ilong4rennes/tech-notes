@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 # Specifications for Phase 2  
   
 As part of phase 2, you will have to create models for `Unit`, `Crime`, `Investigation`, `Officer` and `Assignment` and write unit tests for these models. To make sure you are able to build these models and tests properly, below are some specs for each of these models.  

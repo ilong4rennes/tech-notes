@@ -1,3 +1,7 @@
+---
+tags: [data-science]
+---
+
 ## Pandas Basics
 ![[Screenshot 2025-01-30 at 8.16.44 PM.png]]
 

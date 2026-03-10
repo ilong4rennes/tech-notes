@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 # Decision Stump
 
 - def: based on a single feature, $x_d$, predict the most common label in $D_{train}$ among all data points that have the same value for $x_d$

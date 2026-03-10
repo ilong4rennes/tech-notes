@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 - **Introduction to Freedom**: Berlin begins by emphasizing that the term "freedom" is interpreted in many ways throughout history. He narrows the focus to two central political meanings: negative and positive freedom.
   
 - **Negative Liberty**: 

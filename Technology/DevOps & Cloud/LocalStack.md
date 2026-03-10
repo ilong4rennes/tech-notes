@@ -1,7 +1,8 @@
 ---
 created: 2025-07-15
-tags:
+tags: [devops]
 ---
+
 ## 我啥时候遇到的
 
 I encountered the need for LocalStack when developing the computer vision model simulator project that relies on AWS services (S3 and SQS). During development, I needed to test AWS interactions locally without incurring costs or requiring internet connectivity, and without risking accidental interactions with production AWS resources.

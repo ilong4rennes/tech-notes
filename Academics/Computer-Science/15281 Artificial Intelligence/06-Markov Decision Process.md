@@ -1,3 +1,7 @@
+---
+tags: [artificial-intelligence]
+---
+
 # Markov Decision Processes
 
 ## Learning Objectives

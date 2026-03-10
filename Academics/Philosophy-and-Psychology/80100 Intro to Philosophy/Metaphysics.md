@@ -1,3 +1,7 @@
+---
+tags: [philosophy]
+---
+
 # Metaphysics 
 
 * Ontology: a theory of the nature of reality  

@@ -1,3 +1,7 @@
+---
+tags: [software-engineering]
+---
+
 - **Establish communication patterns** 
 	- Asana, Trello, Microsoft Projects, … 
 	- Github Wiki, Google Docs, Notion, … 

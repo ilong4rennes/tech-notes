@@ -1,3 +1,7 @@
+---
+tags: [artificial-intelligence]
+---
+
 # Reinforcement Learning
 
 ## Learning Objectives

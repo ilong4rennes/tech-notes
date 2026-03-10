@@ -1,3 +1,7 @@
+---
+tags: [epistemology]
+---
+
 ## Rationalism vs. Empiricism Debate
 
 - This debate focuses on how we gain knowledge, particularly about the external world, with rationalists emphasizing reason and empiricists prioritizing sense experience.

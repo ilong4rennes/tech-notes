@@ -1,7 +1,8 @@
 ---
 created: 2025-07-24
-tags:
+tags: [data-science]
 ---
+
 ## 我啥时候遇到的
 - 在[[20250724-localstack|用localstack跑模型]]的时候，需要连接到S3服务。
 - `boto3` 是 **AWS提供的官方 Python SDK**，可以让你用 Python 代码直接操作各种 AWS 服务，比如 S3。

@@ -1,3 +1,7 @@
+---
+tags: [index]
+---
+
 ## 2024-NodeBB — CMU Software Engineering Course
 
 Open-source contribution project on the NodeBB forum platform. Each phase covers a different engineering practice.

@@ -1,3 +1,7 @@
+---
+tags: [artificial-intelligence]
+---
+
 # Propositional Logic and Logical Agents
 
 ## Learning Objectives

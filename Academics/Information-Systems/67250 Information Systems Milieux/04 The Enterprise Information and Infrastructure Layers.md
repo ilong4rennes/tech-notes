@@ -1,3 +1,7 @@
+---
+tags: [information-systems]
+---
+
 # Business Analytics and Big Data
 
 ## Business Analytics

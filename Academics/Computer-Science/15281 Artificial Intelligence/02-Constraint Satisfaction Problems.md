@@ -1,3 +1,7 @@
+---
+tags: [artificial-intelligence]
+---
+
 # Constraint Satisfaction Problems
 
 ### Learning Objectives

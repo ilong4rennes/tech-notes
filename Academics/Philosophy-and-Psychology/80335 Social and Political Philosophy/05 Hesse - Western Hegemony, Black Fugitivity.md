@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 ### Introduction
 - The essay examines Isaiah Berlin’s **“Two Concepts of Liberty”** in the context of **Black fugitive thought**.
   - Key figures in Black fugitive thought include **Aimé Césaire**, **W. E. B. Du Bois**, and **David Walker**.

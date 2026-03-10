@@ -1,10 +1,11 @@
 ---
 created: 2025-07-24
-tags: 
+tags: [computer-vision]
 org:
   - GC
 goal: 用local stack跑cv模型
 ---
+
 目前我收集到的信息有：
 
 目标：实现用local stack跑model

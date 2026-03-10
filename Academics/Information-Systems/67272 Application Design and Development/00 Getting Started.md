@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 1. Create a new rails application called "SimpleQuotes" and initialize a blank git repository inside the app: 
 ```
 rails new SimpleQuotes 

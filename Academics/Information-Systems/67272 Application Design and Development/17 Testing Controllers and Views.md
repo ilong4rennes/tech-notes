@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 ## Testing Controllers
 
 1. **Controller Tests** simulate web requests to your controller actions and make sure the controller does what it should, like retrieving, creating, updating, or deleting data.

@@ -1,3 +1,7 @@
+---
+tags: [index, information-systems]
+---
+
 ## 67250 Information Systems Milieux
 
 | Name | Link | Summary |

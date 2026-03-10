@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 # Individual Fairness
 **Statistical/Demographic Parity**
 - Equal selection rate across different groups: $P(\hat{Y} = 1 | S = s_1) = P(\hat{Y} = 1 | S = s_2)$

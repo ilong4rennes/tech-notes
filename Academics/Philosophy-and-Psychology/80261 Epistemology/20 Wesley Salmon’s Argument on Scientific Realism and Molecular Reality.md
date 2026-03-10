@@ -1,3 +1,7 @@
+---
+tags: [epistemology]
+---
+
 #### **Context and Philosophical Background**
 
 1. **Philosophical Debate on Realism:**

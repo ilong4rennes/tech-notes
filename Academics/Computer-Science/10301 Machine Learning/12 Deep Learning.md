@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 # Convolutional Neural Networks (CNNs)
 ## Convolution (卷积层)
 - 目的：降维、提取底层特征

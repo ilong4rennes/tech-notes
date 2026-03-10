@@ -1,3 +1,7 @@
+---
+tags: [information-systems]
+---
+
 # IS and Business Strategy - Concepts
 ## 1. IS & Enterprise Architecture
 

@@ -1,3 +1,7 @@
+---
+tags: [frontend]
+---
+
 ## Core Concepts
 
 Memoization in React is an optimization technique that caches expensive function calls or component renders to avoid unnecessary recalculations or re-renders.

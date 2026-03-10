@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 # Binary search tree (BST)
 - Each node:
 	- has a value, v  

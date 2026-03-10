@@ -1,3 +1,7 @@
+---
+tags: [data-science]
+---
+
 ## Creating Arrays
 ![[Screen Shot 2024-01-21 at 19.44.51.png]]
 ## I/O

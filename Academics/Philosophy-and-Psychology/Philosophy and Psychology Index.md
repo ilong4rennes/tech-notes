@@ -1,3 +1,7 @@
+---
+tags: [index, philosophy]
+---
+
 ## 80100 Intro to Philosophy
 
 | Name | Link | Summary |

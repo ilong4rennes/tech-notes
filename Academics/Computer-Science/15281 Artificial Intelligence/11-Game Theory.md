@@ -1,3 +1,7 @@
+---
+tags: [artificial-intelligence]
+---
+
 # Game Theory
 
 ## Learning Objectives

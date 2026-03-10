@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 抢答环节
 - constructor method in ruby: def initialize
 - model inherit from applicationRecord

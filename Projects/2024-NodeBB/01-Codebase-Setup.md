@@ -1,6 +1,6 @@
 ---
 created: "2024"
-tags:
+tags: [software-engineering]
   - "#GitHub"
   - "#npm"
 org:

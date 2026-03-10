@@ -1,3 +1,7 @@
+---
+tags: [index, computer-science]
+---
+
 ## 10301 Machine Learning
 
 | Name                     | Link                                                   | Summary                                                                             |

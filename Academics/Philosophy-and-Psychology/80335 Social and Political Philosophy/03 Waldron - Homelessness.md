@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 - **Introduction:**
   - Waldron explores the connection between homelessness, property rules (public and private), and individual freedom.
   - The essay avoids discussions of constitutionality and focuses on the philosophical understanding of homelessness in relation to freedom.

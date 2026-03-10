@@ -1,6 +1,6 @@
 ---
 created: "2024"
-tags:
+tags: [software-engineering]
   - "#software-architecture"
   - "#frontend"
   - "#backend"
@@ -10,6 +10,7 @@ org:
   - CMU
 goal: Implement Mark Resolved Feature in NodeBB
 ---
+
 ## Current Architecture of NodeBB
 ![[Screenshot 2024-11-10 at 11.34.07 PM.png]]
 ## Integrate Front-end Theme to NodeBB Repo ([link](https://docs.google.com/document/d/17sEb4QTdcKX33vFgN30MWOkPdROW3Z4lzp0KQEhKa6k/edit?usp=sharing))

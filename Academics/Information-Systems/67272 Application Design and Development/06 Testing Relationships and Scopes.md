@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 ## ActiveSupport::TestCase
 
 - Rails ships with three types of tests: unit (models), functional (controllers), and integration (full MVC stack).

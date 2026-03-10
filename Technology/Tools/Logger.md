@@ -1,7 +1,8 @@
 ---
 created: 2025-07-25
-tags:
+tags: [tools]
 ---
+
 ## 我啥时候遇到的
 
 在[[20250724-localstack|解决这个问题]]的时候，需要debug，在vibe code的时候我让cursor加一些debug statement，它用了这个library。

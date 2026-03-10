@@ -1,3 +1,7 @@
+---
+tags: [tools]
+---
+
 ![[Screen Shot 2024-01-17 at 00.06.52.png]]![[Screen Shot 2024-01-17 at 00.07.36.png]] 
 
 Don't add untested features to main branch!

@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 # Rails Basic Commands
 
 - `rails new SimpleQuotes ` = Create a new rails application called "SimpleQuotes"

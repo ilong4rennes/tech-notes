@@ -1,3 +1,7 @@
+---
+tags: [backend]
+---
+
 ### Step 1: Install Django and Set Up Virtual Environment
 
 1. Create a virtual environment to isolate your project dependencies:

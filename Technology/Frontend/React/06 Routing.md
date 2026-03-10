@@ -1,3 +1,7 @@
+---
+tags: [frontend]
+---
+
 # React Router
 
 ### What React gives you (and what it doesn’t)

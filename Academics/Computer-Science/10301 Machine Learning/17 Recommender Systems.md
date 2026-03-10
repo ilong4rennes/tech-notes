@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 # Setup
 - Items: movies, songs, products, etc. (often many thousands) 
 - Users: watchers, listeners, purchasers, etc. (often many millions) 

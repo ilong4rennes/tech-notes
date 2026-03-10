@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 ## Ruby Object Model
 
 - Everything (numbers, strings, classes, methods) is an Object. Every object is an instance of a class.

@@ -1,12 +1,13 @@
 ---
 created: 2025-07-06
-tags:
+tags: [computer-vision]
   - frontend
   - "#nextjs"
 org:
   - GC
 goal: Implement the frontend using Next.js
 ---
+
 Reference: 
 - [[20250702-Design Doc|Design Doc]]
 

@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 # A Recipe for Machine Learning
 
 1. Training data:

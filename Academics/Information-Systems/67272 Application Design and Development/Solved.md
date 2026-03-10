@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 - app
 	- assets
 	- controllers

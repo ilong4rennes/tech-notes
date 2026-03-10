@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 - `rails db:migrate` - run this when making changes in database. What counts as changes in database?
 	- see the file on canvas
 	- creating database / adding functions in database

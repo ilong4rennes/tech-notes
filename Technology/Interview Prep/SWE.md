@@ -1,3 +1,7 @@
+---
+tags: [interview-prep]
+---
+
 ### 🖼️ **Frontend Engineering**
 
 - UI/UX Development

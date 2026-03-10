@@ -1,3 +1,7 @@
+---
+tags: [epistemology]
+---
+
 - **Hume’s theory of causality**
 	- Hume argued that psychological habits shape our beliefs about causation. Causal ascriptions are inevitably the product of correlations that have been observed in the past.
 	- Any underlying causal powers responsible for C causing E must involve **a spatial “causal chain”** connecting C and E.

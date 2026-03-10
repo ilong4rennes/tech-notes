@@ -1,3 +1,7 @@
+---
+tags: [computer-systems]
+---
+
 # Basic concepts 
 
 ## Dynamic Memory Allocation

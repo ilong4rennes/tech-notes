@@ -1,3 +1,7 @@
+---
+tags: [consulting]
+---
+
 ## Understanding the context
 
 1. What is this org and why does it exist? 

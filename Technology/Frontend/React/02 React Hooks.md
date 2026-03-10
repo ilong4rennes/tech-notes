@@ -1,3 +1,7 @@
+---
+tags: [frontend]
+---
+
 ### **1. `useState`: Add State to a Functional Component**
 
 - **Purpose**: `useState` is used to store and update data in a component. The component re-renders whenever the state changes.

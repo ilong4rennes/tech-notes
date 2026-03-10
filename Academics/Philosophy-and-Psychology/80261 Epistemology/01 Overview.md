@@ -1,3 +1,7 @@
+---
+tags: [epistemology]
+---
+
 Readings: 
 1) Smith on the content and learning goals of the Experience, Reason, and Truth course 
 2) David Truncellito, “Epistemology” – Excerpts.

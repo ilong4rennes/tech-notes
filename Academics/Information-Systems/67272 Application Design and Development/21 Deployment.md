@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 - Server
 - Work fine in dev mode, but the problem is that it makes too many (100+) calls to the database for one person's matter, too much load in the server. 
 - `gem bullet` - more efficient querying

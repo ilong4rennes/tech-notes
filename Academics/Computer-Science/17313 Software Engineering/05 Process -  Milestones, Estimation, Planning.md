@@ -1,3 +1,7 @@
+---
+tags: [software-engineering]
+---
+
 - **How to develop software?**
 	- Discuss the software that needs to be written 
 	- Write some code 

@@ -1,3 +1,7 @@
+---
+tags: [philosophy]
+---
+
 Sapir–Whorf hypothesis: the particular language one speaks influences the way one thinks about reality.
 
 - “语言决定论”：语言被形容为一个没有赦免的监狱，翻译和双语是不可能的，因为你的意识完全由母语的限制所构建。

@@ -1,3 +1,7 @@
+---
+tags: [interview-prep, algorithms]
+---
+
 ## Reverse Linked List
 
 ```python

@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 # Terminology
 
 - **Model class**: the set of all possible trees given some hyper-parameter (eg. max depth)

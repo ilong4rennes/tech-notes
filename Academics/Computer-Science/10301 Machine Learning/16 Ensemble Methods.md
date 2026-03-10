@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 # Bagging
 ## Random Forests
 - Combines the prediction of many diverse decision trees to reduce their variability

@@ -1,3 +1,7 @@
+---
+tags: [interview-prep, algorithms]
+---
+
 ![[Pasted image 20240721021351.png]]
 
 ## Linear Search

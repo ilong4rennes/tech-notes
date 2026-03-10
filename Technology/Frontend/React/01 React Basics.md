@@ -1,3 +1,7 @@
+---
+tags: [frontend]
+---
+
 ### JSX (JavaScript XML)
 
 - JSX allows you to write HTML-like code in JavaScript files. It makes React code more readable and intuitive.

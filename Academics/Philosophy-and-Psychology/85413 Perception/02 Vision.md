@@ -1,3 +1,7 @@
+---
+tags: [perception]
+---
+
 ### 1. ROC Curves Recap
 
 - Two ways to construct an ROC curve:

@@ -1,3 +1,7 @@
+---
+tags: [epistemology]
+---
+
 **Locke's "An Essay Concerning Human Understanding"**:
 - **No innate principles**: Locke argues that humans are not born with innate ideas or principles, challenging the belief that certain truths are "imprinted" on the mind at birth.
 - **Knowledge through experience**: All human knowledge can be acquired through experience and the use of natural faculties (like perception and reasoning), without relying on pre-existing innate ideas.

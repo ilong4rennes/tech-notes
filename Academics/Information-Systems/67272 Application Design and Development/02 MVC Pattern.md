@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 - Model: Taking Care of Business
 - View: Looking Good / Consists of partials
 - Controller: Holding It All Together / Process

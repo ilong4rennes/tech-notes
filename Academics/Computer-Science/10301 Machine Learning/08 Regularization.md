@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 ## Bayes Optimal Classifier
 
 ![[Screen Shot 2024-03-26 at 22.16.52.png]]

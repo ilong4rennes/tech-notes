@@ -1,3 +1,7 @@
+---
+tags: [software-engineering]
+---
+
 - What is different for developing LLM-powered features?
 	- Non-determinism: Outputs may vary for the same input.
 	- Costly: Development and operation costs are high.

@@ -1,3 +1,7 @@
+---
+tags: [computer-systems]
+---
+
 # Cache memory organization and operation 
 
 - Cache memories are small, fast SRAM-based memories managed automatically in hardware

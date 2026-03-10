@@ -1,3 +1,7 @@
+---
+tags: [artificial-intelligence]
+---
+
 # Bayes Nets
 
 ## Learning Objectives

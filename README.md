@@ -1,15 +1,33 @@
-# Obsidian Vault Backup
+# Obsidian Vault
 
-I use Obsidian to keep a record of my learning journey and project development process. This repository is updated periodically from my Obsidian vault. This way, I ensure that my notes and experiences are safely preserved even if I lose access to my computer.
+I use Obsidian to keep a record of my learning journey and project development process. This repository is updated periodically from my Obsidian vault.
 
-## File Structure
+## Structure
 
-- 01-Academic: Notes and summaries from courses I’ve taken at CMU, as well as self-directed learning topics.
-- 02-Technology: Technical references, tools, and notes related to various technologies I explore.
-- 03-Project-Docs: Documentation of my project development processes, including: high-level design decisions, problem-solving steps, and bug fixes and error resolution.
+| Folder        | Contents                                                                               |
+| ------------- | -------------------------------------------------------------------------------------- |
+| `Academics/`  | Course notes from CMU — Computer Science, Information Systems, Philosophy & Psychology |
+| `Technology/` | Practical tech references — Frontend, Backend, DevOps, Interview Prep, Tools           |
+| `Projects/`   | Project documentation — design docs, implementation notes, debugging logs              |
+| `Life/`       | Personal reflections and finance notes                                                 |
+| `Reading/`    | Saved articles (via `save_article.py`)                                                 |
+
+## Tags
+
+| Area       | Tags                                                                                                                                     |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| CS courses | `machine-learning` · `computer-systems` · `artificial-intelligence` · `software-engineering`                                             |
+| IS courses | `information-systems` · `design` · `web-dev` · `data-science` · `consulting`                                                             |
+| Philosophy | `philosophy` · `philosophy-of-science` · `epistemology` · `political-philosophy` · `perception`                                          |
+| Technology | `frontend` · `backend` · `devops` · `interview-prep` · `algorithms` · `tools`                                                            |
+| Projects   | `software-engineering` · `computer-vision` · `reference`                                                                                 |
+| Reading    | `reading-note`                                                                                                                           |
+| Life       | `finance` · `self-awareness` · `motivation` · `mindset` · `relationships` · `wellbeing` · `career` · `culture` · `ethics` · `reflection` |
+| Meta       | `index`                                                                                                                                  |
 
 ## Plugins
 
-- QuickAdd
-- Git
-- Copilot
+- **QuickAdd** — quick note capture
+- **Git** — periodic vault backup to GitHub
+- **Copilot** — AI assistant within Obsidian
+- **Templater** — note templates

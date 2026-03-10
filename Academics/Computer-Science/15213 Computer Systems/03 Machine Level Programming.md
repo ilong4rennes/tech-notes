@@ -1,3 +1,7 @@
+---
+tags: [computer-systems]
+---
+
 # 3.1 A Historical Perspective 
 
 - Computers execute machine code (sequences of bytes encoding low-level operations)

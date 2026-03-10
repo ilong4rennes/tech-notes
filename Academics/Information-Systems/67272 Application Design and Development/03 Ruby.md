@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 ## Everything is an object!
 
 ![[Screen Shot 2024-01-25 at 11.12.00.png]]

@@ -1,3 +1,7 @@
+---
+tags: [frontend]
+---
+
 # React Query
 
 `useQuery`

@@ -1,3 +1,7 @@
+---
+tags: [data-science]
+---
+
 For every new-emerged technology, we ask two questions:
 - Can we solve new problems?
 - Can we solve old problems in a better way?

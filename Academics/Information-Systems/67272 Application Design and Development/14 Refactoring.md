@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 - def: improve the internal structure of the code without changing its external behavior.
 
 ## Why refactor code that works? 

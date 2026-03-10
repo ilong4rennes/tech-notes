@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 test的逻辑就是 检验***实际***是否符合***预期***
 factory: blueprint 
 FactoryBot.create(:owner, user: @alex_user)

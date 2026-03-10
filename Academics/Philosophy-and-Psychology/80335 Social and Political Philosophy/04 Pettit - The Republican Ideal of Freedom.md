@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 - **Republican Concept of Freedom**:
 	- **Freedom as Non-domination**:
 		- Central to Pettit's argument is that true freedom exists when an individual is not subject to domination by others.

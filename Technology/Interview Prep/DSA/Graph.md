@@ -1,3 +1,7 @@
+---
+tags: [interview-prep, algorithms]
+---
+
 ## Graph Representation
 
 Before diving into the patterns, let's briefly touch upon the two most common ways to represent a graph:

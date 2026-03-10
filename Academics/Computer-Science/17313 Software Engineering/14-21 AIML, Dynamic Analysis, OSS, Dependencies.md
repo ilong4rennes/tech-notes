@@ -1,3 +1,7 @@
+---
+tags: [software-engineering]
+---
+
 ## 1) SE Ethics
 
 - Human Flourishing: happiness and life satisfaction, mental and physical health, meaning and purpose, character and virtue, and close social relationships

@@ -1,3 +1,7 @@
+---
+tags: [computer-systems]
+---
+
 ## Computer Networks 
 
 - A network is a hierarchical system of boxes and wires organized by geographical proximity 

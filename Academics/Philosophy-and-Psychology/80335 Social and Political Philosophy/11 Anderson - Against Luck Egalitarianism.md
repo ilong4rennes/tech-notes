@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 ### Introduction
 - Critiques recent egalitarian theories (e.g., "luck egalitarianism") for being susceptible to conservative criticisms.
 - Highlights embarrassing outcomes, such as compensating individuals for laziness or trivial misfortunes, which undermine the political goals of equality.

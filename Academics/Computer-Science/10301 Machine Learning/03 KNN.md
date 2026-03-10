@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 # Algorithm Pseudocode
 ```
 def set_hyperparameters(k, d):

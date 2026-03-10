@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 ## Authorization using `CanCanCan`
 ### Step 1: Add `CanCanCan` to `Gemfile`
 

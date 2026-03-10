@@ -1,3 +1,7 @@
+---
+tags: [computer-systems]
+---
+
 - Overflow
 - **Integer arithmetic** representation is limited to the number of bits and might cause overflow. But it is always consistent. 
 - **Floating-point arithmetic** is not associative, thus finite precision. 

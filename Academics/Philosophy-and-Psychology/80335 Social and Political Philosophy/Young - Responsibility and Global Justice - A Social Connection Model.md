@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 #### 1. **Introduction**:
 
 - Challenges traditional views that obligations of justice exist only within political communities.

@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 - **Rawls's Theoretical Framework**:
 	- John Rawls, in *A Theory of Justice*, contrasts two traditions in moral philosophy: utilitarianism and contractarianism (social contract theory).
 	- Rawls introduces the "original position" under the "veil of ignorance," where rational individuals choose principles of justice without knowing their social or economic status.

@@ -1,3 +1,7 @@
+---
+tags: [software-engineering]
+---
+
 - You will never understand the entire system!
 
 How do I tackle this codebase? 

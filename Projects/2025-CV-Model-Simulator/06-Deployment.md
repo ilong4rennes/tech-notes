@@ -1,6 +1,6 @@
 ---
 created: 2025-07-06
-tags:
+tags: [computer-vision]
   - CICD
   - deployment
 org:

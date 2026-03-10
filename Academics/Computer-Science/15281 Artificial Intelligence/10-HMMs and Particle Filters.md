@@ -1,3 +1,7 @@
+---
+tags: [artificial-intelligence]
+---
+
 # Hidden Markov Models and Particle Filtering
 
 ## Learning Objectives

@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 - **Foundational Principles of Marxism:**
 	- Emphasis on historical materialism: understanding history as a progression driven by material economic conditions.
 	- The centrality of class struggle: the conflict between the bourgeoisie (capital owners) and the proletariat (working class).

@@ -1,3 +1,7 @@
+---
+tags: [artificial-intelligence]
+---
+
 # Search
 
 ### Learning Objectives

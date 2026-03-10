@@ -1,3 +1,7 @@
+---
+tags: [information-systems]
+---
+
 # Introduction
 ## 1. IS in the Information Age
 

@@ -1,3 +1,7 @@
+---
+tags: [information-systems]
+---
+
 # Information Security
 
 ## 1. What are some common security threats?

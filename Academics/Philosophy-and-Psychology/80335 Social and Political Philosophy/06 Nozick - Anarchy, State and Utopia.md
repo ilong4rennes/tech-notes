@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 - **Entitlement Theory of Justice:**
 	- Nozick lays out his "entitlement theory," where justice in holdings is determined by how property is acquired, transferred, and rectified, rather than through a predetermined pattern of distribution. 
 	  权利理论: 关注社会中**财产和物品的分配**。他将其分为三个关键原则：

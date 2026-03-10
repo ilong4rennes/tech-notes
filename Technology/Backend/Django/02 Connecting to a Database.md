@@ -1,3 +1,7 @@
+---
+tags: [backend]
+---
+
 ### Step 1: **Download and Install MySQL**
 - Visit the official MySQL website: [https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/).
 - During the installation, set a password for the root user and remember it for later use.

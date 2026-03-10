@@ -1,3 +1,7 @@
+---
+tags: [index, reflection]
+---
+
 ## 自我认知 Self-Awareness
 
 | 名称           | 链接                             | 主题                     |

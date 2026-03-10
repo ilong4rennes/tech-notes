@@ -1,3 +1,7 @@
+---
+tags: [artificial-intelligence]
+---
+
 # Probability Reference Sheet
 
 ## Learning Objectives

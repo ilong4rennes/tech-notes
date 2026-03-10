@@ -1,3 +1,7 @@
+---
+tags: [artificial-intelligence]
+---
+
 # Classical Planning
 
 ## Learning Objectives

@@ -1,3 +1,7 @@
+---
+tags: [interview-prep, algorithms]
+---
+
 ![[Pasted image 20240721021351.png]]
 ### Bubble Sort
 Bubble Sort repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.

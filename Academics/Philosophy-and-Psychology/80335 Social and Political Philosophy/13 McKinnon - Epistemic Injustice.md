@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 ### Key Themes and Concepts
 1. **Epistemic Injustice**:
    - Defined as harm to someone in their capacity as a knower.

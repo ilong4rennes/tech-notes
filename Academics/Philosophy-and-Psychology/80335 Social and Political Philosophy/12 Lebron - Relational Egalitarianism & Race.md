@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 - **Core Argument**:
 	- The essay explores racial inequality in America, emphasizing that existing political philosophy frameworks inadequately address racial inequality.
 	- Lebron critiques contemporary egalitarian theorists for failing to address the experiential and structural nature of racial inequality.

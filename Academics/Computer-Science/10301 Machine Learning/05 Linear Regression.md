@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 # Big Picture
 
 - Dataset: $D = \{ (x^i, y^i) \}^{n} _ {i=1}, x^i \in \mathbb{R}^{M}, y^{(i)} \in \mathbb{R}$

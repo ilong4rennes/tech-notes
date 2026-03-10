@@ -1,3 +1,7 @@
+---
+tags: [software-engineering]
+---
+
 - **Vasa Syndrome**:
 	- A famous historical failure in shipbuilding is used as an analogy for software projects that suffer from unclear requirements, shifting specifications, and inadequate testing.
 	- Requirements

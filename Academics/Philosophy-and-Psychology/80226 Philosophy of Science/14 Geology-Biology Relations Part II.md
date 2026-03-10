@@ -1,3 +1,7 @@
+---
+tags: [philosophy-of-science]
+---
+
 - **Context: Natural History and Interdisciplinary Science**  
     In the 17th–19th centuries, the study of nature was not divided into the strict disciplines we know today. What scholars called natural history blended geology, biology, paleontology, geography, and archaeology. Researchers often moved freely across these fields because the phenomena they studied were deeply connected.
     

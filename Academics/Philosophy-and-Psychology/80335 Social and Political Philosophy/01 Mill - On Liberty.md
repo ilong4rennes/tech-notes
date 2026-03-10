@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 1. **Individual Liberty**: Mill argues that individuals should have the right to act as they want, provided they do not harm others. This principle of individual liberty is foundational to his philosophy.
     
 2. **Harm Principle**: Central to Mill's argument is the 'harm principle' which states that the only purpose for which power can be rightfully exercised over any member of a civilized community, against his will, is to prevent harm to others. His own good, either physical or moral, is not a sufficient warrant.

@@ -1,3 +1,7 @@
+---
+tags: [interview-prep, algorithms]
+---
+
 ## 1. What Is Backtracking?
 
 **Definition:**  

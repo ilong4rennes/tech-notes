@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 - **Introduction to Nozick’s Libertarianism**:
 	- Robert Nozick's political philosophy in *Anarchy, State, and Utopia* is centered around the principle of self-ownership rather than freedom itself.
 	  罗伯特·诺齐克在《无政府、国家与乌托邦》中的政治哲学核心是“自我所有”原则，而非自由本身。

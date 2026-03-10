@@ -1,10 +1,11 @@
 ---
 created: 2025-07-07
-tags: 
+tags: [computer-vision]
 org:
   - GC
 goal: Implement Backend API of the app
 ---
+
 Reference: 
 - [[20250702-Design Doc|Design Doc]]
 

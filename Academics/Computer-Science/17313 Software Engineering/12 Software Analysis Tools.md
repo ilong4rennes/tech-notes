@@ -1,3 +1,7 @@
+---
+tags: [software-engineering]
+---
+
 - **Static and Dynamic Analysis**:
 	- **Static analysis**: Examines source code without executing it.
 		- Conservatively reasons about all possible inputs and program paths; Reported warnings may contain false positives

@@ -1,3 +1,7 @@
+---
+tags: [epistemology]
+---
+
 #### Key Themes
 - The differences between **theories** about phenomena and **causal models of those phenomena**
 - The **partiality of all models** – every model we use is only a partial representation of the world because it is, of necessity, a) abstract and b) idealized.

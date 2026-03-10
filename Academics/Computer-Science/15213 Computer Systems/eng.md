@@ -1,3 +1,7 @@
+---
+tags: [computer-systems]
+---
+
 ### 1. **User Interaction:**
    - You double-click on the `PowerPoint.exe` icon.
 

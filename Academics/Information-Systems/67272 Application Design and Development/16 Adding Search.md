@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 - some way to quickly find things
 - Good Search should be: Fast / Accurate / Forgiving
 

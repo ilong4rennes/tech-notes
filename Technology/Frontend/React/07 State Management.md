@@ -1,3 +1,7 @@
+---
+tags: [frontend]
+---
+
 # State
 
 - State is simply data that can change over time.

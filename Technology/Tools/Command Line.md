@@ -1,3 +1,7 @@
+---
+tags: [tools]
+---
+
 ## Working with Command Line
 
 ![[Screen Shot 2024-01-19 at 16.12.45.png]]

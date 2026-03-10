@@ -1,3 +1,7 @@
+---
+tags: [political-philosophy]
+---
+
 - **Justice as Fairness**:
 	- Rawls introduces the concept of "justice as fairness" as a political ideal.
 	- He contrasts his theory with utilitarianism, arguing that justice does not depend on maximizing total or average utility.

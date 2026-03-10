@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 # Dimensionality Reduction
 
 **Learning Representations**

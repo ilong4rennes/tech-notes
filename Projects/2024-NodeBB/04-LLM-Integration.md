@@ -1,6 +1,6 @@
 ---
 created: "2024"
-tags:
+tags: [software-engineering]
   - "#software-architecture"
   - "#LLM"
   - "#microservice"
@@ -8,6 +8,7 @@ org:
   - CMU
 goal: Implement Mark Resolved Feature in NodeBB
 ---
+
 ### Step 1: Querying Azure OpenAI's GPT-4o-Mini Model
 
 #### 1.1: Set Up Python Environment and Authenticate with Azure OpenAI

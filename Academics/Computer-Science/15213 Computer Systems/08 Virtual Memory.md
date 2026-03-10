@@ -1,3 +1,7 @@
+---
+tags: [computer-systems]
+---
+
 ## Basic Idea of Virtual Memory
 
 ### Processes

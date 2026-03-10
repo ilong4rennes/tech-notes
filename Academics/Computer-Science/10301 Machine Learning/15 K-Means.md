@@ -1,3 +1,7 @@
+---
+tags: [machine-learning]
+---
+
 ## Clustering
 - Goal: split an unlabeled data set into groups or clusters of “similar” data points
 - Given a desired number of clusters, $K$, return a partition of the data set into $K$ groups or clusters, ${C_1, ..., C_k}$ , that optimize some objective function 

@@ -1,3 +1,7 @@
+---
+tags: [epistemology]
+---
+
 #### **Key Concepts and Philosophical Background:**
 
 1. **Stable Patterns and Laws of Nature:**

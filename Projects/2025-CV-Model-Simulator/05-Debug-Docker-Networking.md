@@ -1,10 +1,11 @@
 ---
 created: 2025-07-30
-tags: 
+tags: [computer-vision]
 org:
   - GC
 goal: debug
 ---
+
 **When did I see this error?**
 - During containerizing the backend
 - After I added a Dockerfile and started it

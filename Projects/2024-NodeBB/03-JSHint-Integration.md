@@ -1,6 +1,6 @@
 ---
 created: "2024"
-tags:
+tags: [software-engineering]
   - "#CICD"
   - github-actions
   - "#JSHint"
@@ -8,6 +8,7 @@ org:
   - CMU
 goal: Integrate JSHint into CI/CD Pipeline
 ---
+
 ### Integration of JSHint
 
 Integrating JSHint into our development process involves setting it up locally for developers and configuring it within the CI/CD pipeline for automated syntax checks on pull requests. This end-to-end integration ensures syntax consistency and catches errors early, streamlining code quality checks from development through to deployment.

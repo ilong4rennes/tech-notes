@@ -1,9 +1,10 @@
 ---
 created: 2025-07-07
-tags:
+tags: [frontend]
   - frontend
   - nextjs
 ---
+
 ## 我啥时候遇到的
 
 在2025暑假实习的时候，写[[20250706-Frontend|Add Model Button]] 这个功能的时候碰到了相关的bug。

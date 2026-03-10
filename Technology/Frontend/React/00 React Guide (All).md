@@ -1,3 +1,7 @@
+---
+tags: [frontend]
+---
+
 ## 1. Core React Fundamentals
 
 - **JavaScript and ES6+ Proficiency:**

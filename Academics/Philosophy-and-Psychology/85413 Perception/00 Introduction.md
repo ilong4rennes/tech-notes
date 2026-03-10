@@ -1,3 +1,7 @@
+---
+tags: [perception]
+---
+
 ## What is Perception?
 
 - Begins with physical energy/chemical inputs → transformed into neural activity.

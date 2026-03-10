@@ -1,3 +1,7 @@
+---
+tags: [epistemology]
+---
+
 ## Empiricism Overview
 
 - Empiricists: foundational beliefs are those that can be “justified” just by information about the world provided by our sensory observations.

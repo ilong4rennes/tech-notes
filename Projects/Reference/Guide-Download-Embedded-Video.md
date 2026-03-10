@@ -1,3 +1,7 @@
+---
+tags: [reference]
+---
+
 #### ✅ Step 1: Open Developer Tools
 
 1. Right-click anywhere on the webpage with the embedded video.

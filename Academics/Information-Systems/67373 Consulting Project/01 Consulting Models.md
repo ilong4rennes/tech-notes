@@ -1,3 +1,7 @@
+---
+tags: [consulting]
+---
+
 ## Typical Outcomes
 
 ![[Screenshot 2025-01-27 at 11.40.16 AM.png]]

@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 1. Interaction
 2. Trade-off
 	- understanding user's mental model

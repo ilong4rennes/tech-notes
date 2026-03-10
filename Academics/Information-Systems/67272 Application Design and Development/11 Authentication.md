@@ -1,3 +1,7 @@
+---
+tags: [web-dev]
+---
+
 - def: verify the identity of a user
 ### Step 1: User Model
 ```

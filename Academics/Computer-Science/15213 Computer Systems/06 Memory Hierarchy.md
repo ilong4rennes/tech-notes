@@ -1,3 +1,7 @@
+---
+tags: [computer-systems]
+---
+
 # The memory abstraction 
 
 Modern Connection between CPU and Memory: ![[Screen Shot 2024-06-09 at 23.24.01.png]]
