@@ -15,7 +15,7 @@ tags: [index]
 | Data Fetching | [[08 Data Fetching]] | React Query; useQuery for fetching, caching, syncing server data |
 | Next.js | [[Next.js]] | SSR, SSG, file-system routing, full-stack setup, DB integration |
 | Next.js Server Actions | [[Next.js Server Actions]] | File upload size limits; request config for large files |
-| Redux | [[Redux]] | Global state management for React |
+| Redux | [[前后端通信 fetch｜axios｜React Query｜SWR｜apiFetch]] | Global state management for React |
 | React Global State | [[React Global State]] | Global state patterns |
 
 ---
