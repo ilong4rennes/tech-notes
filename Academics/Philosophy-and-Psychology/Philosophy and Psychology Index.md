@@ -4,17 +4,16 @@ tags: [index, philosophy]
 
 ## 80226 Philosophy of Science
 
-| Name                          | Link                                     | Summary                                                                                                                  |
-| ----------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Kuhn — Scientific Revolutions | [[01-Kuhn-Scientific-Revolutions]]       | Paradigm, normal science, anomalies, crisis, revolution; incommensurability; theory-ladenness                            |
-| Greek Astronomy & Aristotle   | [[02-Greek-Astronomy-and-Aristotle]]     | Saving the appearances; instrumentalism vs realism; teleology vs mechanism; four causes                                  |
-| Ptolemy & Copernicus          | [[03-Ptolemy-and-Copernicus]]            | Mathematical models vs reality; heliocentric revolution; conceptual dissatisfaction as driver of change                  |
-| Tycho, Kepler, Galileo        | [[04-Tycho-Kepler-Galileo]]              | Empirical challenge to metaphysics; abandoning perfect circles; mathematization of nature                                |
-| Galilean Mechanics & Newton I | [[05-Galilean-Mechanics-Newton-I]]       | Inertia; qualitative to mathematical explanation; law-governed nature                                                    |
-| Newton II & Anomalies         | [[06-Newton-II-and-Anomalies]]           | Universal gravitation; action at a distance; predictive power without full explanation; anomalies in successful theories |
-| Pre-Darwin Natural History    | [[07-Pre-Darwin-Natural-History]]        | Cuvier's catastrophism; Lamarck's evolution; species fixity challenged                                                   |
-| Geology, Biology & Darwinism  | [[09-Geology-Biology-Darwinism]]         | Uniformitarianism; deep time; gradual transformation as framework for evolution                                          |
-| Geology-Biology Relations II  | [[14 Geology-Biology Relations Part II]] | Continued analysis of geology-biology relationship                                                                       |
+| Name                                  | Link                                          | Summary                                                                                                                  |
+| ------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Kuhn — Scientific Revolutions         | [[01-Kuhn-Scientific-Revolutions]]            | Paradigm, normal science, anomalies, crisis, revolution; incommensurability; theory-ladenness                            |
+| Greek Astronomy & Aristotle           | [[02-Greek-Astronomy-and-Aristotle]]          | Saving the appearances; instrumentalism vs realism; teleology vs mechanism; four causes                                  |
+| Ptolemy & Copernicus                  | [[03-Ptolemy-and-Copernicus]]                 | Mathematical models vs reality; heliocentric revolution; conceptual dissatisfaction as driver of change                  |
+| Tycho, Kepler, Galileo                | [[04-Tycho-Kepler-Galileo]]                   | Empirical challenge to metaphysics; abandoning perfect circles; mathematization of nature                                |
+| Galilean Mechanics & Newton I         | [[05-Galilean-Mechanics-Newton-I]]            | Inertia; qualitative to mathematical explanation; law-governed nature                                                    |
+| Newton II & Anomalies                 | [[06-Newton-II-and-Anomalies]]                | Universal gravitation; action at a distance; predictive power without full explanation; anomalies in successful theories |
+| Pre-Darwin Natural History            | [[07-Pre-Darwin-Natural-History]]             | Cuvier's catastrophism; Lamarck's evolution; species fixity challenged                                                   |
+| Darwin, Natural Selection & Evolution | [[08-Darwin-Natural-Selection-and-Evolution]] | Catastrophism vs uniformitarianism; Hutton, Lyell; Darwin's argument structure; philosophical significance               |
 
 ---
 
