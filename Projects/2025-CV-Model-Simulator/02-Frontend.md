@@ -1,7 +1,7 @@
 ---
 created: 2025-07-06
 tags: [computer-vision]
-  - frontend
+- frontend
   - "#nextjs"
 org:
   - GC
