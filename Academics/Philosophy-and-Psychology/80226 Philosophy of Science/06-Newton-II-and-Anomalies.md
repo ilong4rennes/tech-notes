@@ -1,7 +1,6 @@
 ---
 tags: [philosophy-of-science]
 ---
-
 # Week 6 — Newton II and Newtonian Anomalies
 
 ## Newton's Achievement
