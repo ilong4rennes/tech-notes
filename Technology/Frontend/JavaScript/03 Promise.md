@@ -151,3 +151,43 @@ p.catch(function(err) {
 	console.log(err)
 })
 ```
+
+### 进阶例子
+
+如果 `then` 里 return 一个 Promise，下一个 `then` 会等待它完成。
+
+```js
+const fetchPosts = (user) => {
+	return fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`)
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error("cannot get posts");
+			}
+			return response.json();
+		})
+		
+		.then((posts) => {
+			return { user, posts };
+		});
+}
+  
+fetch("https://jsonplaceholder.typicode.com/users/1")
+	.then((response) => {
+		if (!response.ok) {
+			throw new Error("cannot get users");
+		}
+		return response.json()
+	})
+	
+	.then((user) => {
+		return fetchPosts(user);
+	})
+	
+	.then((results) => {
+		console.log(results.user.name)
+		console.log(results.posts[0].title)
+	})
+	
+	.catch(error => console.log("error", error.message))
+	.finally(() => console.log("finally"));
+```
