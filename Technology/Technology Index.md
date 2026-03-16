@@ -59,7 +59,7 @@ tags: [index]
 | ---- | ---- | ------- |
 | SWE Interview | [[SWE]] | Frontend, backend, API design, DB, auth interview topics |
 | System Design | [[System Design]] | System design interview prep |
-| 八股文 | [[八股]] | Networking fundamentals; TCP vs UDP |
+| 八股文 | [[计算机网络八股]] | Networking fundamentals; TCP vs UDP |
 | Backtracking | [[Backtracking]] | Recursive exploration with pruning; template patterns |
 | Graph | [[Graph]] | Adjacency matrix/list representations; Python implementation |
 | Linked List | [[Linked List]] | Linked list ops; reverse linked list algorithm |
