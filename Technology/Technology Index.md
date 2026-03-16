@@ -1,6 +1,19 @@
 ---
 tags: [index]
 ---
+前端
+- javascript，typescript，react
+后端
+计算机网络
+数据结构与算法
+系统设计
+
+运维 云
+测试
+
+大数据
+机器学习
+人工智能
 
 ## Frontend
 
@@ -15,7 +28,7 @@ tags: [index]
 | Data Fetching | [[08 Data Fetching]] | React Query; useQuery for fetching, caching, syncing server data |
 | Next.js | [[Next.js]] | SSR, SSG, file-system routing, full-stack setup, DB integration |
 | Next.js Server Actions | [[Next.js Server Actions]] | File upload size limits; request config for large files |
-| Redux | [[前后端通信 fetch｜axios｜React Query｜SWR｜apiFetch]] | Global state management for React |
+| Redux | [[前后端通信 fetch｜axios｜React Query｜SWR]] | Global state management for React |
 | React Global State | [[React Global State]] | Global state patterns |
 
 ---
