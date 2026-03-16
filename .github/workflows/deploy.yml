@@ -28,27 +28,20 @@ jobs:
           mkdir -p docs
           cp README.md docs/index.md
 
-          for folder in Academics Technology Projects Life; do
-            if [ -d "$folder" ]; then
-              cp -r "$folder" docs/
-            fi
-          done
+          rsync -av --include="*/" --include="*.md" --exclude="*" Academics/ docs/Academics/
+          rsync -av --include="*/" --include="*.md" --exclude="*" Technology/ docs/Technology/
+          rsync -av --include="*/" --include="*.md" --exclude="*" Projects/ docs/Projects/
+          rsync -av --include="*/" --include="*.md" --exclude="*" Life/ docs/Life/
 
           if [ -d stylesheets ]; then
-            cp -r stylesheets docs/
+            rsync -av stylesheets/ docs/stylesheets/
           fi
 
-          # Auto-generate index.md for any folder that's missing one
-          find docs -type d | while read dir; do
+          # Generate index.md for folders that are missing one or empty
+          find docs -mindepth 1 -type d | while IFS= read -r dir; do
             if [ ! -s "$dir/index.md" ]; then
               folder_name=$(basename "$dir")
               echo "# $folder_name" > "$dir/index.md"
-              echo "" >> "$dir/index.md"
-              # List all md files in this directory as links
-              find "$dir" -maxdepth 1 -name "*.md" ! -name "index.md" | sort | while read f; do
-                fname=$(basename "$f" .md)
-                echo "- [$fname]($fname.md)" >> "$dir/index.md"
-              done
             fi
           done
 
