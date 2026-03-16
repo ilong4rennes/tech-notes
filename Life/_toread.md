@@ -15,7 +15,7 @@ template
 
 03/16/2026
 - [ ] [JavaScript 高级面试教程（大厂面试向）](https://www.xiaohongshu.com/explore/68668d1a00000000100129bc?xsec_token=AB7iP3fxaVTKPXp0xWd5djoEQ5LtbWVBvCvRUIF7tZuuo=&xsec_source=pc_collect)
-- [ ] [2026来更新一下JavaScript 前端高频八股](https://www.xiaohongshu.com/explore/69ad8536000000002603f73c?xsec_token=ABqSOTocUxCAI-vL-4e91Ot5bGxvpagpOcx_rzm_ZYHrs=&xsec_source=pc_collect)
+- [x] [2026来更新一下JavaScript 前端高频八股](https://www.xiaohongshu.com/explore/69ad8536000000002603f73c?xsec_token=ABqSOTocUxCAI-vL-4e91Ot5bGxvpagpOcx_rzm_ZYHrs=&xsec_source=pc_collect)
 - [ ] [滴滴Java后端一面面经](https://www.xiaohongshu.com/explore/69b7c3430000000022029ac9?xsec_token=ABwUqVHBT57rjxlyTuE02viOGHbCSlup1bQlGkSDZ9nus=&xsec_source=pc_collect)
 - [ ] [秋招最难HR面！阿里淘天hr面面经！](https://www.xiaohongshu.com/explore/66c5eae7000000001f038422?xsec_token=ABWoMcbmOEqNrLoCFnJpA39qQ7LnSmHTmFwIS6Osd_8xY=&xsec_source=pc_collect)
 - [ ] [前端面试大厂反拷打指南（字节&腾讯）](https://www.xiaohongshu.com/explore/67c2fb9b000000002901a0e8?xsec_token=ABPSySvqb8iF9mNTYlrOinGnPGGrHTt4rZz6NC6scAbNA=&xsec_source=pc_collect)
