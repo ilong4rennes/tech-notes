@@ -41,6 +41,7 @@ extra_css:
 plugins:
   - search
   - awesome-pages
+  - roamlinks
 
 markdown_extensions:
   - admonition
@@ -57,7 +58,7 @@ markdown_extensions:
       permalink: true
 
 nav:
-  - Home: README.md
+  - Home: index.md
   - Academics: Academics/
   - Technology: Technology/
   - Projects: Projects/

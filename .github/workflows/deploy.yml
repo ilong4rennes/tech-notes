@@ -21,7 +21,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install mkdocs-material mkdocs-awesome-pages-plugin
+          pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-roamlinks-plugin
 
       - name: Prepare docs folder
         run: |
@@ -40,7 +40,7 @@ jobs:
 
           # Auto-generate index.md for any folder that's missing one
           find docs -type d | while read dir; do
-            if [ ! -f "$dir/index.md" ]; then
+            if [ ! -s "$dir/index.md" ]; then
               folder_name=$(basename "$dir")
               echo "# $folder_name" > "$dir/index.md"
               echo "" >> "$dir/index.md"
