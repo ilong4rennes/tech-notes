@@ -6,8 +6,6 @@ site_description: Personal notes on CS, tech, and life.
 repo_name: ilong4rennes/tech-notes
 repo_url: https://github.com/ilong4rennes/tech-notes
 
-docs_dir: .
-
 theme:
   name: material
   palette:
