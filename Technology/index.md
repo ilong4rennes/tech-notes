@@ -5,17 +5,17 @@ tags: [index]
 ## Contents
 
 - [Frontend](#frontend)
-  - [JavaScript](#javascript)
-  - [React](#react)
-  - [Next.js & Other](#nextjs-other)
+	- [JavaScript](#javascript)
+	- [React](#react)
+	- [Next.js & Other](#nextjs-other)
 - [Backend](#backend)
-  - [Django](#django)
-  - [Other Backend](#other-backend)
+	- [Django](#django)
+	- [Other Backend](#other-backend)
 - [Python & Data](#python-data)
 - [DevOps & Cloud](#devops-cloud)
 - [Interview Prep](#interview-prep)
-  - [DSA](#dsa)
-  - [General](#general)
+	- [DSA](#dsa)
+	- [General](#general)
 - [Tools](#tools)
 
 ---
@@ -32,7 +32,7 @@ tags: [index]
 | async / await            | [[04 async await]]                                | Syntax sugar over Promise; async control flow                    |
 | 几种异步方式的比较                | [[05 几种异步方式的比较]]                                  | Comparison of callback, Promise, async/await                     |
 | 闭包 Closure               | [[06 闭包 closure]]                                 | Lexical scoping; closure use cases and gotchas                   |
-| JS Object                | [[07 JS Object]]                                  | Object model; prototype chain; property descriptors              |
+| JS Object                | [[07 JS 数据类型]]                                  | Object model; prototype chain; property descriptors              |
 
 ---
 

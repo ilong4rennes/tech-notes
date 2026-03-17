@@ -1,6 +1,6 @@
 # Obsidian Vault
 
-I use Obsidian to keep a record of my learning journey and project development process. This repository is updated periodically from my Obsidian vault.
+Hi, I'm Amanda 陆一晨. I use Obsidian to keep a record of my learning journey and project development process. This [repository](https://github.com/ilong4rennes/tech-notes) and website is updated periodically from my Obsidian vault.
 
 ## Structure
 
