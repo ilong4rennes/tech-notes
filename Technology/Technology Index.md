@@ -73,8 +73,8 @@ tags: [index]
 | SWE Interview | [[SWE]] | Frontend, backend, API design, DB, auth interview topics |
 | System Design | [[System Design]] | System design interview prep |
 | 八股文 | [[计算机网络八股]] | Networking fundamentals; TCP vs UDP |
-| Backtracking | [[Backtracking]] | Recursive exploration with pruning; template patterns |
-| Graph | [[Graph]] | Adjacency matrix/list representations; Python implementation |
+| Backtracking | [[tech-notes/Technology/DSA/Backtracking]] | Recursive exploration with pruning; template patterns |
+| Graph | [[tech-notes/Technology/DSA/Graph]] | Adjacency matrix/list representations; Python implementation |
 | Linked List | [[Linked List]] | Linked list ops; reverse linked list algorithm |
 | Search Algorithms | [[Search Algorithms]] | Linear search and binary search with implementations |
 | Sort Algorithms | [[Sort Algorithms]] | Bubble sort and others; time complexity analysis |
