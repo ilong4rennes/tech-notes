@@ -5,7 +5,7 @@
 | 分类 | 题数 |
 |------|------|
 | [动态规划](dynamic-programming.md) | 34 |
-| [图](tech-notes/Technology/DSA/leetcode/graph.md) | 25 |
+| [图](tech-notes/Technology/DSA/leetcode/advanced-data-structure/graph.md) | 25 |
 | [数组双指针](array-two-pointers.md) | 24 |
 | [设计](design.md) | 23 |
 | [层序遍历](tree-bfs.md) | 20 |
