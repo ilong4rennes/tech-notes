@@ -1,0 +1,1573 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Personal notes on CS, tech, and life.">
+      
+      
+        <meta name="author" content="Yichen Lu">
+      
+      
+        <link rel="canonical" href="https://ilong4rennes.github.io/tech-notes/Academics/Computer-Science/15213%20Computer%20Systems/08%20Virtual%20Memory/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>08 Virtual Memory - Amanda's Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#basic-idea-of-virtual-memory" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-header__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Amanda's Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              08 Virtual Memory
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Academics
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Technology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Technology
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projects
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Life/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Life
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-nav__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Amanda's Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Technology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Life/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Life
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-idea-of-virtual-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Idea of Virtual Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Idea of Virtual Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Processes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-system-using-physical-addressing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A System Using Physical Addressing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-system-using-virtual-addressing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A System Using Virtual Addressing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vm-as-a-tool-for-memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM as a Tool for Memory Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vm-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM Address
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VM Address">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#address-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Address Spaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-virtual-memory-vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Virtual Memory (VM)?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-table-address-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page Table, Address Translation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Page Table, Address Translation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm-address-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM Address Translation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-data-structure-page-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling Data Structure: Page Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-hit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page Hit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-fault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page Fault
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Page Fault">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handling-page-fault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handling Page Fault
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allocating-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Allocating Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vm-as-a-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM as a Tool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VM as a Tool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm-as-a-tool-for-memory-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM as a Tool for Memory Protection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vm-is-also-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM is also Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vm-as-a-tool-for-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM as a Tool for Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dram-cache-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DRAM Cache Organization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrating-vm-and-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrating VM and Cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locality-to-the-rescue-again" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Locality to the Rescue Again
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#speeding-up-translation-with-a-tlb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Speeding up Translation with a TLB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Speeding up Translation with a TLB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accessing-the-tlb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessing the TLB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tlb-hit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLB Hit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tlb-miss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLB Miss
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-of-address-translation-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of Address Translation Symbols
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-level-page-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Level Page Tables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-Level Page Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#translating-with-a-k-level-page-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Translating with a k-level Page Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tlbs-and-k-level-page-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLBs and k-level Page Tables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-faults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page Faults
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Page Faults">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#os-tracks-vm-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OS tracks VM “areas”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-of-faults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types of Faults
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concrete-examples-of-virtual-memory-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concrete examples of virtual memory systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Concrete examples of virtual memory systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-memory-system-from-csapp-964" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        “Simple memory system” from CSAPP 9.6.4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-core-i7-memory-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intel Core i7 Memory System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end-to-end-core-i7-address-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End-to-end Core i7 Address Translation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-i7-level-1-3-page-table-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core i7 Level 1-3 Page Table Entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-i7-level-4-page-table-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core i7 Level 4 Page Table Entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-i7-page-table-translation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core i7 Page Table Translation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cute-trick-for-speeding-up-l1-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cute Trick for Speeding Up L1 Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nifty-things-virtual-memory-makes-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nifty things virtual memory makes possible
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Nifty things virtual memory makes possible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-mapped-files-ram-as-cache-for-disk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory-mapped files (RAM as cache for disk)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy-on-write-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copy-on-write sharing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>08 Virtual Memory</h1>
+
+<h2 id="basic-idea-of-virtual-memory">Basic Idea of Virtual Memory<a class="headerlink" href="#basic-idea-of-virtual-memory" title="Permanent link">&para;</a></h2>
+<h3 id="processes">Processes<a class="headerlink" href="#processes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Definition: A process is an instance of a running program. <ul>
+<li>One of the most profound ideas in computer science </li>
+<li>Not the same as “program” or “processor” </li>
+</ul>
+</li>
+<li>Unix: A parent process creates a new child process by calling <code>fork</code> <ul>
+<li>Child is (sort of) a copy of the parent </li>
+<li><code>fork</code> returns twice—once in each process <ul>
+<li>Different return value in each </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Parent can wait for child to finish by calling <code>waitpid</code><ul>
+<li>For now, think of this as “what <code>main</code> returns to</li>
+</ul>
+</li>
+</ul>
+<p>How does this work? ![[Screen Shot 2024-06-18 at 13.44.55.png]]
+<strong>Solution: Virtual Memory</strong></p>
+<h3 id="a-system-using-physical-addressing">A System Using Physical Addressing<a class="headerlink" href="#a-system-using-physical-addressing" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-18 at 13.46.09.png]]
+- Used in “simple” systems like embedded microcontrollers in devices like cars, elevators, and digital picture frames</p>
+<h3 id="a-system-using-virtual-addressing">A System Using Virtual Addressing<a class="headerlink" href="#a-system-using-virtual-addressing" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-18 at 13.46.18.png]]
+- Used in all modern servers, laptops, and smart phones 
+- One of the great ideas in computer science</p>
+<h3 id="vm-as-a-tool-for-memory-management">VM as a Tool for Memory Management<a class="headerlink" href="#vm-as-a-tool-for-memory-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Key idea: <strong>each process has its own virtual address space</strong><ul>
+<li>It can view memory as a simple linear array </li>
+<li>Mapping function scatters addresses through physical memory <ul>
+<li>Well-chosen mappings can improve locality
+![[Screen Shot 2024-06-18 at 13.54.09.png]]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Simplifying memory allocation <ul>
+<li>Each virtual page can be mapped to any physical page </li>
+<li>A virtual page can be stored in different physical pages at different times </li>
+</ul>
+</li>
+<li>Sharing code and data among processes <ul>
+<li>Map virtual pages to the same physical page (here: PP 6)</li>
+</ul>
+</li>
+<li>Linking <ul>
+<li>Each program has similar virtual address space </li>
+<li>Code, data, and heap always start at the same addresses.</li>
+</ul>
+</li>
+<li>Loading <ul>
+<li><code>execve</code> allocates virtual pages for <code>.text</code> and <code>.data</code> sections &amp; creates PTEs marked as invalid </li>
+<li>The <code>.text</code> and <code>.data</code> sections are copied, page by page, on demand by the virtual memory system
+![[Screen Shot 2024-06-18 at 14.07.22.png]]</li>
+</ul>
+</li>
+</ul>
+<h2 id="vm-address">VM Address<a class="headerlink" href="#vm-address" title="Permanent link">&para;</a></h2>
+<h3 id="address-spaces">Address Spaces<a class="headerlink" href="#address-spaces" title="Permanent link">&para;</a></h3>
+<p><strong>Linear address space</strong>: Ordered set of contiguous non-negative integer addresses. ${0, 1, 2, 3 … }$</p>
+<p><strong>Virtual address space</strong>: Set of <code>N = 2^n</code> virtual addresses. Typically larger than physical address space. The same for all processes running on the system. ${0, 1, 2, 3 … N-1}$</p>
+<p><strong>Physical address space</strong>: Set of <code>M = 2^m</code> physical addresses. Amount of DRAM present in the system. ${0, 1, 2, 3 … M-1}$</p>
+<h3 id="why-virtual-memory-vm">Why Virtual Memory (VM)?<a class="headerlink" href="#why-virtual-memory-vm" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Uses main memory efficiently <ul>
+<li>Use DRAM as a cache for parts of a virtual address space </li>
+</ul>
+</li>
+<li>Simplifies memory management <ul>
+<li>Each process gets the same uniform linear address space </li>
+</ul>
+</li>
+<li>Isolates address spaces <ul>
+<li>One process can’t interfere with another’s memory </li>
+<li>User program cannot access privileged kernel information and code</li>
+</ul>
+</li>
+</ul>
+<h2 id="page-table-address-translation">Page Table, Address Translation<a class="headerlink" href="#page-table-address-translation" title="Permanent link">&para;</a></h2>
+<h3 id="vm-address-translation">VM Address Translation<a class="headerlink" href="#vm-address-translation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Virtual Address Space V = {0, 1, …, N–1} </li>
+<li>Physical Address Space P = {0, 1, …, M–1} </li>
+<li>Address Translation <ul>
+<li>MAP: V → P U {∅} </li>
+<li>For virtual address a: <ul>
+<li>MAP(a) = a’ if data at virtual address a is at physical address a’ in P </li>
+<li>MAP(a) = ∅ if data at virtual address a is not in physical memory – Either invalid or stored on disk</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="enabling-data-structure-page-table">Enabling Data Structure: Page Table<a class="headerlink" href="#enabling-data-structure-page-table" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A page table is an array of page table entries (PTEs) that maps virtual pages to physical pages. <ul>
+<li>Per-process kernel data structure in DRAM (each process will have its own mapping)
+![[Screen Shot 2024-06-18 at 14.23.03.png]]</li>
+</ul>
+</li>
+</ul>
+<p>![[Screen Shot 2024-06-18 at 14.24.40.png]]</p>
+<h3 id="page-hit">Page Hit<a class="headerlink" href="#page-hit" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Page hit: reference to VM word that is in physical memory (DRAM cache hit)
+![[Screen Shot 2024-06-18 at 14.30.53.png]]
+![[Screen Shot 2024-06-18 at 14.32.05.png]]
+1 - Processor sends virtual address to MMU 
+2-3 - MMU fetches PTE from page table in memory 
+4 - MMU sends physical address to cache/memory 
+5 - Cache/memory sends data word to processor</li>
+</ul>
+<h3 id="page-fault">Page Fault<a class="headerlink" href="#page-fault" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Page fault: reference to VM word that is not in physical memory (DRAM cache miss)
+![[Screen Shot 2024-06-18 at 14.35.57.png]]
+![[Screen Shot 2024-06-18 at 14.38.27.png]]</li>
+</ul>
+<p>1 - Processor sends virtual address to MMU 
+2-3 - MMU fetches PTE from page table in memory 
+4 - Valid bit is zero, so MMU triggers page fault exception 
+5 - Handler identifies victim (some page of physical memory) (and, if dirty, pages it out to disk) 
+6 - Handler pages in new page and updates PTE in memory 
+7 - Handler returns to original process, restarting faulting instruction</p>
+<h4 id="handling-page-fault">Handling Page Fault<a class="headerlink" href="#handling-page-fault" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Page miss causes page fault (an exception)
+![[Screen Shot 2024-06-18 at 14.48.14.png]]</li>
+<li>Page miss causes page fault (an exception) </li>
+<li>Page fault handler selects a victim to be evicted (here VP 4)
+![[Screen Shot 2024-06-19 at 20.30.58.png]]
+![[Screen Shot 2024-06-19 at 20.31.53.png]]</li>
+<li>Offending instruction is restarted: page hit!</li>
+<li>Key point: Waiting until the miss to copy the page to DRAM is known as demand paging</li>
+</ul>
+<h3 id="allocating-pages">Allocating Pages<a class="headerlink" href="#allocating-pages" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Allocating a new page (VP 5) of virtual memory.
+![[Screen Shot 2024-06-19 at 20.49.01.png]]</li>
+</ul>
+<h2 id="vm-as-a-tool">VM as a Tool<a class="headerlink" href="#vm-as-a-tool" title="Permanent link">&para;</a></h2>
+<h3 id="vm-as-a-tool-for-memory-protection">VM as a Tool for Memory Protection<a class="headerlink" href="#vm-as-a-tool-for-memory-protection" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Extend PTEs with permission bits </li>
+<li>MMU checks these bits on each access</li>
+</ul>
+<p>![[Screen Shot 2024-06-19 at 20.52.35.png]]</p>
+<h3 id="vm-is-also-caching">VM is also Caching<a class="headerlink" href="#vm-is-also-caching" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Programs allocate virtual address ranges <ul>
+<li>Implicitly via binaries / libraries </li>
+<li>Explicitly through heap / stack </li>
+</ul>
+</li>
+<li>The operating system decides which virtual pages should be resident (i.e., in physical memory) <ul>
+<li>OS manages the placement / replacement policies between DRAM and disk</li>
+</ul>
+</li>
+</ul>
+<h3 id="vm-as-a-tool-for-caching">VM as a Tool for Caching<a class="headerlink" href="#vm-as-a-tool-for-caching" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Conceptually, virtual memory is an array of N contiguous bytes stored on disk. </li>
+<li>The contents of the array on disk are cached in physical memory (DRAM cache) <ul>
+<li>These cache blocks are called pages (size is $P = 2^p$ bytes)</li>
+</ul>
+</li>
+</ul>
+<p>![[Screen Shot 2024-06-20 at 01.07.56.png]]</p>
+<h3 id="dram-cache-organization">DRAM Cache Organization<a class="headerlink" href="#dram-cache-organization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>DRAM cache organization driven by the enormous miss penalty <ul>
+<li>DRAM is about 10x slower than SRAM </li>
+<li>Disk is about 10,000x slower than DRAM </li>
+</ul>
+</li>
+<li>Consequences <ul>
+<li>Large page (block) size: typically 4 KB, sometimes 4 MB </li>
+<li>Fully associative <ul>
+<li>Any VP can be placed in any PP </li>
+<li>Requires a “large” mapping function – different from cache memories </li>
+</ul>
+</li>
+<li>Highly sophisticated, expensive replacement algorithms <ul>
+<li>Too complicated and open-ended to be implemented in hardware </li>
+</ul>
+</li>
+<li>Write-back rather than write-through</li>
+</ul>
+</li>
+</ul>
+<h3 id="integrating-vm-and-cache">Integrating VM and Cache<a class="headerlink" href="#integrating-vm-and-cache" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-20 at 01.14.05.png]]</p>
+<h3 id="locality-to-the-rescue-again">Locality to the Rescue Again<a class="headerlink" href="#locality-to-the-rescue-again" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Virtual memory seems terribly inefficient, but it works because of locality. </li>
+<li>At any point in time, programs tend to access a set of active virtual pages called the working set <ul>
+<li>Programs with better temporal locality will have smaller working sets </li>
+</ul>
+</li>
+<li>If (working set size &lt; main memory size) <ul>
+<li>Good performance for one process after compulsory misses </li>
+</ul>
+</li>
+<li>If ( SUM(working set sizes) &gt; main memory size ) <ul>
+<li>Thrashing: Performance meltdown where pages are swapped (copied) in and out continuously</li>
+</ul>
+</li>
+</ul>
+<h2 id="speeding-up-translation-with-a-tlb">Speeding up Translation with a TLB<a class="headerlink" href="#speeding-up-translation-with-a-tlb" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Page table entries (PTEs) are cached in L1 like any other memory word <ul>
+<li>PTEs may be evicted by other data references </li>
+<li>PTE hit still requires a small L1 delay </li>
+</ul>
+</li>
+<li>Solution: Translation Lookaside Buffer (TLB) <ul>
+<li>Small set-associative hardware cache in MMU </li>
+<li>Maps virtual page numbers to physical page numbers </li>
+<li>Contains complete page table entries for small number of pages</li>
+</ul>
+</li>
+</ul>
+<h3 id="accessing-the-tlb">Accessing the TLB<a class="headerlink" href="#accessing-the-tlb" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-20 at 03.57.32.png]]</p>
+<h3 id="tlb-hit">TLB Hit<a class="headerlink" href="#tlb-hit" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-20 at 03.59.51.png]]</p>
+<h3 id="tlb-miss">TLB Miss<a class="headerlink" href="#tlb-miss" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-20 at 04.00.19.png]]</p>
+<h3 id="summary-of-address-translation-symbols">Summary of Address Translation Symbols<a class="headerlink" href="#summary-of-address-translation-symbols" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Basic Parameters <ul>
+<li>$N = 2^n$ : Number of addresses in virtual address space </li>
+<li>$M = 2^m$ : Number of addresses in physical address space </li>
+<li>$P = 2^p$ : Page size (bytes) </li>
+</ul>
+</li>
+<li>Components of the virtual address (VA) <ul>
+<li>TLBI: TLB index </li>
+<li>TLBT: TLB tag </li>
+<li>VPO: Virtual page offset </li>
+<li>VPN: Virtual page number </li>
+</ul>
+</li>
+<li>Components of the physical address (PA) <ul>
+<li>PPO: Physical page offset (same as VPO) </li>
+<li>PPN: Physical page number</li>
+</ul>
+</li>
+</ul>
+<h2 id="multi-level-page-tables">Multi-Level Page Tables<a class="headerlink" href="#multi-level-page-tables" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Suppose: 4KB ($2^{12}$) page size, 48-bit address space, 8-byte PTE </li>
+<li>Problem: Would need a 512 GB page table! ($2^{48} \times 2^{-12} \times 2^3 = 2^{39}$ bytes)</li>
+<li>Common solution: Multi-level page table </li>
+<li>Example: 2-level page table <ul>
+<li>Level 1 table: each PTE points to a page table (always memory resident) </li>
+<li>Level 2 table: each PTE points to a page (paged in and out like any other data)
+![[Screen Shot 2024-06-23 at 00.14.41.png]]</li>
+</ul>
+</li>
+</ul>
+<h3 id="translating-with-a-k-level-page-table">Translating with a k-level Page Table<a class="headerlink" href="#translating-with-a-k-level-page-table" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 00.15.42.png]]</p>
+<h3 id="tlbs-and-k-level-page-tables">TLBs and k-level Page Tables<a class="headerlink" href="#tlbs-and-k-level-page-tables" title="Permanent link">&para;</a></h3>
+<ul>
+<li>TLBs cache the complete virtual to physical mapping <ul>
+<li>Regardless of the levels of page tables, the TLB stores the VPN -&gt; PPN</li>
+</ul>
+</li>
+</ul>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Programmer’s view of virtual memory <ul>
+<li>Each process has its own private linear address space </li>
+<li>Cannot be corrupted by other processes </li>
+</ul>
+</li>
+<li>System view of virtual memory <ul>
+<li>Uses memory efficiently by caching virtual memory pages </li>
+<li>Efficient only because of locality </li>
+<li>Simplifies memory management and programming </li>
+<li>Simplifies protection by providing a convenient interpositioning point to check permissions</li>
+</ul>
+</li>
+<li>Memory Accesses with VM ![[Screen Shot 2024-06-23 at 00.20.55.png]]</li>
+<li>the problem with k-level page tables ![[Screen Shot 2024-06-23 at 00.24.19.png]]</li>
+</ul>
+<h2 id="page-faults">Page Faults<a class="headerlink" href="#page-faults" title="Permanent link">&para;</a></h2>
+<h3 id="os-tracks-vm-areas">OS tracks VM “areas”<a class="headerlink" href="#os-tracks-vm-areas" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 00.32.25.png]]</p>
+<h3 id="types-of-faults">Types of Faults<a class="headerlink" href="#types-of-faults" title="Permanent link">&para;</a></h3>
+<ul>
+<li>This is a legal address <ul>
+<li>Hard / Major faults – “normal” page faults </li>
+<li>Soft / minor faults – the OS took the page away, but has not reused it </li>
+</ul>
+</li>
+<li>The address is legal, but … <ul>
+<li>The type of access is wrong, so “protection exception” </li>
+</ul>
+</li>
+<li>The address is not legal <ul>
+<li>Segmentation fault or bus error</li>
+</ul>
+</li>
+</ul>
+<h2 id="concrete-examples-of-virtual-memory-systems">Concrete examples of virtual memory systems<a class="headerlink" href="#concrete-examples-of-virtual-memory-systems" title="Permanent link">&para;</a></h2>
+<h3 id="simple-memory-system-from-csapp-964">“Simple memory system” from CSAPP 9.6.4<a class="headerlink" href="#simple-memory-system-from-csapp-964" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Addressing <ul>
+<li>14-bit virtual addresses </li>
+<li>12-bit physical address </li>
+<li>Page size = 64 bytes ![[Screen Shot 2024-06-23 at 00.38.30.png]]</li>
+</ul>
+</li>
+<li>Simple Memory System TLB ![[Screen Shot 2024-06-23 at 00.39.25.png]]</li>
+<li>Simple Memory System Page Table ![[Screen Shot 2024-06-23 at 01.01.05.png]]</li>
+<li>Simple Memory System Cache ![[Screen Shot 2024-06-23 at 01.04.32.png]]</li>
+<li>Address Translation Example ![[Screen Shot 2024-06-23 at 01.06.21.png]]</li>
+</ul>
+<h3 id="intel-core-i7-memory-system">Intel Core i7 Memory System<a class="headerlink" href="#intel-core-i7-memory-system" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 01.19.17.png]]</p>
+<h3 id="end-to-end-core-i7-address-translation">End-to-end Core i7 Address Translation<a class="headerlink" href="#end-to-end-core-i7-address-translation" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 01.20.42.png]]</p>
+<h3 id="core-i7-level-1-3-page-table-entries">Core i7 Level 1-3 Page Table Entries<a class="headerlink" href="#core-i7-level-1-3-page-table-entries" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 01.26.35.png]]</p>
+<h3 id="core-i7-level-4-page-table-entries">Core i7 Level 4 Page Table Entries<a class="headerlink" href="#core-i7-level-4-page-table-entries" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 01.26.45.png]]</p>
+<h3 id="core-i7-page-table-translation">Core i7 Page Table Translation<a class="headerlink" href="#core-i7-page-table-translation" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 01.26.56.png]]</p>
+<h3 id="cute-trick-for-speeding-up-l1-access">Cute Trick for Speeding Up L1 Access<a class="headerlink" href="#cute-trick-for-speeding-up-l1-access" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 01.27.09.png]]</p>
+<h2 id="nifty-things-virtual-memory-makes-possible">Nifty things virtual memory makes possible<a class="headerlink" href="#nifty-things-virtual-memory-makes-possible" title="Permanent link">&para;</a></h2>
+<h3 id="memory-mapped-files-ram-as-cache-for-disk">Memory-mapped files (RAM as cache for disk)<a class="headerlink" href="#memory-mapped-files-ram-as-cache-for-disk" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Paging = every page of a program’s physical RAM is backed by some page of disk* </li>
+<li>Normally, those pages belong to <strong>swap space</strong> (area on disk used for storing inactive pages of memory)</li>
+<li>But what if some pages were backed by files?<ul>
+<li>This setup allows programs to treat file data as if it is part of the main memory, facilitating faster access and manipulation because it avoids the need for read and write system calls.</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>This is how it used to work 20 years ago. Nowadays, not always true.</li>
+</ul>
+</li>
+</ul>
+<p>![[Screen Shot 2024-06-23 at 02.17.27.png]]
+![[Screen Shot 2024-06-23 at 02.18.03.png]]</p>
+<h3 id="copy-on-write-sharing">Copy-on-write sharing<a class="headerlink" href="#copy-on-write-sharing" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Forking and Memory Duplication</strong>: <code>fork</code> creates a new process by copying the entire address space of the parent process <ul>
+<li>It is slow ![[Screen Shot 2024-06-23 at 03.40.30.png]]</li>
+</ul>
+</li>
+<li><strong>Copy-on-Write Mechanism</strong>:<ul>
+<li>Just duplicate the page tables </li>
+<li>Mark everything read only </li>
+<li>Copy only on write faults ![[Screen Shot 2024-06-23 at 02.19.56.png]] ![[Screen Shot 2024-06-23 at 02.20.08.png]]</li>
+<li><strong>Initial Setup:</strong> To optimize, the operating system uses a method called copy-on-write. Upon forking, the child process initially shares the same memory pages as the parent, with all pages marked as read-only.</li>
+<li><strong>Modification Trigger:</strong> If either the parent or the child tries to modify any of these shared pages, the operating system detects that (due to the page being read-only), and only then makes a copy of that specific page for the process doing the modification.</li>
+<li><strong>Result:</strong> This means no memory is copied unnecessarily. Copies are only made when modifications occur, drastically reducing the amount of duplicated memory and enhancing the system's efficiency.</li>
+</ul>
+</li>
+</ul>
+<h2 id="summary_1">Summary<a class="headerlink" href="#summary_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Multi-level page tables reduce total memory consumption of page tables </li>
+<li>Translation lookaside buffers reduce time cost of translation </li>
+<li>Real systems have 3 to 5 levels of page table </li>
+<li>Virtual memory makes nifty things possible <ul>
+<li>Memory protection and process isolation </li>
+<li>Paging/swapping (disk as extra RAM) </li>
+<li>Memory-mapped files (RAM as cache for disk) </li>
+<li>Copy-on-write sharing</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ilong4rennes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1283 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Personal notes on CS, tech, and life.">
+      
+      
+        <meta name="author" content="Yichen Lu">
+      
+      
+        <link rel="canonical" href="https://ilong4rennes.github.io/tech-notes/Academics/Computer-Science/15213%20Computer%20Systems/09%20Dynamic%20Memory%20Allocation/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Basic concepts - Amanda's Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#basic-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-header__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Amanda's Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Basic concepts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Academics
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Technology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Technology
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projects
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Life/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Life
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-nav__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Amanda's Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Technology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Life/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Life
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dynamic-memory-allocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Memory Allocation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dynamic Memory Allocation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#malloc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        malloc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heap-visualization-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heap Visualization Convention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constraints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Goal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Goal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maximize-throughput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maximize Throughput
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimize-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimize Overhead
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benchmark-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benchmark Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typical-benchmark-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical Benchmark Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fragmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fragmentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fragmentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internal-fragmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal Fragmentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-fragmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Fragmentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="basic-concepts">Basic concepts<a class="headerlink" href="#basic-concepts" title="Permanent link">&para;</a></h1>
+<h2 id="dynamic-memory-allocation">Dynamic Memory Allocation<a class="headerlink" href="#dynamic-memory-allocation" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Programmers use dynamic memory allocators (such as malloc) to acquire virtual memory (VM) at runtime <ul>
+<li>For data structures whose size is only known at runtime </li>
+</ul>
+</li>
+<li>
+<p>Dynamic memory allocators manage an area of process VM known as the heap
+![[Screen Shot 2024-06-20 at 12.03.22.png]]</p>
+</li>
+<li>
+<p>Allocator maintains heap as collection of variable sized blocks, which are either allocated or free </p>
+</li>
+<li>Types of allocators <ul>
+<li>Explicit allocator: application allocates and frees space <ul>
+<li>e.g., malloc and free in C </li>
+</ul>
+</li>
+<li>Implicit allocator: application allocates, but does not free space <ul>
+<li>e.g., new and garbage collection in Java</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="malloc"><code>malloc</code><a class="headerlink" href="#malloc" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-20 at 12.05.42.png]]
+![[Screen Shot 2024-06-20 at 12.06.42.png]]</p>
+<h3 id="heap-visualization-convention">Heap Visualization Convention<a class="headerlink" href="#heap-visualization-convention" title="Permanent link">&para;</a></h3>
+<ul>
+<li>1 square = 1 “word” = 8 bytes
+![[Screen Shot 2024-06-23 at 05.10.48.png]]
+![[Screen Shot 2024-06-23 at 05.11.34.png]]</li>
+</ul>
+<h3 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Applications <ul>
+<li>Can issue arbitrary sequence of <code>malloc</code> and <code>free</code> requests </li>
+<li><code>free</code> request must be to a <code>malloc</code>’d block </li>
+</ul>
+</li>
+<li>Explicit Allocators <ul>
+<li>Can’t control number or size of allocated blocks </li>
+<li>Must respond immediately to malloc requests <ul>
+<li>i.e., can’t reorder or buffer requests </li>
+</ul>
+</li>
+<li>Must allocate blocks from free memory <ul>
+<li>i.e., can only place allocated blocks in free memory </li>
+</ul>
+</li>
+<li>Must align blocks so they satisfy all alignment requirements <ul>
+<li>16-byte (x86-64) alignment on 64-bit systems </li>
+</ul>
+</li>
+<li>Can manipulate and modify only free memory </li>
+<li>Can’t move the allocated blocks once they are <code>malloc</code>’d <ul>
+<li>i.e., compaction is not allowed. Why not?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="performance-goal">Performance Goal<a class="headerlink" href="#performance-goal" title="Permanent link">&para;</a></h2>
+<h3 id="maximize-throughput">Maximize Throughput<a class="headerlink" href="#maximize-throughput" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Given some sequence of <code>malloc</code> and <code>free</code> requests: $R_0, R_1, ..., R_k, ..., R_{n-1}$</li>
+<li>Goals: maximize throughput and peak memory utilization <ul>
+<li>These goals are often conflicting </li>
+</ul>
+</li>
+<li>Throughput: <ul>
+<li>Number of completed requests per unit time </li>
+<li>Example: 5,000 <code>malloc</code> calls and 5,000 <code>free</code> calls in 10 seconds </li>
+<li>Throughput is 1,000 operations/second</li>
+</ul>
+</li>
+</ul>
+<h3 id="minimize-overhead">Minimize Overhead<a class="headerlink" href="#minimize-overhead" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Given some sequence of <code>malloc</code> and <code>free</code> requests: $R_0, R_1, ..., R_k, ..., R_{n-1}$</li>
+<li>After $k$ requests we have: </li>
+<li>Def: <strong>Aggregate payload $P_k$</strong> <ul>
+<li><code>malloc(p)</code> results in a block with a <em>payload</em> of p bytes </li>
+<li>The <em>aggregate payload</em> $P_k$ is the sum of currently allocated payloads </li>
+<li>The <em>peak aggregate payload</em> $\max\limits_{i \leq k} P_i$ is the maximum aggregate payload at any point in the sequence up to request </li>
+</ul>
+</li>
+<li>Def: <strong>Current heap size $H_k$</strong><ul>
+<li>Assume heap only grows when allocator uses <code>sbrk</code>, never shrinks </li>
+</ul>
+</li>
+<li>Def: <strong>Overhead, $O_k$</strong><ul>
+<li>Fraction of heap space NOT used for program data </li>
+<li>$O_k = \left( {H_k}/{\max\limits_{i \leq k} P_i} \right) - 1.0$</li>
+</ul>
+</li>
+</ul>
+<h3 id="benchmark-example">Benchmark Example<a class="headerlink" href="#benchmark-example" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 05.46.17.png]] ![[Screen Shot 2024-06-23 at 05.46.46.png]]</p>
+<h3 id="typical-benchmark-behavior">Typical Benchmark Behavior<a class="headerlink" href="#typical-benchmark-behavior" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 05.49.03.png]]</p>
+<h2 id="fragmentation">Fragmentation<a class="headerlink" href="#fragmentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Poor memory utilization caused by fragmentation <ul>
+<li>Internal fragmentation </li>
+<li>External fragmentation</li>
+</ul>
+</li>
+</ul>
+<h3 id="internal-fragmentation">Internal Fragmentation<a class="headerlink" href="#internal-fragmentation" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Definition:</strong></li>
+<li>Internal fragmentation occurs when the memory allocated is larger than the memory requested. For example, if a program needs 100 bytes but gets 120 bytes, the extra 20 bytes represent internal fragmentation.</li>
+<li>
+<p>For a given block, <strong>internal fragmentation occurs if payload is smaller than block size</strong> ![[Screen Shot 2024-06-23 at 06.32.44.png]]</p>
+</li>
+<li>
+<p><strong>Diagram Explanation:</strong></p>
+</li>
+<li>
+<p>The diagram shows a block of memory, divided into three parts:</p>
+<ul>
+<li><strong>Internal Fragmentation</strong>: Unused space at the beginning and end of the block.</li>
+<li><strong>Payload</strong>: The actual memory used by the program.</li>
+</ul>
+</li>
+<li>
+<p><strong>Causes:</strong></p>
+</li>
+<li><strong>Overhead of maintaining heap data structures</strong>: Managing memory involves some extra space or resources, which can lead to unused memory within allocated blocks.</li>
+<li><strong>Padding for alignment purposes</strong>: Memory is often aligned to certain boundaries for faster access, which can leave small gaps.</li>
+<li>
+<p><strong>Explicit policy decisions</strong>: Sometimes, memory management systems intentionally allocate larger blocks than needed for various reasons, such as anticipating future requests.</p>
+</li>
+<li>
+<p><strong>Dependency:</strong></p>
+</li>
+<li>Depends on the pattern of <strong>previous</strong> memory requests<ul>
+<li>easy to measure</li>
+</ul>
+</li>
+</ol>
+<p>![[Screen Shot 2024-06-23 at 06.38.56.png]]</p>
+<h3 id="external-fragmentation">External Fragmentation<a class="headerlink" href="#external-fragmentation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Occurs when there is enough aggregate heap memory, but no single free block is large enough
+![[Screen Shot 2024-06-23 at 06.41.38.png]]</li>
+<li>Depends on the pattern of future requests <ul>
+<li>difficult to measure</li>
+</ul>
+</li>
+</ul>
+<p>![[Screen Shot 2024-06-23 at 06.42.20.png]]</p>
+<h3 id="implementation-issues">Implementation Issues<a class="headerlink" href="#implementation-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li>How do we know how much memory to free given just a pointer? </li>
+<li>How do we keep track of the free blocks? </li>
+<li>What do we do with the extra space when allocating a structure that is smaller than the free block it is placed in? </li>
+<li>How do we pick a block to use for allocation -- many might fit? </li>
+<li>How do we reuse a block that has been freed?</li>
+</ul>
+<h1 id="keeping-track-of-free-blocks">Keeping Track of Free Blocks<a class="headerlink" href="#keeping-track-of-free-blocks" title="Permanent link">&para;</a></h1>
+<p>Standard Method of knowing how much to free
+- Keep the length (in bytes) of a block in the word preceding the block. 
+    - Including the header 
+    - This word is often called the header field or header 
+- Requires an extra word for every allocated block
+![[Screen Shot 2024-06-23 at 07.02.30.png]]</p>
+<p>![[Screen Shot 2024-06-23 at 06.59.59.png]]</p>
+<h2 id="method-1-implicit-free-lists">Method 1: Implicit free lists<a class="headerlink" href="#method-1-implicit-free-lists" title="Permanent link">&para;</a></h2>
+<ul>
+<li>For each block we need both size and allocation status <ul>
+<li>Could store this information in two words: wasteful! </li>
+</ul>
+</li>
+<li>Standard trick <ul>
+<li>When blocks are aligned, some low-order address bits are always 0 </li>
+<li>Instead of storing an always-0 bit, use it as an allocated/free flag </li>
+<li>When reading the Size word, must mask out this bit
+![[Screen Shot 2024-06-23 at 07.20.25.png]]</li>
+</ul>
+</li>
+</ul>
+<h3 id="detailed-implicit-free-list-example">Detailed Implicit Free List Example<a class="headerlink" href="#detailed-implicit-free-list-example" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 11.03.27.png]]</p>
+<h3 id="implicit-list-data-structures">Implicit List: Data Structures<a class="headerlink" href="#implicit-list-data-structures" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 18.16.09.png]]</p>
+<h3 id="implicit-list-header-access">Implicit List: Header access<a class="headerlink" href="#implicit-list-header-access" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 18.16.33.png]]</p>
+<h3 id="implicit-list-traversing-list">Implicit List: Traversing list<a class="headerlink" href="#implicit-list-traversing-list" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 18.32.54.png]]</p>
+<h3 id="implicit-list-finding-a-free-block">Implicit List: Finding a Free Block<a class="headerlink" href="#implicit-list-finding-a-free-block" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 18.34.24.png]]
+- First fit: 
+    - Search list from beginning, choose <strong>first</strong> free block that fits: 
+    - Can take linear time in total number of blocks (allocated and free) 
+    - In practice it can cause “splinters” at beginning of list 
+- Next fit: 
+    - Like first fit, but search list starting where previous search finished 
+    - Should often be faster than first fit: avoids re-scanning unhelpful blocks 
+    - Some research suggests that fragmentation is worse 
+- Best fit: 
+    - Search the list, choose the best <strong>free</strong> block: fits, with fewest bytes left over 
+    - Keeps fragments small—usually improves memory utilization 
+    - Will typically run slower than first fit 
+    - Still a greedy algorithm. No guarantee of optimality</p>
+<h4 id="comparing-strategies">Comparing Strategies<a class="headerlink" href="#comparing-strategies" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-23 at 18.44.59.png]]</p>
+<h3 id="implicit-list-allocating-in-free-block">Implicit List: Allocating in Free Block<a class="headerlink" href="#implicit-list-allocating-in-free-block" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Allocating in a free block: splitting <ul>
+<li>Since allocated space might be smaller than free space, we might want to split the block
+![[Screen Shot 2024-06-23 at 18.46.34.png]]</li>
+</ul>
+</li>
+</ul>
+<h4 id="splitting-free-block">Splitting Free Block<a class="headerlink" href="#splitting-free-block" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-23 at 18.57.58.png]]</p>
+<h3 id="implicit-list-freeing-a-block">Implicit List: Freeing a Block<a class="headerlink" href="#implicit-list-freeing-a-block" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Simplest implementation: <ul>
+<li>Need only clear the “allocated” flag </li>
+<li>But can lead to “false fragmentation”
+![[Screen Shot 2024-06-23 at 19.00.45.png]]</li>
+</ul>
+</li>
+</ul>
+<h4 id="coalescing">Coalescing<a class="headerlink" href="#coalescing" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Join (coalesce) with next/previous blocks, if they are free <ul>
+<li>Coalescing with next block</li>
+</ul>
+</li>
+</ul>
+<p>![[Screen Shot 2024-06-23 at 19.01.50.png]]
+- How do we coalesce with previous block? 
+    - How do we know where it starts? 
+    - How can we determine whether its allocated?</p>
+<h4 id="bidirectional-coalescing">Bidirectional Coalescing<a class="headerlink" href="#bidirectional-coalescing" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Boundary tags - Knuth73 <ul>
+<li>Replicate size/allocated word at “bottom” (end) of free blocks </li>
+<li>Allows us to traverse the “list” backwards, but requires extra space </li>
+<li>Important and general technique
+![[Screen Shot 2024-06-23 at 19.17.02.png]]</li>
+</ul>
+</li>
+</ul>
+<h4 id="implementation-with-footers">Implementation with Footers<a class="headerlink" href="#implementation-with-footers" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-23 at 19.19.59.png]]
+![[Screen Shot 2024-06-23 at 19.20.39.png]]</p>
+<h3 id="splitting-free-block-full-version">Splitting Free Block: Full Version<a class="headerlink" href="#splitting-free-block-full-version" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 22.20.10.png]]</p>
+<h3 id="constant-time-coalescing">Constant Time Coalescing<a class="headerlink" href="#constant-time-coalescing" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 19.19.37.png]]</p>
+<h4 id="case-1">Case 1<a class="headerlink" href="#case-1" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-23 at 22.24.53.png]]</p>
+<h4 id="case-2">Case 2<a class="headerlink" href="#case-2" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-23 at 22.25.26.png]]</p>
+<h4 id="case-3">Case 3<a class="headerlink" href="#case-3" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-23 at 22.25.38.png]]</p>
+<h4 id="case-4">Case 4<a class="headerlink" href="#case-4" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-23 at 22.25.58.png]]</p>
+<h3 id="heap-structure">Heap Structure<a class="headerlink" href="#heap-structure" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 22.29.14.png]]
+- Dummy footer before first header 
+    - Marked as allocated 
+    - Prevents accidental coalescing when freeing first block 
+- Dummy header after last footer 
+    - Prevents accidental coalescing when freeing final block</p>
+<h3 id="top-level-malloc-code">Top-Level Malloc Code<a class="headerlink" href="#top-level-malloc-code" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 22.32.18.png]]</p>
+<h3 id="top-level-free-code">Top-Level Free Code<a class="headerlink" href="#top-level-free-code" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-23 at 22.33.10.png]]</p>
+<h3 id="disadvantages-of-boundary-tags">Disadvantages of Boundary Tags<a class="headerlink" href="#disadvantages-of-boundary-tags" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Internal fragmentation </li>
+<li>Can it be optimized? <ul>
+<li>Which blocks need the footer tag? </li>
+<li>What does that mean? Only need footer in free block</li>
+</ul>
+</li>
+</ul>
+<h3 id="no-boundary-tag-for-allocated-blocks">No Boundary Tag for Allocated Blocks<a class="headerlink" href="#no-boundary-tag-for-allocated-blocks" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Boundary tag needed only for free blocks </li>
+<li>When sizes are multiples of 16, have 4 spare bits
+![[Screen Shot 2024-06-23 at 23.08.34.png]]</li>
+</ul>
+<h4 id="case-1_1">Case 1<a class="headerlink" href="#case-1_1" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-23 at 23.10.01.png]]</p>
+<h4 id="case-2_1">Case 2<a class="headerlink" href="#case-2_1" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-23 at 23.12.57.png]]</p>
+<h4 id="case-3_1">Case 3<a class="headerlink" href="#case-3_1" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-23 at 23.13.10.png]]</p>
+<h4 id="case-4_1">Case 4<a class="headerlink" href="#case-4_1" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-23 at 23.13.24.png]]</p>
+<h3 id="summary-of-key-allocator-policies">Summary of Key Allocator Policies<a class="headerlink" href="#summary-of-key-allocator-policies" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Placement policy: <ul>
+<li>First-fit, next-fit, best-fit, etc. </li>
+<li>Trades off lower throughput for less fragmentation </li>
+<li>Interesting observation: segregated free lists (next lecture) approximate a best fit placement policy without having to search entire free list </li>
+</ul>
+</li>
+<li>Splitting policy: <ul>
+<li>When do we go ahead and split free blocks? </li>
+<li>How much internal fragmentation are we willing to tolerate? </li>
+</ul>
+</li>
+<li>Coalescing policy: <ul>
+<li>Immediate coalescing: coalesce each time free is called </li>
+<li>Deferred coalescing: try to improve performance of free by deferring coalescing until needed.</li>
+</ul>
+</li>
+</ul>
+<h3 id="summary-of-implicit-lists">Summary of Implicit Lists<a class="headerlink" href="#summary-of-implicit-lists" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Implementation: very simple </li>
+<li>Allocate cost: <ul>
+<li>linear time worst case </li>
+</ul>
+</li>
+<li>Free cost: <ul>
+<li>constant time worst case </li>
+<li>even with coalescing </li>
+</ul>
+</li>
+<li>Memory Overhead <ul>
+<li>will depend on placement policy </li>
+<li>First-fit, next-fit or best-fit </li>
+</ul>
+</li>
+<li>Not used in practice for malloc/free because of lineartime allocation <ul>
+<li>used in many special purpose applications </li>
+</ul>
+</li>
+<li>However, the concepts of splitting and boundary tag coalescing are general to all allocators</li>
+</ul>
+<h2 id="method-2-explicit-free-lists">Method 2: Explicit free lists<a class="headerlink" href="#method-2-explicit-free-lists" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Maintain list(s) of free blocks, not all blocks <ul>
+<li>Luckily we track only free blocks, so we can use payload area </li>
+<li>The “next” free block could be anywhere <ul>
+<li>So we need to store forward/back pointers, not just sizes </li>
+</ul>
+</li>
+<li>Still need boundary tags for coalescing <ul>
+<li>To find adjacent blocks according to memory order
+![[Screen Shot 2024-06-24 at 00.29.50.png]]
+![[Screen Shot 2024-06-24 at 00.30.37.png]]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="allocating-from-explicit-free-lists">Allocating From Explicit Free Lists<a class="headerlink" href="#allocating-from-explicit-free-lists" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-24 at 01.07.36.png]]</p>
+<h3 id="freeing-with-explicit-free-lists">Freeing With Explicit Free Lists<a class="headerlink" href="#freeing-with-explicit-free-lists" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Insertion policy: Where in the free list do you put a newly freed block? </li>
+<li>Unordered <ul>
+<li>LIFO (last-in-first-out) policy <ul>
+<li>Insert freed block at the beginning of the free list </li>
+</ul>
+</li>
+<li>FIFO (first-in-first-out) policy <ul>
+<li>Insert freed block at the end of the free list </li>
+</ul>
+</li>
+<li>Pro: simple and constant time </li>
+<li>Con: studies suggest fragmentation is worse than address ordered </li>
+</ul>
+</li>
+<li>Address-ordered policy <ul>
+<li>Insert freed blocks so that free list blocks are always in address order: <ul>
+<li>addr(prev) &lt; addr(curr) &lt; addr(next) </li>
+</ul>
+</li>
+<li>Con: requires search </li>
+<li>Pro: studies suggest fragmentation is lower than LIFO/FIFO</li>
+</ul>
+</li>
+</ul>
+<h3 id="freeing-with-a-lifo-policy">Freeing With a LIFO Policy<a class="headerlink" href="#freeing-with-a-lifo-policy" title="Permanent link">&para;</a></h3>
+<h4 id="case-1_2">Case 1<a class="headerlink" href="#case-1_2" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-24 at 01.23.16.png]]</p>
+<h4 id="case-2_2">Case 2<a class="headerlink" href="#case-2_2" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-24 at 01.28.01.png]]</p>
+<h4 id="case-3_2">Case 3<a class="headerlink" href="#case-3_2" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-24 at 01.38.42.png]]</p>
+<h4 id="case-4_2">Case 4<a class="headerlink" href="#case-4_2" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-06-24 at 01.39.22.png]]</p>
+<h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Comparison to implicit list: <ul>
+<li>Allocate is linear time in number of free blocks instead of all blocks <ul>
+<li>Much faster when most of the memory is full </li>
+</ul>
+</li>
+<li>Slightly more complicated allocate and free <ul>
+<li>Need to splice blocks in and out of the list </li>
+</ul>
+</li>
+<li>Some extra space for the links (2 extra words needed for each block) <ul>
+<li>Does this increase internal fragmentation?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="method-3-segregated-free-lists">Method 3: Segregated free lists<a class="headerlink" href="#method-3-segregated-free-lists" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Have several free lists, one for each <strong>size class</strong> of blocks ![[Screen Shot 2024-06-24 at 01.49.54.png]]</li>
+<li>Which blocks go in which size classes is a design decision <ul>
+<li>Can have major impact on both utilization and throughput </li>
+<li>Common choices include: </li>
+<li>One class for each small size (16, 32, 48, 64, …) </li>
+<li>At some point switch to powers of two: $[2^i+1, 2^{i+1}]$</li>
+</ul>
+</li>
+<li>The list for the largest blocks must have no upper limit (well, $2^{64}$)</li>
+</ul>
+<h3 id="seglist-allocator">Seglist Allocator<a class="headerlink" href="#seglist-allocator" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Given an array of free lists, each one for some size class </li>
+<li>To allocate a block of size n: <ul>
+<li>Search appropriate free list for block of size m ≥ n (i.e., first fit) </li>
+<li>If an appropriate block is found: ▪ Split block and place fragment on appropriate list ▪ If no block is found, try next larger class </li>
+<li>Repeat until block is found </li>
+</ul>
+</li>
+<li>If no block is found: <ul>
+<li>Request additional heap memory from OS (using <code>sbrk()</code>) </li>
+<li>Allocate block of n bytes from this new memory </li>
+<li>Place remainder as a single free block in appropriate size class.</li>
+</ul>
+</li>
+<li>To free a block: <ul>
+<li>Coalesce and place on appropriate list </li>
+</ul>
+</li>
+<li>Advantages of seglist allocators vs. non-seglist allocators (both with first-fit) <ul>
+<li>Higher throughput <ul>
+<li>log time for power-of-two size classes vs. linear time </li>
+</ul>
+</li>
+<li>Better memory utilization <ul>
+<li>First-fit search of segregated free list approximates a best-fit search of entire heap. </li>
+<li>Extreme case: Giving each block its own size class is equivalent to best-fit.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="memory-related-perils-and-pitfalls">Memory-related perils and pitfalls<a class="headerlink" href="#memory-related-perils-and-pitfalls" title="Permanent link">&para;</a></h2>
+<h3 id="dereferencing-bad-pointers">Dereferencing bad pointers<a class="headerlink" href="#dereferencing-bad-pointers" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-24 at 02.26.49.png]]</p>
+<h3 id="reading-uninitialized-memory">Reading uninitialized memory<a class="headerlink" href="#reading-uninitialized-memory" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-24 at 02.27.13.png]]</p>
+<h3 id="overwriting-memory">Overwriting memory<a class="headerlink" href="#overwriting-memory" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-24 at 02.27.42.png]]
+![[Screen Shot 2024-06-24 at 02.30.16.png]]
+![[Screen Shot 2024-06-24 at 02.30.27.png]]
+![[Screen Shot 2024-06-24 at 02.31.20.png]]
+![[Screen Shot 2024-06-24 at 02.32.24.png]]</p>
+<h3 id="referencing-nonexistent-variables">Referencing nonexistent variables<a class="headerlink" href="#referencing-nonexistent-variables" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-24 at 02.32.43.png]]</p>
+<h3 id="freeing-blocks-multiple-times">Freeing blocks multiple times<a class="headerlink" href="#freeing-blocks-multiple-times" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-24 at 02.32.58.png]]</p>
+<h3 id="referencing-freed-blocks">Referencing freed blocks<a class="headerlink" href="#referencing-freed-blocks" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-24 at 02.33.13.png]]</p>
+<h3 id="failing-to-free-blocks">Failing to free blocks<a class="headerlink" href="#failing-to-free-blocks" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-24 at 02.33.40.png]]
+![[Screen Shot 2024-06-24 at 02.35.09.png]]</p>
+<h3 id="dealing-with-memory-bugs">Dealing With Memory Bugs<a class="headerlink" href="#dealing-with-memory-bugs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Debugger: gdb <ul>
+<li>Good for finding bad pointer dereferences </li>
+<li>Hard to detect the other memory bugs </li>
+</ul>
+</li>
+<li>Data structure consistency checker <ul>
+<li>Runs silently, prints message only on error </li>
+<li>Use as a probe to zero in on error </li>
+</ul>
+</li>
+<li>Binary translator: valgrind <ul>
+<li>Powerful debugging and analysis technique </li>
+<li>Rewrites text section of executable object file </li>
+<li>Checks each individual reference at runtime </li>
+<li>Bad pointers, overwrites, refs outside of allocated block </li>
+</ul>
+</li>
+<li>glibc malloc contains checking code</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ilong4rennes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

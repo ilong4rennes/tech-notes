@@ -1,0 +1,1124 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Personal notes on CS, tech, and life.">
+      
+      
+        <meta name="author" content="Yichen Lu">
+      
+      
+        <link rel="canonical" href="https://ilong4rennes.github.io/tech-notes/Academics/Computer-Science/15213%20Computer%20Systems/10%20Processes%20and%20Multitasking/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Processes - Amanda's Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#processes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-header__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Amanda's Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Processes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Academics
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Technology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Technology
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projects
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Life/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Life
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-nav__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Amanda's Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Technology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Life/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Life
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiprocessing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiprocessing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Processes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-switching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Switching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-switching-uniprocessor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Switching (Uniprocessor)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context-switching-multicore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Switching (Multicore)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-view-of-concurrent-processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User View of Concurrent Processes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traditional-uniprocessor-reality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traditional (Uniprocessor) Reality
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="processes">Processes<a class="headerlink" href="#processes" title="Permanent link">&para;</a></h1>
+<h3 id="process">Process<a class="headerlink" href="#process" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Definition:</strong> A process is like a program that is running on your computer.</li>
+<li><strong>Example:</strong> When you open your web browser, a process starts to handle everything you do in the browser.</li>
+<li><strong>Lifecycle:</strong><ul>
+<li><strong>Start:</strong> When you launch an application, the operating system creates a new process.</li>
+<li><strong>Run:</strong> The process executes instructions and performs tasks.</li>
+<li><strong>End:</strong> When you close the application, the process is terminated.</li>
+</ul>
+</li>
+</ul>
+<h3 id="multiprocessing">Multiprocessing<a class="headerlink" href="#multiprocessing" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-09 at 15.59.18.png]]
+- Computer runs many processes simultaneously 
+    - Applications for one or more users 
+        - Web browsers, email clients, editors, … 
+    - Background tasks 
+        - Monitoring network &amp; I/O devices</p>
+<h3 id="processes_1">Processes<a class="headerlink" href="#processes_1" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-09 at 16.02.07.png]]
+- Definition: A process is an instance of a running program. 
+- Process provides each program with two key abstractions: 
+    - Private address space 
+        - Each program seems to have exclusive use of main memory. 
+        - Provided by kernel mechanism called <strong>virtual memory</strong> 
+    - Logical control flow 
+        - Each program seems to have exclusive use of the CPU 
+        - Provided by kernel mechanism called <strong>context switching</strong></p>
+<h3 id="control-flow">Control Flow<a class="headerlink" href="#control-flow" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Processors do only one thing: <ul>
+<li>From startup to shutdown, each CPU core simply reads and executes a sequence of machine instructions, one at a time * </li>
+<li>This sequence is the CPU’s control flow (or flow of control)
+![[Screen Shot 2024-07-09 at 16.16.57.png]]</li>
+</ul>
+</li>
+</ul>
+<h3 id="context-switching">Context Switching<a class="headerlink" href="#context-switching" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Processes are managed by a shared chunk of memoryresident OS code called the <strong>kernel</strong> <ul>
+<li>Important: the kernel is not a separate process, but rather runs as part of some existing process. </li>
+</ul>
+</li>
+<li>Control flow passes from one process to another via a <strong>context switch</strong>
+![[Screen Shot 2024-07-09 at 16.30.50.png]]</li>
+</ul>
+<h3 id="context-switching-uniprocessor">Context Switching (Uniprocessor)<a class="headerlink" href="#context-switching-uniprocessor" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-09 at 17.03.41.png]]
+- Single processor executes multiple processes concurrently 
+    - Process executions interleaved (multitasking) 
+    - Address spaces managed by virtual memory system (like last week) 
+    - Register values for nonexecuting processes saved in memory
+![[Screen Shot 2024-07-09 at 17.07.46.png]]
+- Save current registers in memory
+![[Screen Shot 2024-07-09 at 17.08.35.png]]
+- Schedule next process for execution
+![[Screen Shot 2024-07-09 at 17.02.47.png]]
+- Load saved registers and switch address space (context switch)</p>
+<h3 id="context-switching-multicore">Context Switching (Multicore)<a class="headerlink" href="#context-switching-multicore" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-09 at 17.11.23.png]]</p>
+<h3 id="user-view-of-concurrent-processes">User View of Concurrent Processes<a class="headerlink" href="#user-view-of-concurrent-processes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Concurrent: execution overlaps in time</li>
+<li>Sequential: OW
+![[Screen Shot 2024-07-09 at 17.15.43.png]]</li>
+</ul>
+<h3 id="traditional-uniprocessor-reality">Traditional (Uniprocessor) Reality<a class="headerlink" href="#traditional-uniprocessor-reality" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-09 at 17.19.18.png]]
+- The CPU executes instructions in sequence
+![[Screen Shot 2024-07-09 at 17.20.34.png]]</p>
+<h1 id="system-calls">System Calls<a class="headerlink" href="#system-calls" title="Permanent link">&para;</a></h1>
+<h3 id="system-call">System Call<a class="headerlink" href="#system-call" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Definition:</strong> A system call is a way for a program to ask the operating system to do something.</li>
+<li><strong>Example:</strong> If your program needs to read a file from the disk, it uses a system call to ask the operating system to read the file.</li>
+<li>
+<p><strong>Process:</strong></p>
+<ul>
+<li><strong>Request:</strong> The program sends a request to the operating system.</li>
+<li><strong>Execution:</strong> The operating system performs the requested action.</li>
+<li><strong>Response:</strong> The operating system sends the result back to the program.</li>
+</ul>
+</li>
+<li>
+<p>Whenever a program wants to cause an effect outside its own process, it must ask the kernel for help </p>
+</li>
+<li>Examples: <ul>
+<li>Read/write files </li>
+<li>Get current time </li>
+<li>Allocate RAM (sbrk) </li>
+<li>Create new processes
+![[Screen Shot 2024-07-09 at 17.41.29.png]]</li>
+</ul>
+</li>
+</ul>
+<h3 id="system-call-error-handling">System Call Error Handling<a class="headerlink" href="#system-call-error-handling" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Almost all system-level operations can fail <ul>
+<li>Only exception is the handful of functions that return void </li>
+<li>You must explicitly check for failure </li>
+</ul>
+</li>
+<li>On error, most system-level functions return −1 and set global variable errno to indicate cause. </li>
+<li>Example:![[Screen Shot 2024-07-10 at 07.28.46.png]]</li>
+</ul>
+<h3 id="error-reporting-functions">Error-reporting functions<a class="headerlink" href="#error-reporting-functions" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Can simplify somewhat using an error-reporting function:
+![[Screen Shot 2024-07-10 at 07.45.13.png]]</li>
+<li>Not always appropriate to exit when something goes wrong.</li>
+</ul>
+<h3 id="error-handling-wrappers">Error-handling Wrappers<a class="headerlink" href="#error-handling-wrappers" title="Permanent link">&para;</a></h3>
+<ul>
+<li>We simplify the code we present to you even further by using Stevens-style error-handling wrappers:
+![[Screen Shot 2024-07-10 at 07.46.12.png]]</li>
+<li>NOT what you generally want to do in a real application</li>
+</ul>
+<h1 id="process-control">Process Control<a class="headerlink" href="#process-control" title="Permanent link">&para;</a></h1>
+<h3 id="obtaining-process-ids">Obtaining Process IDs<a class="headerlink" href="#obtaining-process-ids" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>pid_t getpid(void)</code> ▪ Returns PID of current process </li>
+<li><code>pid_t getppid(void)</code> ▪ Returns PID of parent process</li>
+</ul>
+<h3 id="process-states">Process States<a class="headerlink" href="#process-states" title="Permanent link">&para;</a></h3>
+<p>At any time, each process is either: 
+- Running 
+    - Process is either executing instructions, or it could be executing instructions if there were enough CPU cores. 
+- Blocked / Sleeping 
+    - Process cannot execute any more instructions until some external event happens (usually I/O). 
+- Stopped 
+    - Process has been prevented from executing by user action (control-Z). 
+- Terminated / Zombie 
+    - Process is finished. Parent process has not yet been notified.</p>
+<h3 id="terminating-processes">Terminating Processes<a class="headerlink" href="#terminating-processes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Process becomes terminated for one of three reasons: <ul>
+<li>Receiving a signal whose default action is to terminate (next lecture) </li>
+<li>Returning from the <code>main</code> routine </li>
+<li>Calling the <code>exit</code> function </li>
+</ul>
+</li>
+<li><code>void exit(int status)</code> <ul>
+<li>Terminates with an exit status of status </li>
+<li>Convention: normal return status is 0, nonzero on error </li>
+<li>Another way to explicitly set the exit status is to return an integer value from the main routine </li>
+</ul>
+</li>
+<li><code>exit</code> is called <strong>once</strong> but <strong>never</strong> returns.</li>
+</ul>
+<h3 id="creating-processes">Creating Processes<a class="headerlink" href="#creating-processes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Parent process creates a new running child process by calling fork </li>
+<li>int fork(void) <ul>
+<li>Returns 0 to the child process, child’s PID to parent process </li>
+<li>Child is almost identical to parent: <ul>
+<li>Child get an identical (but separate) copy of the parent’s virtual address space. </li>
+<li>Child gets identical copies of the parent’s open file descriptors </li>
+<li>Child has a different PID than the parent </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>fork is called once but returns twice</li>
+</ul>
+<h3 id="conceptual-view-of-fork">Conceptual View of <code>fork</code><a class="headerlink" href="#conceptual-view-of-fork" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-10 at 08.34.17.png]]
+- Make complete copy of execution state 
+    - Designate one as parent and one as child 
+    - Resume execution of parent or child 
+    - (Optimization: Use copy-on-write to avoid copying RAM)</p>
+<h3 id="fork-example"><code>fork</code> Example<a class="headerlink" href="#fork-example" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-10 at 08.39.11.png]]</p>
+<h3 id="modeling-fork-with-process-graphs">Modeling fork with Process Graphs<a class="headerlink" href="#modeling-fork-with-process-graphs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A process graph is a useful tool for capturing the partial ordering of statements in a concurrent program: <ul>
+<li>Each vertex is the execution of a statement </li>
+<li>a -&gt; b means a happens before b </li>
+<li>Edges can be labeled with current value of variables </li>
+<li><code>printf</code> vertices can be labeled with output </li>
+<li>Each graph begins with a vertex with no inedges </li>
+</ul>
+</li>
+<li>Any topological sort of the graph corresponds to a feasible total ordering. <ul>
+<li>Total ordering of vertices where all edges point from left to right</li>
+</ul>
+</li>
+</ul>
+<p>Example:![[Screen Shot 2024-07-10 at 08.48.40.png]]
+![[Screen Shot 2024-07-10 at 08.49.40.png]]
+Two consecutive <code>forks</code>:
+![[Screen Shot 2024-07-10 at 09.16.18.png]]
+Nested <code>forks</code> in parent:
+![[Screen Shot 2024-07-10 at 09.16.36.png]]
+Nested <code>forks</code> in children:![[Screen Shot 2024-07-10 at 09.43.18.png]]</p>
+<h3 id="reaping-child-processes">Reaping Child Processes<a class="headerlink" href="#reaping-child-processes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Idea <ul>
+<li>When process terminates, it still consumes system resources <ul>
+<li>Examples: Exit status, various OS tables </li>
+</ul>
+</li>
+<li>Called a “zombie” <ul>
+<li>Living corpse, half alive and half dead </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Reaping <ul>
+<li>Performed by parent on terminated child (using <code>wait</code> or <code>waitpid</code>) </li>
+<li>Parent is given exit status information </li>
+<li>Kernel then deletes zombie child process </li>
+</ul>
+</li>
+<li>What if parent doesn’t reap? <ul>
+<li>If any parent terminates without reaping a child, then the orphaned child should be reaped by init process (pid == 1) <ul>
+<li>Unless it was init that terminated! Then need to reboot… </li>
+</ul>
+</li>
+<li>So, only need explicit reaping in long-running processes <ul>
+<li>e.g., shells and servers</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Zombie Example:![[Screen Shot 2024-07-10 at 10.01.54.png]]</p>
+<p>Non-terminating Child Example: ![[Screen Shot 2024-07-10 at 10.02.16.png]]</p>
+<h3 id="wait-synchronizing-with-children"><code>wait</code>: Synchronizing with Children<a class="headerlink" href="#wait-synchronizing-with-children" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Parent reaps a child with one of these system calls: </li>
+<li><code>pid_t wait(int *status)</code><ul>
+<li>Suspends current process until one of its children terminates </li>
+<li>Returns PID of child, records exit status in status </li>
+</ul>
+</li>
+<li><code>pid_t waitpid(pid_t pid, int *status, int options)</code><ul>
+<li>More flexible version of wait: </li>
+<li>Can wait for a specific child or group of children </li>
+<li>Can be told to return immediately if there are no children to reap
+![[Screen Shot 2024-07-10 at 10.13.55.png]]</li>
+</ul>
+</li>
+</ul>
+<h3 id="wait-status-codes"><code>wait</code>: Status codes<a class="headerlink" href="#wait-status-codes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Return value of <code>wait</code> is the pid of the child process that terminated </li>
+<li>If status != NULL, then the integer it points to will be set to a value that indicates the exit status <ul>
+<li>More information than the value passed to exit </li>
+<li>Must be decoded, using macros defined in sys/wait.h <ul>
+<li><code>WIFEXITED, WEXITSTATUS, WIFSIGNALED, WTERMSIG, WIFSTOPPED, WSTOPSIG, WIFCONTINUED</code> </li>
+<li>See textbook for details</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="another-wait-example">Another <code>wait</code> Example<a class="headerlink" href="#another-wait-example" title="Permanent link">&para;</a></h3>
+<ul>
+<li>If multiple children completed, will take in arbitrary order </li>
+<li>Can use macros <code>WIFEXITED</code> and <code>WEXITSTATUS</code> to get information about exit status
+![[Screen Shot 2024-07-10 at 10.23.14.png]]</li>
+</ul>
+<h3 id="execve-loading-and-running-programs"><code>execve</code>: Loading and Running Programs<a class="headerlink" href="#execve-loading-and-running-programs" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>int execve(char *filename, char *argv[], char *envp[])</code></li>
+<li>Loads and runs in the current process: <ul>
+<li>Executable file filename <ul>
+<li>Can be object file or script file beginning with <code>#!interpreter</code> (e.g., <code>#!/bin/bash</code>) </li>
+</ul>
+</li>
+<li>…with argument list <code>argv</code><ul>
+<li>By convention <code>argv[0]==filename</code> </li>
+</ul>
+</li>
+<li>…and environment variable list <code>envp</code> <ul>
+<li>“name=value” strings (e.g., <code>USER=droh</code>) </li>
+<li><code>getenv, putenv, printenv</code> </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Overwrites code, data, and stack <ul>
+<li>Retains PID, open files and signal context </li>
+</ul>
+</li>
+<li>Called once and never returns <ul>
+<li>…except if there is an error</li>
+</ul>
+</li>
+</ul>
+<h3 id="execve-example"><code>execve</code> Example<a class="headerlink" href="#execve-example" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-10 at 11.15.15.png]]
+![[Screen Shot 2024-07-10 at 11.15.43.png]]
+![[Screen Shot 2024-07-10 at 11.15.57.png]]</p>
+<h1 id="shells">Shells<a class="headerlink" href="#shells" title="Permanent link">&para;</a></h1>
+<h3 id="shell">Shell<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Definition:</strong> A shell is a program that allows you to interact with the operating system using commands.</li>
+<li><strong>Example:</strong> The Command Prompt on Windows or Terminal on macOS and Linux are shells.</li>
+<li><strong>Process:</strong><ul>
+<li><strong>Input:</strong> You type a command into the shell (e.g., <code>ls</code> to list files).</li>
+<li><strong>Interpretation:</strong> The shell interprets the command and decides what to do.</li>
+<li><strong>Execution:</strong> The shell uses system calls to perform the command.</li>
+<li><strong>Output:</strong> The result of the command is displayed in the shell.</li>
+</ul>
+</li>
+</ul>
+<h3 id="shell-programs">Shell Programs<a class="headerlink" href="#shell-programs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A shell is an application program that runs programs on behalf of the user <ul>
+<li>sh - Original Unix shell (Stephen Bourne, AT&amp;T Bell Labs, 1977) </li>
+<li>csh/tcsh - BSD Unix C shell </li>
+<li>bash - “Bourne-Again” Shell (default Linux shell)</li>
+</ul>
+</li>
+<li>Simple shell <ul>
+<li>Described in the textbook, starting at p. 753 </li>
+<li>Implementation of a very elementary shell </li>
+<li>Purpose <ul>
+<li>Understand what happens when you type commands </li>
+<li>Understand use and operation of process control operations
+![[Screen Shot 2024-07-10 at 12.36.51.png]]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="simple-shell-implementation">Simple Shell Implementation<a class="headerlink" href="#simple-shell-implementation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Basic loop <ul>
+<li>Read line from command line </li>
+<li>Execute the requested operation <ul>
+<li>Built-in command (only one implemented is quit) </li>
+<li>Load and execute program from file
+![[Screen Shot 2024-07-10 at 12.46.10.png]]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">eval</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">cmdline</span><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span><span class="w"> </span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[</span><span class="n">MAXARGS</span><span class="p">];</span><span class="w"> </span><span class="cm">/* Argument list execve() */</span><span class="w"> </span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[</span><span class="n">MAXLINE</span><span class="p">];</span><span class="w"> </span><span class="cm">/* Holds modified command line */</span><span class="w"> </span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">bg</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Should the job run in bg or fg? */</span><span class="w"> </span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pid</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Process id */</span><span class="w"> </span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="n">strcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">cmdline</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parseline</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="cm">/* parseline will parse ‘buf’ into ‘argv’ and return whether or */</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="cm">/* not input line ended in &#39;&amp;&#39; */</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Ignore empty lines */</span><span class="w"> </span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="cm">/* If it is a ‘built in’ command, then handle it here in this program. */</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="cm">/* Otherwise fork/exec the program specified in argv[0] */</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">builtin_command</span><span class="p">(</span><span class="n">argv</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">())</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* Child runs user job */</span><span class="w"> </span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">            </span><span class="n">execve</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="n">environ</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">            </span><span class="c1">// If we get here, execve failed. </span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">            </span><span class="c1">// Start argv[0]. execve only returns on error.</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span><span class="w"> </span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">            </span><span class="n">exit</span><span class="p">(</span><span class="mi">127</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">        </span><span class="cm">/* Parent waits for foreground job to terminate */</span><span class="w"> </span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">bg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">waitpid</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">                </span><span class="n">unix_error</span><span class="p">(</span><span class="s">&quot;waitfg: waitpid error&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pid</span><span class="p">,</span><span class="w"> </span><span class="n">cmdline</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="p">}</span>
+</code></pre></div>
+- There is a problem with this code.</p>
+<h3 id="problem-with-simple-shell-example">Problem with Simple Shell Example<a class="headerlink" href="#problem-with-simple-shell-example" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Shell designed to run indefinitely <ul>
+<li>Should not accumulate unneeded resources <ul>
+<li>Memory </li>
+<li>Child processes </li>
+<li>File descriptors </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Our example shell correctly waits for and reaps foreground jobs </li>
+<li>But what about background jobs? <ul>
+<li>Will become zombies when they terminate </li>
+<li>Will never be reaped because shell (typically) will not terminate </li>
+<li>Could run the entire computer out of memory <ul>
+<li>More likely, run out of PIDs</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ilong4rennes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
