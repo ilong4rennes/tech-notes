@@ -1,0 +1,2265 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Personal notes on CS, tech, and life.">
+      
+      
+        <meta name="author" content="Yichen Lu">
+      
+      
+        <link rel="canonical" href="https://ilong4rennes.github.io/tech-notes/Academics/Computer-Science/15213%20Computer%20Systems/13%20Network%20Programming/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>13 Network Programming - Amanda's Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#computer-networks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-header__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Amanda's Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              13 Network Programming
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Academics
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Technology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Technology
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projects
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Life/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Life
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-nav__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Amanda's Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Technology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Life/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Life
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#computer-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computer Networks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Computer Networks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-organization-of-a-network-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware Organization of a Network Host
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#old-lowest-level-ethernet-segment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Old Lowest Level: Ethernet Segment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-level-bridged-ethernet-segment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Level: Bridged Ethernet Segment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conceptual-view-of-lans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptual View of LANs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-level-internets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Level: internets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-structure-of-an-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical Structure of an internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-notion-of-an-internet-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Notion of an internet Protocol
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Notion of an internet Protocol">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-does-an-internet-protocol-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Does an internet Protocol Do?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transferring-internet-data-via-encapsulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transferring internet Data Via Encapsulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Internet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#global-ip-internet-upper-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global IP Internet (upper case)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-internet-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Internet Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internet-connection-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internet Connection Hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-and-software-organization-of-an-internet-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware and Software Organization of an Internet Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-programmers-view-of-the-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Programmer’s View of the Internet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A Programmer’s View of the Internet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aside-ipv4-and-ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aside: IPv4 and IPv6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-ip-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) IP Addresses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(1) IP Addresses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dotted-decimal-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dotted Decimal Notation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-internet-domain-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) Internet Domain Names
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(2) Internet Domain Names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#domain-naming-system-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain Naming System (DNS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#properties-of-dns-mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties of DNS Mappings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-client-server-transaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Client-Server Transaction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-internet-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (3) Internet Connections
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="(3) Internet Connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#well-known-service-names-and-ports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Well-known Service Names and Ports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anatomy-of-a-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anatomy of a Connection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-ports-to-identify-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Ports to Identify Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sockets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sockets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sockets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sockets-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sockets Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sockets_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sockets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#socket-programming-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Socket Programming Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#echo-serverclient-session-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Echo Server/Client Session Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#echo-server-client-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Echo Server + Client Structure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Echo Server + Client Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-start-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Start Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-start-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Start Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-exchange-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Exchange Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-disconnect-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Disconnect Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-drop-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Drop Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unbuffered-rio-inputoutput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unbuffered RIO Input/Output
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unbuffered RIO Input/Output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffered-rio-input-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buffered RIO Input Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Buffered RIO Input Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#echo-client-main-routine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Echo Client: Main Routine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iterative-echo-server-main-routine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Iterative Echo Server: Main Routine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#echo-server-echo-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Echo Server: echo function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generic-socket-address-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generic Socket Address Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internet-ipv4-specific-socket-address-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internet (IPv4) Specific Socket Address Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-and-service-conversion-getaddrinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Host and Service Conversion: getaddrinfo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Host and Service Conversion: getaddrinfo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linked-list-returned-by-getaddrinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linked List Returned by getaddrinfo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addrinfo-struct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        addrinfo Struct
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-and-service-conversion-getnameinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Host and Service Conversion: getnameinfo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversion-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conversion Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-hostinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running hostinfo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up connections
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sockets-interface-socket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sockets Interface: socket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sockets-interface-bind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sockets Interface: bind
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sockets-interface-listen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sockets Interface: listen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sockets-interface-accept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sockets Interface: accept
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sockets-interface-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sockets Interface: connect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connectaccept-illustrated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        connect/accept Illustrated
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connected-vs-listening-descriptors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connected vs. Listening Descriptors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sockets-helper-open_clientfd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sockets Helper: open_clientfd
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sockets Helper: open_clientfd">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#function-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Definition:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-in-the-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps in the Function:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getaddrinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        getaddrinfo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="getaddrinfo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sockets-helper-open_listenfd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sockets Helper: open_listenfd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-servers-using-telnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Servers Using telnet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-protocol-example-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application protocol example: HTTP
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>13 Network Programming</h1>
+
+<h2 id="computer-networks">Computer Networks<a class="headerlink" href="#computer-networks" title="Permanent link">&para;</a></h2>
+<ul>
+<li>A network is a hierarchical system of boxes and wires organized by geographical proximity <ul>
+<li>LAN (Local Area Network) spans a building or campus <ul>
+<li>Ethernet is most prominent example </li>
+</ul>
+</li>
+<li>WAN (Wide Area Network) spans country or world <ul>
+<li>Typically high-speed point-to-point (mostly optical) links </li>
+</ul>
+</li>
+<li>Also: SAN (Storage area network), MAN (Metropolitan), etc., etc. </li>
+</ul>
+</li>
+<li>An internetwork (internet) is an interconnected set of networks <ul>
+<li>The Global IP Internet (uppercase “I”) is the most famous example of an internet (lowercase “i”) </li>
+</ul>
+</li>
+<li>Let’s see how an internet is built from the ground up</li>
+</ul>
+<h3 id="hardware-organization-of-a-network-host">Hardware Organization of a Network Host<a class="headerlink" href="#hardware-organization-of-a-network-host" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-23 at 20.13.26.png]]</p>
+<h3 id="old-lowest-level-ethernet-segment">Old Lowest Level: Ethernet Segment<a class="headerlink" href="#old-lowest-level-ethernet-segment" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-18 at 12.49.21.png]]
+- Ethernet segment consists of a collection of hosts connected by wires (twisted pairs) to a hub 
+- Spans room or floor in a building 
+- Operation 
+    - Each Ethernet adapter has a unique 48-bit address (MAC address) 
+        - E.g., 00:16:ea:e3:54:e6 
+    - Hosts send bits to any other host in chunks called frames 
+    - Hub slavishly copies each bit from each port to every other port 
+        - Every host sees every bit 
+    - Note: Hubs are obsolete. Bridges (switches, routers) became cheap enough to replace them</p>
+<h3 id="next-level-bridged-ethernet-segment">Next Level: Bridged Ethernet Segment<a class="headerlink" href="#next-level-bridged-ethernet-segment" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-18 at 12.49.59.png]]
+- Spans building or campus 
+- Bridges cleverly learn which hosts are reachable from which ports and then selectively copy frames from port to port</p>
+<h3 id="conceptual-view-of-lans">Conceptual View of LANs<a class="headerlink" href="#conceptual-view-of-lans" title="Permanent link">&para;</a></h3>
+<ul>
+<li>For simplicity, hubs, bridges, and wires are often shown as a collection of hosts attached to a single wire: ![[Screen Shot 2024-07-18 at 12.50.45.png]]</li>
+</ul>
+<h3 id="next-level-internets">Next Level: internets<a class="headerlink" href="#next-level-internets" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Multiple incompatible LANs can be physically connected by specialized computers called routers </li>
+<li>The connected networks are called an internet (lower case)
+![[Screen Shot 2024-07-18 at 12.51.26.png]]</li>
+</ul>
+<h3 id="logical-structure-of-an-internet">Logical Structure of an internet<a class="headerlink" href="#logical-structure-of-an-internet" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-23 at 20.40.21.png]]
+- Ad hoc interconnection of networks 
+    - No particular topology 
+    - Vastly different router &amp; link capacities 
+- Send packets from source to destination by hopping through networks 
+    - Router forms bridge from one network to another 
+    - Different packets may take different routes</p>
+<h2 id="the-notion-of-an-internet-protocol">The Notion of an internet Protocol<a class="headerlink" href="#the-notion-of-an-internet-protocol" title="Permanent link">&para;</a></h2>
+<ul>
+<li>How is it possible to send bits across incompatible LANs and WANs? </li>
+<li>Solution: protocol software running on each host and router <ul>
+<li>Protocol is a set of rules that governs how hosts and routers should cooperate when they transfer data from network to network. </li>
+<li>Smooths out the differences between the different networks</li>
+</ul>
+</li>
+</ul>
+<h3 id="what-does-an-internet-protocol-do">What Does an internet Protocol Do?<a class="headerlink" href="#what-does-an-internet-protocol-do" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Provides a naming scheme <ul>
+<li>An internet protocol defines a uniform format for host addresses </li>
+<li>Each host (and router) is assigned at least one of these internet addresses that uniquely identifies it </li>
+</ul>
+</li>
+<li>Provides a delivery mechanism <ul>
+<li>An internet protocol defines a standard transfer unit (packet) </li>
+<li>Packet consists of header and payload <ul>
+<li>Header: contains info such as packet size, source and destination addresses </li>
+<li>Payload: contains data bits sent from source host</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="transferring-internet-data-via-encapsulation">Transferring internet Data Via Encapsulation<a class="headerlink" href="#transferring-internet-data-via-encapsulation" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-24 at 01.29.44.png]]</p>
+<h3 id="other-issues">Other Issues<a class="headerlink" href="#other-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li>We are glossing over a number of important questions: <ul>
+<li>What if different networks have different maximum frame sizes? (segmentation) </li>
+<li>How do routers know where to forward frames? </li>
+<li>How are routers informed when the network topology changes? </li>
+<li>What if packets get lost? </li>
+</ul>
+</li>
+<li>These (and other) questions are addressed by the area of systems known as computer networking</li>
+</ul>
+<h2 id="internet">Internet<a class="headerlink" href="#internet" title="Permanent link">&para;</a></h2>
+<h3 id="global-ip-internet-upper-case">Global IP Internet (upper case)<a class="headerlink" href="#global-ip-internet-upper-case" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Most famous example of an internet </li>
+<li>Based on the TCP/IP protocol family <ul>
+<li>IP (Internet Protocol) <ul>
+<li>Provides <em>basic naming scheme</em> and unreliable <em>delivery capability</em> of packets (datagrams) from <em>host-to-host</em> </li>
+</ul>
+</li>
+<li>UDP (User Datagram Protocol) <ul>
+<li>Uses IP to provide <em>unreliable</em> datagram delivery from <em>process-to-process</em> </li>
+</ul>
+</li>
+<li>TCP (Transmission Control Protocol) <ul>
+<li>Uses IP to provide <em>reliable</em> byte streams from <em>process-to-process</em> over <em>connections</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Accessed via a mix of Unix file I/O and functions from the <em>sockets interface</em></li>
+</ul>
+<h3 id="basic-internet-components">Basic Internet Components<a class="headerlink" href="#basic-internet-components" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Internet backbone: <ul>
+<li>collection of routers (nationwide or worldwide) connected by high-speed point-to-point networks </li>
+</ul>
+</li>
+<li>Internet Exchange Points (IXP): <ul>
+<li>router that connects multiple backbones (often referred to as peers) </li>
+<li>Also called Network Access Points (NAP) </li>
+</ul>
+</li>
+<li>Regional networks: <ul>
+<li>smaller backbones that cover smaller geographical areas (e.g., cities or states) </li>
+</ul>
+</li>
+<li>Point of presence (POP): <ul>
+<li>machine that is connected to the Internet </li>
+</ul>
+</li>
+<li>Internet Service Providers (ISPs): <ul>
+<li>provide dial-up or direct access to POPs</li>
+</ul>
+</li>
+</ul>
+<h3 id="internet-connection-hierarchy">Internet Connection Hierarchy<a class="headerlink" href="#internet-connection-hierarchy" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-25 at 20.15.22.png]]</p>
+<h3 id="hardware-and-software-organization-of-an-internet-application">Hardware and Software Organization of an Internet Application<a class="headerlink" href="#hardware-and-software-organization-of-an-internet-application" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-25 at 20.18.13.png]]</p>
+<h2 id="a-programmers-view-of-the-internet">A Programmer’s View of the Internet<a class="headerlink" href="#a-programmers-view-of-the-internet" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Hosts are mapped to a set of 32-bit IP addresses <ul>
+<li>128.2.203.179 </li>
+<li>127.0.0.1 (always localhost) </li>
+</ul>
+</li>
+<li>As a convenience for humans, the Domain Name System maps a set of identifiers called Internet domain names to IP addresses: <ul>
+<li>www.cs.cmu.edu “resolves to” 128.2.217.3 </li>
+</ul>
+</li>
+<li>A process on one Internet host can communicate with a process on another Internet host over a connection</li>
+</ol>
+<h3 id="aside-ipv4-and-ipv6">Aside: IPv4 and IPv6<a class="headerlink" href="#aside-ipv4-and-ipv6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>IPv4 (Internet Protocol version 4) specified 1981 <ul>
+<li>32-bit host addresses (192.0.2.43) </li>
+<li>Known to not be enough for everyone since ~1990 </li>
+</ul>
+</li>
+<li>IPv6 (Internet Protocol version 6) specified 1996 <ul>
+<li>128-bit addresses (2001:0db8:0:0:0:0:cafe:la7e) </li>
+<li>Intended to replace IPv4 </li>
+<li>Very slow adoption due to need to replace routers (CMU’s network doesn’t support IPv6 at all!) </li>
+</ul>
+</li>
+<li>Application programmers mostly don’t have to care <ul>
+<li>Sockets API makes it easy to write code that seamlessly uses either, as necessary</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-ip-addresses">(1) IP Addresses<a class="headerlink" href="#1-ip-addresses" title="Permanent link">&para;</a></h3>
+<ul>
+<li>32-bit IP addresses are stored in an IP address struct <ul>
+<li>IP addresses are always stored in memory in network byte order (big-endian byte order) </li>
+<li>True in general for any integer transferred in a packet header from one machine to another. <ul>
+<li>E.g., the port number used to identify an Internet connection.
+![[Screen Shot 2024-07-25 at 20.57.35.png]]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="dotted-decimal-notation">Dotted Decimal Notation<a class="headerlink" href="#dotted-decimal-notation" title="Permanent link">&para;</a></h4>
+<ul>
+<li>By convention, each byte in a 32-bit IP address is represented by its decimal value and separated by a period <ul>
+<li>IP address: 0x8002C2F2 = 128.2.194.242 </li>
+</ul>
+</li>
+<li>Use <code>getaddrinfo</code> and <code>getnameinfo</code> functions (described later) to convert between IP addresses and dotted decimal format.</li>
+</ul>
+<h3 id="2-internet-domain-names">(2) Internet Domain Names<a class="headerlink" href="#2-internet-domain-names" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-25 at 21.44.58.png]]</p>
+<h4 id="domain-naming-system-dns">Domain Naming System (DNS)<a class="headerlink" href="#domain-naming-system-dns" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The Internet maintains a mapping between IP addresses and domain names in a worldwide distributed database called DNS </li>
+<li>Conceptually, programmers can view the DNS database as a collection of millions of host entries.<ul>
+<li>Each host entry defines the mapping between a set of domain names and IP addresses. </li>
+<li>In a mathematical sense, a host entry is an equivalence class of domain names and IP addresses.</li>
+</ul>
+</li>
+</ul>
+<h4 id="properties-of-dns-mappings">Properties of DNS Mappings<a class="headerlink" href="#properties-of-dns-mappings" title="Permanent link">&para;</a></h4>
+<p>Can explore properties of DNS mappings using <code>nslookup</code> </p>
+<p>Each host has a locally defined domain name <code>localhost</code> which always maps to the loopback address 127.0.0.1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>linux&gt; nslookup localhost 
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Address: 127.0.0.1
+</code></pre></div></p>
+<p>Use <code>hostname</code> to determine real domain name of local host:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>linux&gt; hostname 
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>whaleshark.ics.cs.cmu.edu
+</code></pre></div></p>
+<p>Simple case: one-to-one mapping between domain name and IP address:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>linux&gt; nslookup whaleshark.ics.cs.cmu.edu 
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Address: 128.2.210.175
+</code></pre></div></p>
+<p>Multiple domain names mapped to the same IP address:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>linux&gt; nslookup cs.mit.edu 
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Address: 18.25.0.23 
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>linux&gt; nslookup eecs.mit.edu 
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Address: 18.25.0.23
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>linux&gt; nslookup 18.25.0.23 
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>23.0.25.18.in-addr.arpa name = eecs.mit.edu.
+</code></pre></div>
+<p>Multiple domain names mapped to multiple IP addresses:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>linux&gt; nslookup www.twitter.com 
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Address: 104.244.42.65 
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Address: 104.244.42.129 
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Address: 104.244.42.193 
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Address: 104.244.42.1 
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>linux&gt; nslookup www.twitter.com 
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>Address: 104.244.42.129 
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>Address: 104.244.42.65 
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>Address: 104.244.42.193 
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>Address: 104.244.42.1
+</code></pre></div></p>
+<p>Some valid domain names don’t map to any IP address:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>linux&gt; nslookup ics.cs.cmu.edu 
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>(No Address given)
+</code></pre></div></p>
+<h4 id="a-client-server-transaction">A Client-Server Transaction<a class="headerlink" href="#a-client-server-transaction" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Most network applications are based on the client-server model: <ul>
+<li>A server process and one or more client processes </li>
+<li>Server manages some resource </li>
+<li>Server provides service by manipulating resource for clients </li>
+<li>Server activated by request from client (vending machine analogy
+![[Screen Shot 2024-07-26 at 14.03.26.png]]</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-internet-connections">(3) Internet Connections<a class="headerlink" href="#3-internet-connections" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Clients and servers most often communicate by sending streams of bytes over TCP connections. Each connection is: <ul>
+<li>Point-to-point: connects a pair of processes. </li>
+<li>Full-duplex: data can flow in both directions at the same time, </li>
+<li>Reliable: stream of bytes sent by the source is eventually received by the destination in the same order it was sent. </li>
+</ul>
+</li>
+<li>A socket is an endpoint of a connection <ul>
+<li>Socket address is an <code>IPaddress:port</code> pair </li>
+</ul>
+</li>
+<li>A port is a 16-bit integer that identifies a process: <ul>
+<li>Ephemeral port: Assigned automatically by client kernel when client makes a connection request. </li>
+<li>Well-known port: Associated with some service provided by a server (e.g., port 80 is associated with Web servers)</li>
+</ul>
+</li>
+</ul>
+<h4 id="well-known-service-names-and-ports">Well-known Service Names and Ports<a class="headerlink" href="#well-known-service-names-and-ports" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Popular services have permanently assigned well-known ports and corresponding well-known service names: <ul>
+<li>echo servers: echo 7 </li>
+<li>ftp servers: ftp 21 </li>
+<li>ssh servers: ssh 22 </li>
+<li>email servers: smtp 25 </li>
+<li>Unencrypted Web servers: http 80 </li>
+<li>SSL/TLS encrypted Web: https 443 </li>
+</ul>
+</li>
+<li>Mappings between well-known ports and service names is contained in the file /etc/services on each Linux machine.</li>
+</ul>
+<h4 id="anatomy-of-a-connection">Anatomy of a Connection<a class="headerlink" href="#anatomy-of-a-connection" title="Permanent link">&para;</a></h4>
+<ul>
+<li>A connection is uniquely identified by the socket addresses of its endpoints (socket pair) <ul>
+<li><code>(cliaddr:cliport, servaddr:servport)</code> ![[Screen Shot 2024-07-26 at 14.15.35.png]]</li>
+</ul>
+</li>
+</ul>
+<h4 id="using-ports-to-identify-services">Using Ports to Identify Services<a class="headerlink" href="#using-ports-to-identify-services" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-07-26 at 14.25.20.png]]</p>
+<h2 id="sockets">Sockets<a class="headerlink" href="#sockets" title="Permanent link">&para;</a></h2>
+<h3 id="sockets-interface">Sockets Interface<a class="headerlink" href="#sockets-interface" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Set of system-level functions used in conjunction with Unix I/O to build network applications. </li>
+<li>Created in the early 80’s as part of the original Berkeley distribution of Unix that contained an early version of the Internet protocols. </li>
+<li>Available on all modern systems <ul>
+<li>Unix variants, Windows, OS X, IOS, Android, ARM</li>
+</ul>
+</li>
+</ul>
+<h3 id="sockets_1">Sockets<a class="headerlink" href="#sockets_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>What is a socket? <ul>
+<li>To the kernel, a socket is an endpoint of communication </li>
+<li>To an application, a socket is a file descriptor that lets the application read/write from/to the network </li>
+<li>Using the FD abstraction lets you reuse code &amp; interfaces </li>
+</ul>
+</li>
+<li>Clients and servers communicate with each other by reading from and writing to socket descriptors ![[Screen Shot 2024-07-26 at 14.39.39.png]]</li>
+<li>The main distinction between regular file I/O and socket I/O is how the application “opens” the socket descriptors</li>
+</ul>
+<h3 id="socket-programming-example">Socket Programming Example<a class="headerlink" href="#socket-programming-example" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Echo server and client </li>
+<li>Server <ul>
+<li>Accepts connection request </li>
+<li>Repeats back lines as they are typed </li>
+</ul>
+</li>
+<li>Client <ul>
+<li>Requests connection to server </li>
+<li>Repeatedly: <ul>
+<li>Read line from terminal </li>
+<li>Send to server </li>
+<li>Read reply from server </li>
+<li>Print line to terminal</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="echo-serverclient-session-example">Echo Server/Client Session Example<a class="headerlink" href="#echo-serverclient-session-example" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-26 at 15.03.08.png]]
+- The client connects to the server, sends text messages, and the server echoes these messages back.
+- Each connection is terminated by the client using Ctrl+D.
+- The server logs each connection and the amount of data received from the client.</p>
+<h3 id="echo-server-client-structure">Echo Server + Client Structure<a class="headerlink" href="#echo-server-client-structure" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-26 at 16.09.45.png]]</p>
+<h4 id="1-start-server">1. Start Server<a class="headerlink" href="#1-start-server" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>open_listenfd:</strong> The server begins by opening a listening file descriptor (<code>open_listenfd</code>). This sets up the server to listen for incoming connection requests on a specific port.</li>
+</ul>
+<h4 id="2-start-client">2. Start Client<a class="headerlink" href="#2-start-client" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>open_clientfd:</strong> The client starts by opening a client file descriptor (<code>open_clientfd</code>). This connects the client to the server's address and port.</li>
+</ul>
+<h4 id="3-exchange-data">3. Exchange Data<a class="headerlink" href="#3-exchange-data" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Connection Request:</strong> The client sends a connection request to the server.</li>
+<li><strong>accept:</strong> The server accepts the connection request from the client.</li>
+<li><strong>Client Side:</strong><ul>
+<li><strong>terminal read:</strong> The client reads input from the terminal (user input).</li>
+<li><strong>socket write:</strong> The client writes the input to the server through the socket.</li>
+</ul>
+</li>
+<li><strong>Server Side:</strong><ul>
+<li><strong>socket read:</strong> The server reads the data sent by the client through the socket.</li>
+<li><strong>terminal write:</strong> The server writes the data back to the client through the socket (echoes the message).</li>
+<li><strong>socket write:</strong> The server sends the echoed data back to the client.</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-disconnect-client">4. Disconnect Client<a class="headerlink" href="#4-disconnect-client" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>close:</strong> When the client is done sending data (end-of-file, EOF), it closes the connection.</li>
+</ul>
+<h4 id="5-drop-client">5. Drop Client<a class="headerlink" href="#5-drop-client" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>socket read:</strong> The server reads the EOF signal from the client, indicating that the client has closed the connection.</li>
+<li><strong>close:</strong> The server closes the connection on its side.</li>
+</ul>
+<h4 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Server Setup:</strong> The server opens a listening port to await connections.</li>
+<li><strong>Client Setup:</strong> The client connects to the server using the server's address and port.</li>
+<li><strong>Data Exchange:</strong> The client sends messages to the server, and the server echoes them back.</li>
+<li><strong>Client Disconnection:</strong> The client closes the connection when done.</li>
+<li><strong>Server Cleanup:</strong> The server detects the client disconnection and closes its end of the connection.</li>
+</ol>
+<h3 id="unbuffered-rio-inputoutput">Unbuffered RIO Input/Output<a class="headerlink" href="#unbuffered-rio-inputoutput" title="Permanent link">&para;</a></h3>
+<h4 id="overview">Overview:<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>RIO (Robust I/O):</strong> These are functions used for reading and writing data in a reliable way, particularly useful for network sockets.</li>
+</ul>
+<h4 id="functions">Functions:<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>rio_readn:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">ssize_t</span><span class="w"> </span><span class="nf">rio_readn</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">usrbuf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+</code></pre></div></li>
+<li><strong>Purpose:</strong> Reads <code>n</code> bytes from file descriptor <code>fd</code> into the buffer <code>usrbuf</code>.</li>
+<li><strong>Returns:</strong> Number of bytes transferred if successful, 0 on end-of-file (EOF), -1 on error.</li>
+<li>Returns a short count only if it encounters EOF.</li>
+<li>
+<p>Use it when you know exactly how many bytes you need to read.</p>
+</li>
+<li>
+<p><strong>rio_writen:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">ssize_t</span><span class="w"> </span><span class="nf">rio_writen</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">usrbuf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+</code></pre></div></p>
+</li>
+<li><strong>Purpose:</strong> Writes <code>n</code> bytes from the buffer <code>usrbuf</code> to the file descriptor <code>fd</code>.</li>
+<li><strong>Returns:</strong> Number of bytes transferred if successful, -1 on error.</li>
+<li>
+<p>Never returns a short count.</p>
+</li>
+<li>
+<p><strong>Interleaving:</strong></p>
+</li>
+<li>Calls to <code>rio_readn</code> and <code>rio_writen</code> can be interleaved arbitrarily on the same descriptor, meaning you can use them in any order as needed.</li>
+</ol>
+<h3 id="buffered-rio-input-functions">Buffered RIO Input Functions<a class="headerlink" href="#buffered-rio-input-functions" title="Permanent link">&para;</a></h3>
+<h4 id="overview_1">Overview:<a class="headerlink" href="#overview_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Buffered I/O:</strong> Efficiently reads text lines and binary data by caching data in an internal memory buffer.</li>
+</ul>
+<h4 id="functions_1">Functions:<a class="headerlink" href="#functions_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>rio_readinitb:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">rio_readinitb</span><span class="p">(</span><span class="n">rio_t</span><span class="w"> </span><span class="o">*</span><span class="n">rp</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">);</span>
+</code></pre></div></li>
+<li>
+<p><strong>Purpose:</strong> Initializes the read buffer <code>rp</code> for the file descriptor <code>fd</code>.</p>
+</li>
+<li>
+<p><strong>rio_readlineb:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">ssize_t</span><span class="w"> </span><span class="nf">rio_readlineb</span><span class="p">(</span><span class="n">rio_t</span><span class="w"> </span><span class="o">*</span><span class="n">rp</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">usrbuf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">maxlen</span><span class="p">);</span>
+</code></pre></div></p>
+</li>
+<li><strong>Purpose:</strong> Reads a text line of up to <code>maxlen</code> bytes from file descriptor <code>fd</code> and stores it in the buffer <code>usrbuf</code>.</li>
+<li>
+<p><strong>Returns:</strong> Number of bytes read if successful, 0 on EOF, -1 on error.</p>
+</li>
+<li>
+<p><strong>rio_readnb:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">ssize_t</span><span class="w"> </span><span class="nf">rio_readnb</span><span class="p">(</span><span class="n">rio_t</span><span class="w"> </span><span class="o">*</span><span class="n">rp</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">usrbuf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+</code></pre></div></p>
+</li>
+<li><strong>Purpose:</strong> Reads <code>n</code> bytes from the file descriptor <code>fd</code> into the buffer <code>usrbuf</code>.</li>
+<li>
+<p><strong>Returns:</strong> Number of bytes read if successful, 0 on EOF, -1 on error.</p>
+</li>
+<li>
+<p><strong><code>rio_readlineb</code>:</strong> reads a text line of up to <code>maxlen</code> bytes from file <code>fd</code> and stores the line in <code>usrbuf</code></p>
+<ul>
+<li>Especially useful for reading text lines from network sockets</li>
+</ul>
+</li>
+<li>Stopping conditions:<ul>
+<li><code>maxlen</code> bytes read.</li>
+<li>EOF encountered.</li>
+<li>Newline (<code>\n</code>) encountered.</li>
+</ul>
+</li>
+</ol>
+<h3 id="echo-client-main-routine">Echo Client: Main Routine<a class="headerlink" href="#echo-client-main-routine" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-26 at 17.44.42.png]]
+- Read and Send Messages:
+    - Read input from the terminal.
+    - Write input to the server.
+    - Read the server's response.
+    - Print the server's response to the terminal.</p>
+<h3 id="iterative-echo-server-main-routine">Iterative Echo Server: Main Routine<a class="headerlink" href="#iterative-echo-server-main-routine" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-26 at 17.45.02.png]]
+- Infinite Loop to Accept Connections:
+    - Set <code>clientlen</code> to the size of <code>sockaddr_storage</code>.
+    - Accept a client connection.
+    - Get the client's hostname and port.
+    - Print a message indicating a connection was made.
+    - Call the <code>echo</code> function to handle the connection.
+    - Close the connection.</p>
+<h3 id="echo-server-echo-function">Echo Server: echo function<a class="headerlink" href="#echo-server-echo-function" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The server uses RIO to read and echo text lines until EOF (end-of-file) condition is encountered. <ul>
+<li>EOF condition caused by client calling close(<code>clientfd</code>)![[Screen Shot 2024-07-26 at 18.55.49.png]]</li>
+</ul>
+</li>
+</ul>
+<h3 id="generic-socket-address-structure">Generic Socket Address Structure<a class="headerlink" href="#generic-socket-address-structure" title="Permanent link">&para;</a></h3>
+<p><strong>Why Do We Need Socket Addresses?</strong></p>
+<p>When computers talk to each other over a network, they need to know exactly where to send and receive information. The socket address helps with this by providing both the location of the computer and the specific program on that computer.</p>
+<p><strong>Components of a Socket Address:</strong></p>
+<ol>
+<li><strong>Protocol Family</strong>:<ul>
+<li>This tells us what type of network we are using (e.g., IPv4 or IPv6).</li>
+</ul>
+</li>
+<li>
+<p><strong>Address Data</strong>:</p>
+<ul>
+<li>This includes the actual IP address and port number.</li>
+</ul>
+</li>
+<li>
+<p>Generic socket address:</p>
+<ul>
+<li>Used for address arguments in functions like <code>connect</code>, <code>bind</code>, and <code>accept</code>.</li>
+<li>Necessary because C did not have generic pointers (<code>void *</code>) when the sockets interface was designed.</li>
+<li>Adopts the Stevens convention for casting convenience.</li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="n">SA</span><span class="p">;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">sa_family</span><span class="p">;</span><span class="w">  </span><span class="c1">// Protocol family (e.g., IPv4)</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">sa_data</span><span class="p">[</span><span class="mi">14</span><span class="p">];</span><span class="w">    </span><span class="c1">// Address data (IP address and port number)</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">};</span>
+</code></pre></div>
+<p>![[Screen Shot 2024-07-26 at 19.05.35.png]]</p>
+<p>When a client wants to connect to a server, it needs the server’s socket address:</p>
+<ul>
+<li><strong>IP Address</strong>: "192.168.1.10" (server’s address)</li>
+<li><strong>Port Number</strong>: "8080" (specific service on the server)</li>
+</ul>
+<p>This combined information forms the socket address that tells the client exactly where to send its messages.</p>
+<h3 id="internet-ipv4-specific-socket-address-structure">Internet (IPv4) Specific Socket Address Structure<a class="headerlink" href="#internet-ipv4-specific-socket-address-structure" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Internet (IPv4) specific socket address:</strong> </li>
+<li>Used for IPv4 addresses.</li>
+<li>Must cast from <code>struct sockaddr_in *</code> to <code>struct sockaddr *</code> for functions that take socket address arguments.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">sin_family</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Protocol family (always AF_INET for IPv4) */</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">sin_port</span><span class="p">;</span><span class="w">    </span><span class="cm">/* Port number in network byte order */</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">in_addr</span><span class="w"> </span><span class="n">sin_addr</span><span class="p">;</span><span class="w"> </span><span class="cm">/* IP address in network byte order */</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">sin_zero</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span><span class="w"> </span><span class="cm">/* Padding to make the structure the same size as struct sockaddr */</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="p">};</span>
+</code></pre></div>
+<p>![[Screen Shot 2024-07-26 at 19.11.26.png]]
+- <strong>sin_family:</strong> This part of the structure indicates it's an IPv4 address (AF_INET).
+- <strong>sin_port:</strong> This part holds the port number.
+- <strong>sin_addr:</strong> This part holds the IP address.
+- <strong>sin_zero:</strong> Extra padding to align the structure.</p>
+<h3 id="host-and-service-conversion-getaddrinfo">Host and Service Conversion: <code>getaddrinfo</code><a class="headerlink" href="#host-and-service-conversion-getaddrinfo" title="Permanent link">&para;</a></h3>
+<p><strong>What is <code>getaddrinfo</code>?</strong></p>
+<ul>
+<li><code>getaddrinfo</code> is a function used to convert human-readable strings (like website names or service names) into a format that computers can use for network communication.</li>
+<li>
+<p>It takes things like hostnames (e.g., "<a href="http://www.example.com">www.example.com</a>"), IP addresses (e.g., "192.168.1.1"), and service names (e.g., "http") and converts them into socket address structures.</p>
+</li>
+<li>
+<p><code>getaddrinfo</code> is the modern way to convert string representations of hostnames, host addresses, ports, and service names to socket address structures. </p>
+<ul>
+<li>Replaces obsolete <code>gethostbyname</code> and <code>getservbyname</code> funcs. </li>
+</ul>
+</li>
+<li>Advantages: <ul>
+<li>Reentrant (can be safely used by threaded programs). </li>
+<li>Allows us to write portable protocol-independent code <ul>
+<li>Works with both IPv4 and IPv6 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Disadvantages <ul>
+<li>Somewhat complex </li>
+<li>Fortunately, a small number of usage patterns suffice in most cases.
+![[Screen Shot 2024-07-26 at 19.40.54.png]]</li>
+</ul>
+</li>
+<li>Given host and service, <code>getaddrinfo</code> returns result that points to a linked list of <code>addrinfo</code> structs, each of which points to a corresponding socket address struct, and which contains arguments for the sockets interface functions. </li>
+<li>Helper functions: <ul>
+<li><code>freeadderinfo</code> frees the entire linked list. </li>
+<li><code>gai_strerror</code> converts error code to an error message.</li>
+</ul>
+</li>
+</ul>
+<h4 id="linked-list-returned-by-getaddrinfo">Linked List Returned by <code>getaddrinfo</code><a class="headerlink" href="#linked-list-returned-by-getaddrinfo" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-07-27 at 00.40.54.png]]
+- <strong>SA List</strong>:
+    - SA stands for Socket Address.
+    - The <strong>SA list</strong> is a list of socket address structures that <code>getaddrinfo</code> generates.
+    - Think of it as a list of phone numbers that the function provides for you to use.
+- <strong>addrinfo Structs</strong>:
+    - These are structures that hold information about the socket addresses.
+    - Each <code>addrinfo</code> struct includes:
+        - <strong>ai_canonname</strong>: The canonical name of the host.
+        - <strong>ai_addr</strong>: The socket address.
+        - <strong>ai_next</strong>: A pointer to the next <code>addrinfo</code> struct in the list.
+- <strong>Socket Address Structs</strong>:
+    - These are the actual structures that contain the detailed socket address information (like the IP address and port number).</p>
+<h4 id="addrinfo-struct"><code>addrinfo</code> Struct<a class="headerlink" href="#addrinfo-struct" title="Permanent link">&para;</a></h4>
+<p>![[Screen Shot 2024-07-26 at 21.20.44.png]]
+- Each <code>addrinfo</code> struct returned by <code>getaddrinfo</code> contains arguments that can be passed directly to socket function. 
+- Also points to a socket address struct that can be passed directly to <code>connect</code> and <code>bind</code> functions.</p>
+<h3 id="host-and-service-conversion-getnameinfo">Host and Service Conversion: <code>getnameinfo</code><a class="headerlink" href="#host-and-service-conversion-getnameinfo" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>getnameinfo</code> is the inverse of <code>getaddrinfo</code>, converting a socket address to the corresponding host and service. <ul>
+<li>Replaces obsolete <code>gethostbyaddr</code> and <code>getservbyport</code> funcs. </li>
+<li>Reentrant and protocol independent.![[Screen Shot 2024-07-26 at 21.24.36.png]]</li>
+</ul>
+</li>
+</ul>
+<h3 id="conversion-example">Conversion Example<a class="headerlink" href="#conversion-example" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-26 at 21.31.18.png]]
+![[Screen Shot 2024-07-26 at 21.31.27.png]]</p>
+<h3 id="running-hostinfo">Running hostinfo<a class="headerlink" href="#running-hostinfo" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-26 at 21.31.48.png]]</p>
+<h2 id="setting-up-connections">Setting up connections<a class="headerlink" href="#setting-up-connections" title="Permanent link">&para;</a></h2>
+<p>![[Screen Shot 2024-07-27 at 00.57.26.png]]</p>
+<h3 id="sockets-interface-socket">Sockets Interface: socket<a class="headerlink" href="#sockets-interface-socket" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-27 at 01.03.22.png]]</p>
+<h3 id="sockets-interface-bind">Sockets Interface: bind<a class="headerlink" href="#sockets-interface-bind" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-27 at 01.15.05.png]]</p>
+<h3 id="sockets-interface-listen">Sockets Interface: listen<a class="headerlink" href="#sockets-interface-listen" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-27 at 01.28.56.png]]</p>
+<h3 id="sockets-interface-accept">Sockets Interface: accept<a class="headerlink" href="#sockets-interface-accept" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-27 at 02.06.10.png]]</p>
+<h3 id="sockets-interface-connect">Sockets Interface: connect<a class="headerlink" href="#sockets-interface-connect" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-27 at 02.13.06.png]]</p>
+<h3 id="connectaccept-illustrated"><code>connect/accept</code> Illustrated<a class="headerlink" href="#connectaccept-illustrated" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-27 at 02.38.08.png]]</p>
+<p><strong>Steps to Establish a Connection:</strong></p>
+<ol>
+<li><strong>Server Waits for Connection Requests:</strong></li>
+<li><strong>Server</strong> creates a socket and uses <code>listenfd</code> to listen for incoming connection requests.</li>
+<li>The server calls the <code>accept</code> function and waits (blocks) until a client tries to connect.</li>
+<li>
+<p>Think of it as the server waiting by the phone for someone to call.</p>
+</li>
+<li>
+<p><strong>Client Makes a Connection Request:</strong></p>
+</li>
+<li><strong>Client</strong> creates a socket (<code>clientfd</code>) and tries to connect to the server.</li>
+<li>The client calls the <code>connect</code> function and waits (blocks) until the connection is established.</li>
+<li>
+<p>This is like the client dialing the server's phone number and waiting for the server to pick up.</p>
+</li>
+<li>
+<p><strong>Connection Established:</strong></p>
+</li>
+<li>When the server receives the connection request, the <code>accept</code> function returns a new socket descriptor (<code>connfd</code>).</li>
+<li>The <code>connfd</code> is used for communication between the client and server.</li>
+<li>The client returns from the <code>connect</code> function, indicating the connection is established.</li>
+<li>Now, both the client and server can send and receive data through their respective sockets (<code>clientfd</code> and <code>connfd</code>).</li>
+</ol>
+<h3 id="connected-vs-listening-descriptors">Connected vs. Listening Descriptors<a class="headerlink" href="#connected-vs-listening-descriptors" title="Permanent link">&para;</a></h3>
+<p>-- the difference between two types of socket descriptors that a server uses in network programming</p>
+<ul>
+<li>Listening descriptor (a special type of socket used by the server to listen for incoming connection requests from clients)<ul>
+<li>End point where clients can send connection requests</li>
+<li>Created once and exists for lifetime of the server </li>
+</ul>
+</li>
+<li>Connected descriptor (a socket that is used for an actual connection between a client and the server)<ul>
+<li>End point of the connection between client and server </li>
+<li>A new descriptor is created each time the server accepts a connection request from a client </li>
+<li>It exists only for the duration of the connection. Once the conversation (data exchange) is done, this descriptor is closed</li>
+</ul>
+</li>
+<li>Why the distinction? <ol>
+<li><strong>Concurrent Connections:</strong></li>
+<li>The distinction allows servers to handle multiple client connections simultaneously.</li>
+<li>The listening descriptor waits for new requests, while each connected descriptor handles an active connection.</li>
+<li><strong>Example:</strong> Each time we receive a new request, we fork a child to handle the request</li>
+<li>When a new connection request comes in, the server accepts it, creating a new connected descriptor.</li>
+<li>The server can continue to listen for new connections with the listening descriptor while using the connected descriptor to communicate with the current client.</li>
+<li>It's like having a main phone line (listening descriptor) and creating a separate line (connected descriptor) for each active call, allowing the main line to remain open for more incoming calls.</li>
+</ol>
+</li>
+</ul>
+<h3 id="sockets-helper-open_clientfd">Sockets Helper: <code>open_clientfd</code><a class="headerlink" href="#sockets-helper-open_clientfd" title="Permanent link">&para;</a></h3>
+<p>-- explains a function <code>open_clientfd</code> that helps a client establish a connection with a server.</p>
+<h4 id="function-definition">Function Definition:<a class="headerlink" href="#function-definition" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">open_clientfd</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">hostname</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">port</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">clientfd</span><span class="p">;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">addrinfo</span><span class="w"> </span><span class="n">hints</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">listp</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li><strong>hostname</strong>: The server’s name (like "www.example.com").</li>
+<li><strong>port</strong>: The port number (like "80" for HTTP).</li>
+</ul>
+<h4 id="steps-in-the-function">Steps in the Function:<a class="headerlink" href="#steps-in-the-function" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Get a list of potential server addresses:</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hints</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">addrinfo</span><span class="p">));</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">hints</span><span class="p">.</span><span class="n">ai_socktype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SOCK_STREAM</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Open a connection */</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">hints</span><span class="p">.</span><span class="n">ai_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AI_NUMERICSERV</span><span class="p">;</span><span class="w">  </span><span class="cm">/* using numeric port arg. */</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">hints</span><span class="p">.</span><span class="n">ai_flags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">AI_ADDRCONFIG</span><span class="p">;</span><span class="w">  </span><span class="cm">/* Recommended for connections */</span>
+</code></pre></div>
+<ul>
+<li><strong>memset</strong>: Initializes the <code>hints</code> structure to zero.</li>
+<li><strong>hints.ai_socktype = SOCK_STREAM</strong>: Indicates we want to open a TCP connection (reliable, stream-oriented).</li>
+<li><strong>hints.ai_flags = AI_NUMERICSERV</strong>: Indicates the port argument is numeric.</li>
+<li><strong>hints.ai_flags |= AI_ADDRCONFIG</strong>: Uses whichever of IPv4 and IPv6 works on the computer. Good for clients.<ul>
+<li>The <code>hints</code> structure is of type <code>struct addrinfo</code>.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">getaddrinfo</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span><span class="w"> </span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">hints</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">listp</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>getaddrinfo</strong>: Converts the hostname and port into a list of potential server addresses (<code>listp</code>).</li>
+</ul>
+<p>Step 1: Initialize <code>hints</code> and Call <code>getaddrinfo</code>
+![[Screen Shot 2024-07-27 at 04.09.21.png]]
+Step 2: Iterate Through the List and Try to Connect
+- <code>for (p = listp; p; p = p-&gt;ai_next):</code>
+    - Iterates through the list of potential addresses.
+- <code>if ((clientfd = socket(p-&gt;ai_family, p-&gt;ai_socktype, p-&gt;ai_protocol)) &lt; 0):</code>
+    - Tries to create a socket with the current address information.
+    - If the socket creation fails, it moves to the next address (<code>continue</code>).
+- <code>if (connect(clientfd, p-&gt;ai_addr, p-&gt;ai_addrlen) != -1):</code>
+    - Tries to connect to the server using the current address.
+    - If the connection succeeds, it breaks out of the loop (<code>break</code>).
+- <code>Close(clientfd):</code>
+    - If the connection fails, it closes the socket and tries the next address.</p>
+<p>Step 3: Clean Up and Return Result
+![[Screen Shot 2024-07-27 at 04.08.44.png]]</p>
+<h3 id="getaddrinfo"><code>getaddrinfo</code><a class="headerlink" href="#getaddrinfo" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-27 at 03.41.18.png]]</p>
+<ul>
+<li><strong>result</strong>: The starting point of the linked list of <code>addrinfo</code> structures.</li>
+<li><strong>addrinfo structs</strong>: Each contains:</li>
+<li><strong>ai_canonname</strong>: The canonical name of the host.</li>
+<li><strong>ai_addr</strong>: The socket address.</li>
+<li><strong>ai_next</strong>: Pointer to the next <code>addrinfo</code> structure.</li>
+</ul>
+<h4 id="steps">Steps:<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Clients:</strong></li>
+<li>Walk this list, trying each socket address in turn, until <code>socket</code> and <code>connect</code> succeed.</li>
+<li>
+<p>This means the client tries each address in the list until it successfully connects to the server.</p>
+</li>
+<li>
+<p><strong>Servers:</strong></p>
+</li>
+<li>Walk the list, calling <code>socket</code>, <code>listen</code>, <code>bind</code> for all addresses.</li>
+<li>Use <code>select</code> to accept connections on any of them (beyond the current scope).</li>
+</ol>
+<h3 id="sockets-helper-open_listenfd">Sockets Helper: <code>open_listenfd</code><a class="headerlink" href="#sockets-helper-open_listenfd" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-07-27 at 19.02.33.png]]
+![[Screen Shot 2024-07-27 at 19.02.45.png]]
+![[Screen Shot 2024-07-27 at 19.02.55.png]]</p>
+<h3 id="testing-servers-using-telnet">Testing Servers Using telnet<a class="headerlink" href="#testing-servers-using-telnet" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The telnet program is invaluable for testing servers that transmit ASCII strings over Internet connections ▪ Our simple echo server ▪ Web servers ▪ Mail servers </li>
+<li>Usage: ▪ linux&gt; telnet ▪ Creates a connection with a server running on and listening on port</li>
+</ul>
+<h2 id="application-protocol-example-http">Application protocol example: HTTP<a class="headerlink" href="#application-protocol-example-http" title="Permanent link">&para;</a></h2>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ilong4rennes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

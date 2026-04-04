@@ -1,0 +1,1376 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Personal notes on CS, tech, and life.">
+      
+      
+        <meta name="author" content="Yichen Lu">
+      
+      
+        <link rel="canonical" href="https://ilong4rennes.github.io/tech-notes/Academics/Computer-Science/15281%20Artificial%20Intelligence/04-Propositional%20Logic%20and%20Logical%20Agents/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Propositional Logic and Logical Agents - Amanda's Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#propositional-logic-and-logical-agents" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-header__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Amanda's Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Propositional Logic and Logical Agents
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Academics
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Technology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Technology
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projects
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Life/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Life
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-nav__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Amanda's Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Technology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Life/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Life
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logical-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical Agents
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logical Agents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vocabulary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vocabulary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#propositional-logic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Propositional Logic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Propositional Logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symbols-and-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symbols and Operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentence-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentence Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#literal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Literal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clause
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conjunctive-normal-form-cnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conjunctive Normal Form (CNF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#converting-propositional-logic-to-cnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Converting Propositional Logic to CNF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entailment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entailment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entailment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Checking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-proving" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem Proving
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theorem Proving">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resolution-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolution Algorithm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resolution Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward-chaining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forward Chaining
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algorithm Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#satisfiability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Satisfiability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Satisfiability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-satisfy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check Satisfy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-satisfiability-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean Satisfiability Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boolean Satisfiability Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sat-with-model-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAT with Model Checking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sat-with-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAT with Resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dpll-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DPLL Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-dpll-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full DPLL Algorithm
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Full DPLL Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logical-agents-time-and-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logical Agents (Time and Planning)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logical Agents (Time and Planning)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fluents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fluents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effect-axioms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effect Axioms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#successor-state-axioms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Successor State Axioms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planning-as-satisfiability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planning as Satisfiability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Planning as Satisfiability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#satplan-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SATPlan Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="propositional-logic-and-logical-agents">Propositional Logic and Logical Agents<a class="headerlink" href="#propositional-logic-and-logical-agents" title="Permanent link">&para;</a></h1>
+<h2 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Define logic terms and apply them to real-world problems:</li>
+<li>Model</li>
+<li>Knowledge Base</li>
+<li>Query</li>
+<li>Entailment</li>
+<li>
+<p>Satisfiability</p>
+</li>
+<li>
+<p>Define propositional logic terms:</p>
+</li>
+<li>Symbol</li>
+<li>Literal</li>
+<li>Operator</li>
+<li>Sentence</li>
+<li>Clause</li>
+<li>Definite Clause</li>
+<li>
+<p>Horn Clause</p>
+</li>
+<li>
+<p>Determine whether a knowledge base entails a query</p>
+</li>
+<li>
+<p>Determine whether a given model satisfies a query</p>
+</li>
+<li>
+<p>Compute whether a sentence is satisfiable</p>
+</li>
+<li>
+<p>Describe model checking and theorem proving algorithms (forward chaining and resolution), including runtime and space requirements</p>
+</li>
+<li>
+<p>Define soundness and completeness for model checking and theorem proving algorithms</p>
+</li>
+<li>
+<p>Describe Boolean satisfiability problems (SAT)</p>
+</li>
+<li>
+<p>Describe conjunctive normal form (CNF) and its necessity for certain algorithms</p>
+</li>
+<li>
+<p>Implement successor-state axioms to encode logic for how fluents change over time</p>
+</li>
+<li>
+<p>Describe and implement SAT Plan (planning as satisfiability) to real-world problems</p>
+</li>
+</ol>
+<h2 id="logical-agents">Logical Agents<a class="headerlink" href="#logical-agents" title="Permanent link">&para;</a></h2>
+<p>If we create variables representing statements to verify and variables for starting conditions, we can search all variable assignments to check if goal conditions are true. Alternatively, we can use logical statements to infer new variable values from starting conditions (inference).</p>
+<p><strong>Main Idea</strong>: "The agent encodes percepts that it receives as logical statements that are added to a knowledge base of logical rules and facts. The agent then reasons about what to do based on the knowledge base."</p>
+<h3 id="vocabulary">Vocabulary<a class="headerlink" href="#vocabulary" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Model:</strong> A complete assignment of symbols to True or False</p>
+</li>
+<li>
+<p><strong>Sentence:</strong> Logical statement composed of logical symbols and operators</p>
+</li>
+<li>
+<p><strong>Knowledge Base:</strong> Collection of sentences representing what we know about the world. Sentences are effectively all AND-ed together.</p>
+</li>
+<li>
+<p><strong>Query:</strong> Sentence we want to know is definitely true, definitely false, or unknown</p>
+</li>
+</ul>
+<h2 id="propositional-logic">Propositional Logic<a class="headerlink" href="#propositional-logic" title="Permanent link">&para;</a></h2>
+<h3 id="symbols-and-operators">Symbols and Operators<a class="headerlink" href="#symbols-and-operators" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Symbols:</strong> Variables that can be true or false (usually represented by capital letters).</p>
+</li>
+<li>
+<p><strong>Operators:</strong></p>
+</li>
+<li>¬A: Not A (Negation)</li>
+<li>A ∧ B: A and B (Conjunction)</li>
+<li>A ∨ B: A or B (Disjunction) — inclusive rather than exclusive or</li>
+<li>A ⇒ B: A implies B (Implication)</li>
+<li>A ⇔ B: A if and only if B (Biconditional)</li>
+</ul>
+<h3 id="sentence-definition">Sentence Definition<a class="headerlink" href="#sentence-definition" title="Permanent link">&para;</a></h3>
+<p>Defined constructively as:</p>
+<p><strong>Base Case:</strong>
+- A symbol (e.g. X) is a sentence</p>
+<p><strong>Recursive Cases:</strong>
+- If A is a sentence, ¬A is a sentence
+- If A, B are sentences, A ∧ B is a sentence
+- If A, B are sentences, A ∨ B is a sentence
+- If A, B are sentences, A ⇒ B is a sentence
+- If A, B are sentences, A ⇔ B is a sentence</p>
+<h3 id="literal">Literal<a class="headerlink" href="#literal" title="Permanent link">&para;</a></h3>
+<p>An atomic sentence. True, False, A, ¬A (where A is a symbol) are literals.</p>
+<h3 id="clause">Clause<a class="headerlink" href="#clause" title="Permanent link">&para;</a></h3>
+<p>A disjunction of literals. Two example clauses:
+- α₁: A ∨ ¬B ∨ ¬C
+- α₂: A ∨ B ∨ ¬C</p>
+<p><strong>Definite Clause:</strong> A clause with exactly one positive (not negated) literal. α₁ is a definite clause while α₂ is not.</p>
+<p><strong>Horn Clause:</strong> A clause with at most one positive literal. α₁ is a horn clause and α₂ is not.</p>
+<h3 id="conjunctive-normal-form-cnf">Conjunctive Normal Form (CNF)<a class="headerlink" href="#conjunctive-normal-form-cnf" title="Permanent link">&para;</a></h3>
+<p>A conjunction of one or more clauses. For instance, α₁ ∧ α₂ is a sentence in CNF. One way to think of this is an AND of ORs.</p>
+<h3 id="converting-propositional-logic-to-cnf">Converting Propositional Logic to CNF<a class="headerlink" href="#converting-propositional-logic-to-cnf" title="Permanent link">&para;</a></h3>
+<p>Useful rules for converting sentences into CNF:</p>
+<ul>
+<li>
+<p>α ⇔ β ≡ (α ⇒ β) ∧ (β ⇒ α) [Biconditional Elimination]</p>
+</li>
+<li>
+<p>α ⇒ β ≡ ¬α ∨ β [Implication Elimination]</p>
+</li>
+<li>
+<p>¬(α ∧ β) ≡ ¬α ∨ ¬β [DeMorgan's Law]</p>
+</li>
+<li>
+<p>α ∨ (β ∧ γ) ≡ (α ∨ β) ∧ (α ∨ γ) [Distribute ∨ over ∧]</p>
+</li>
+</ul>
+<h2 id="entailment">Entailment<a class="headerlink" href="#entailment" title="Permanent link">&para;</a></h2>
+<p><strong>Entailment (α ⊨ β):</strong> "α entails β iff for every model that causes α to be true, β is also true. In other words, the α-models (models that cause α to be true) are a subset of the β-models."</p>
+<h3 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Sound:</strong> Everything it claims to prove is entailed</p>
+</li>
+<li>
+<p><strong>Complete:</strong> Every sentence that is entailed can be proved</p>
+</li>
+</ul>
+<p>Usually, we want to know whether the knowledge base entails a specific query. Two main methods are used: model checking and theorem proving.</p>
+<h3 id="model-checking">Model Checking<a class="headerlink" href="#model-checking" title="Permanent link">&para;</a></h3>
+<p>(Simple) Model checking enumerates all possible models and checks that for every model making the KB sentence true, the query is also true. This uses truth tables to prove entailment.</p>
+<p>As anyone constructing a truth table with ≥3 variables knows, this is reliable (sound and complete) yet wildly inefficient, running in exponential time with respect to the number of symbols.</p>
+<h3 id="theorem-proving">Theorem Proving<a class="headerlink" href="#theorem-proving" title="Permanent link">&para;</a></h3>
+<p>Two key inference rules used in theorem proving algorithms:</p>
+<ul>
+<li>
+<p><strong>Modus Ponens:</strong> Given X₁ ∧ X₂ ∧ ... ∧ Xₙ ⇒ Y and X₁ ∧ X₂ ∧ ... ∧ Xₙ, infer Y.</p>
+</li>
+<li>
+<p><strong>General Resolution:</strong> Given A₁ ∨ A₂ ∨ ¬B and B ∨ C₁ ∨ C₂, infer A₁ ∨ A₂ ∨ C₁ ∨ C₂ (law of excluded middle — we know B must be either True or False, so if both sentences are true, either (A₁ ∨ A₂) or (C₁ ∨ C₂) must be true).</p>
+</li>
+</ul>
+<p>Resolution and forward chaining are two algorithms used for theorem proving. The resolution algorithm uses the resolution inference rule, and forward chaining uses Modus Ponens.</p>
+<h4 id="resolution-algorithm">Resolution Algorithm<a class="headerlink" href="#resolution-algorithm" title="Permanent link">&para;</a></h4>
+<p>KB ⊨ α means for all models making KB true, α is also true. This is equivalent to saying there does not exist any model such that KB ∧ ¬α is true. We can prove KB ∧ ¬α is unsatisfiable through proof by contradiction.</p>
+<p>We start with CNF clauses, including clauses in the KB and ¬α. Then, we repeatedly use general resolution to resolve pairs of clauses until resolving an empty clause, i.e., E ∧ ¬E ⇒ False. When that happens, KB ∧ ¬α is unsatisfiable. Therefore, KB ⊨ α. If we run out of possible pairs of clauses to resolve without resolving an empty clause, then KB does not entail α.</p>
+<p>The resolution algorithm is sound and complete for any propositional logic KB, but its runtime complexity is exponential with respect to the number of symbols. The PL KB must be converted to CNF first, but any PL sentence can be converted to CNF.</p>
+<h5 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h5>
+<p>KB = P, ¬P ∨ Q, P ∨ ¬Q ∨ R, ¬Q ∨ R</p>
+<p>From the given Knowledge Base, prove R to be true.</p>
+<h4 id="forward-chaining">Forward Chaining<a class="headerlink" href="#forward-chaining" title="Permanent link">&para;</a></h4>
+<p>Forward chaining is similar in structure to graph search algorithms. Instead of taking actions, we apply Modus Ponens to generate symbols known to be true. We "find the goal" if we can conclude that the query symbol is true.</p>
+<p>Forward chaining has a significant limitation: the knowledge base must consist of only definite clauses, and the query must be just a positive literal. Definite clauses can be written in the form: (conjunction of positive literals) ⇒ a positive literal.</p>
+<h3 id="algorithm-steps">Algorithm Steps<a class="headerlink" href="#algorithm-steps" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>For all clauses in KB and query, count the number of symbols in the premise. For example, if P ∧ Q ⇒ L, count = 2.</p>
+</li>
+<li>
+<p>Add symbols initially known to be true in KB to an <strong>agenda.</strong> The agenda contains symbols known to be true but not yet used to infer other symbols. It's a queue, similar to the frontier in graph search.</p>
+</li>
+<li>
+<p>Initialize a dictionary called <strong>inferred</strong>, where inferred[s] is false for all symbols. This avoids adding already inferred symbols to the agenda again (like an explored set).</p>
+</li>
+<li>
+<p>While agenda is not empty, pop symbol P off the agenda. If P is the query symbol, KB entails the query. Otherwise, if inferred[P] is false, for all clauses having P in the premise, decrease the corresponding count. If count is 0, by Modus Ponens, we can infer the conclusion since all premises are true. Add this new inferred symbol to the agenda and set inferred[P] to true.</p>
+</li>
+<li>
+<p>Repeat step 4 until:</p>
+</li>
+<li>We've inferred the query (return true), or</li>
+<li>We've exhausted the agenda (return false).</li>
+</ol>
+<p>This algorithm is sound and complete for definite clause knowledge bases and runs in linear time. A definite clause is a clause with exactly one positive literal, such as (¬A ∨ B ∨ ¬C), equivalent to an implication sentence like A ∧ C ⇒ B.</p>
+<h5 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h5>
+<ul>
+<li>KB: [A, B, A ∧ B ⇒ L, B ∧ L ⇒ P, P ⇒ Q]</li>
+<li>Query: Q</li>
+</ul>
+<p>Initially, count = (0, 0, 2, 2, 1) for each sentence in KB as ordered above, and agenda will have A, B.</p>
+<ol>
+<li>
+<p>Pop A. Now inferred[A] is True. Count for clause becomes: (0, 0, <strong>1</strong>, 2, 1).</p>
+</li>
+<li>
+<p>Pop B. inferred[B] is True. Count for clauses becomes: (0, 0, <strong>0</strong>, <strong>1</strong>, 1). Notice the count for clause A ∧ B ⇒ L became 0. Hence, by Modus Ponens we can infer L. Add L to the agenda.</p>
+</li>
+<li>
+<p>Pop L. inferred[L] is True. Count for clauses becomes: (0, 0, 0, <strong>0</strong>, 1). Add P to the agenda.</p>
+</li>
+<li>
+<p>Pop P. inferred[P] is True. Count for clauses becomes: (0, 0, 0, 0, <strong>0</strong>). Add Q to the agenda.</p>
+</li>
+<li>
+<p>Q = query, so KB ⊨ Q!</p>
+</li>
+</ol>
+<h2 id="satisfiability">Satisfiability<a class="headerlink" href="#satisfiability" title="Permanent link">&para;</a></h2>
+<p><strong>Satisfiability:</strong> "We say that a sentence α is satisfiable if there exists at least one model that causes the sentence to evaluate to true."</p>
+<ul>
+<li>We say that the model <strong>satisfies</strong> the sentence.</li>
+<li>As a trivial example, the model A = True, B = False satisfies the sentence A ∧ ¬B</li>
+<li>The sentence A ∧ ¬B is satisfiable because it is true with model A = True, B = False. We just need to find one model to show satisfiability.</li>
+</ul>
+<h3 id="check-satisfy">Check Satisfy<a class="headerlink" href="#check-satisfy" title="Permanent link">&para;</a></h3>
+<p>It is natural to need a way to check if a given sentence is satisfied by a particular model. The PL-True algorithm does exactly this. It takes in a sentence α along with the model and evaluates as follows:</p>
+<ol>
+<li>
+<p>If α is a literal, then just return the value of that literal from the model.</p>
+</li>
+<li>
+<p>If α contains a logical operator:</p>
+</li>
+<li>If the operator is ¬, then recursively call the function with the argument to the negation, and then negate the return value.</li>
+<li>If the operator is ∧, recursively call the function on both arguments to the ∧ and then ∧ the two results together.</li>
+<li>This goes on similarly for all other logical operators.</li>
+</ol>
+<h3 id="boolean-satisfiability-problem">Boolean Satisfiability Problem<a class="headerlink" href="#boolean-satisfiability-problem" title="Permanent link">&para;</a></h3>
+<p>This problem refers to trying to see if a given sentence is satisfiable or not. A <strong>SAT-solver</strong> is an algorithm that can do this.</p>
+<h4 id="sat-with-model-checking">SAT with Model Checking<a class="headerlink" href="#sat-with-model-checking" title="Permanent link">&para;</a></h4>
+<p>One simple SAT-solver would enumerate every model (all combinations of assigning True and False to every symbol), but this costs O(2ⁿ) if there are n symbols and may not be feasible for larger problems.</p>
+<p>One big difference between using model checking for SAT versus model checking for entailment: with SAT, we return early (with that model as the result) as soon as we find one model making the sentence true, whereas with entailment, we can return early (with result False) if we find one model making KB true but <strong>not</strong> the query.</p>
+<h4 id="sat-with-resolution">SAT with Resolution<a class="headerlink" href="#sat-with-resolution" title="Permanent link">&para;</a></h4>
+<p>The bulk of the resolution algorithm for proving entailment is actually solving the SAT problem. Specifically, the resolution entails algorithm returns true if ¬SAT(KB ∧ ¬query). When the resolution algorithm finds an empty clause, the input KB ∧ ¬query is not satisfiable. If the resolution algorithm runs out of possible clauses to resolve without finding the empty clause, then KB ∧ ¬query is satisfiable, but we would still have work to do if we wanted to find a specific model.</p>
+<h4 id="dpll-algorithm">DPLL Algorithm<a class="headerlink" href="#dpll-algorithm" title="Permanent link">&para;</a></h4>
+<p>This algorithm is essentially CSP backtracking search with heuristics and checks to ensure minimum work. It only works for sentences in conjunctive normal form.</p>
+<p>DPLL initially checks for three things:</p>
+<ol>
+<li><strong>Early Termination:</strong> All clauses are satisfied (True) or any are unsatisfied (False)</li>
+<li>
+<p>DPLL can stop. If all are satisfied then the sentence is satisfiable, and if one is not, then the sentence is not satisfiable, so we return false (the input is in CNF).</p>
+</li>
+<li>
+<p><strong>Pure Literals:</strong> If all occurrences of any variable have the same sign (all negated or all not negated), assign a value making it true</p>
+</li>
+<li>
+<p>This smartly assigns values to variables so the least number of possible models will be enumerated.</p>
+</li>
+<li>
+<p><strong>Unit Clauses:</strong> If one of the clauses in the sentence is just a single variable, assign the value making the clause true.</p>
+</li>
+</ol>
+<h3 id="full-dpll-algorithm">Full DPLL Algorithm<a class="headerlink" href="#full-dpll-algorithm" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Check early termination and return true or false as described above.</p>
+</li>
+<li>
+<p>If the algorithm cannot terminate early, find a pure literal then assign that to the correct value and recurse with your new model where that literal is now assigned a value.</p>
+</li>
+<li>
+<p>If there are no pure literals, find a unit clause and repeat the above step.</p>
+</li>
+<li>
+<p>If DPLL cannot do any of the above steps, choose any variable not yet assigned and recurse twice: one case assigning the literal to True and the other to False. Return the logical or of these two cases.</p>
+</li>
+</ol>
+<p>In the worst case this will still expand every possible model, but in some cases the pure literal and unit clause heuristics will save computation.</p>
+<h5 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h5>
+<p>Determine whether the following sentence is satisfiable or unsatisfiable using DPLL. Break ties by assigning variables in alphabetical order, starting with True. If satisfiable, what model does the algorithm find?</p>
+<p>(A ∨ B ∨ ¬E) ∧ (B ∨ ¬C ∨ D) ∧ (¬A ∨ ¬B) ∧ (¬A ∨ ¬C ∨ ¬D) ∧ E</p>
+<p>Assign True to E (unit clause): (A ∨ B) ∧ (B ∨ ¬C ∨ D) ∧ (¬A ∨ ¬B) ∧ (¬A ∨ ¬C ∨ ¬D)</p>
+<p>Assign False to C (pure symbol): (A ∨ B) ∧ (¬A ∨ ¬B)</p>
+<p>Assign True to A (value assignment): ¬B</p>
+<p>Assign False to B (unit clause or pure symbol): This sentence is satisfiable and we assign D to be true arbitrarily since it was not assigned during the algorithm; the model found is A: True, B: False, C: False, D: True, E: True.</p>
+<h2 id="logical-agents-time-and-planning">Logical Agents (Time and Planning)<a class="headerlink" href="#logical-agents-time-and-planning" title="Permanent link">&para;</a></h2>
+<h3 id="fluents">Fluents<a class="headerlink" href="#fluents" title="Permanent link">&para;</a></h3>
+<p>A key first step to planning with propositional logic is figuring out how to deal with things changing over time. For example, in Wumpus World, the agent has an arrow that it can use to slay the Wumpus. We're tempted to change the value of symbols like HaveArrow and WumpusAlive from True to False, but this is not how propositional logic works.</p>
+<p>Symbols that may change their value over time are called <strong>fluents.</strong> We deal with the passage of time for a fluent by creating a different symbol for each possible time point. We can incorporate the time index as part of the symbol name. For time points 0-3 we would have symbols:</p>
+<p>HaveArrow[0], HaveArrow[1], HaveArrow[2], HaveArrow[3]</p>
+<p>For planning problems, our actions will have time indices to indicate whether or not we took that action at that time index:</p>
+<p>Shoot[0], Shoot[1], Shoot[2], Shoot[3]</p>
+<h3 id="effect-axioms">Effect Axioms<a class="headerlink" href="#effect-axioms" title="Permanent link">&para;</a></h3>
+<p>To encode the logic of how fluents change over time, we could consider using what are called <strong>effect axioms.</strong> Effect axioms might be our first approach to intuitively write logic cause and effect statements, however, as we'll see, they can often lead to unexpected flaws.</p>
+<p>For example, we may write the following to show the cause and effect of shooting an arrow at time t:</p>
+<p>HaveArrow[t] ∧ Shoot[t] ⇒ ¬HaveArrow[t+1]</p>
+<p>But what if the left-hand side of this implication is false, for example, when Shoot[t] is false? This would still allow for ¬HaveArrow[t+1] to be true (remember F ⇒ T is always true). We can tighten this up with a biconditional to say that we lose an arrow if and only if we have an arrow and shoot:</p>
+<p>HaveArrow[t] ∧ Shoot[t] ⇔ ¬HaveArrow[t+1]</p>
+<p>This is better but starts to break if there is more than one way for the agent to no longer have an arrow. For example, if there were a SellArrow[t] action in the game, the above logic would prohibit the act of selling an arrow at time t to result in ¬HaveArrow[t+1].</p>
+<p>We're going to fix some of these issues with a more rigorous formula for handling fluents called successor state axioms.</p>
+<h3 id="successor-state-axioms">Successor State Axioms<a class="headerlink" href="#successor-state-axioms" title="Permanent link">&para;</a></h3>
+<p><strong>Successor-state axioms</strong> are axioms outlining a rigorous way of writing the logic of how a fluent changes over time. These axioms state that a fluent can be true at time t+1 if and only if:</p>
+<ol>
+<li>
+<p>There was some action at time t that made it true, or</p>
+</li>
+<li>
+<p>It was already true at time t and no action occurred that would make it false</p>
+</li>
+</ol>
+<p>The general schema for successor state axioms for fluent F is:</p>
+<p>F[t+1] ⇔ (¬F[t] ∧ ActionCausesF[t]) ∨ (F[t] ∧ ¬ActionCausesNotF[t])</p>
+<p>For example, consider a game with actions Shoot, SellArrow, and BuyArrow (max one arrow per agent). The successor state axiom for the fluent HaveArrow at time t+1 would be:</p>
+<p>HaveArrow[t+1] ⇔ (¬HaveArrow[t] ∧ BuyArrow[t]) ∨ (HaveArrow[t] ∧ ¬(Shoot[t] ∨ SellArrow[t]))</p>
+<h3 id="planning-as-satisfiability">Planning as Satisfiability<a class="headerlink" href="#planning-as-satisfiability" title="Permanent link">&para;</a></h3>
+<p>If we have a very efficient SAT-solver, then we can make a plan. Note that the environment must be fully observable and deterministic.</p>
+<p>If we want to find a plan that takes as few time steps as possible, we can run an algorithm called SATPlan that increases the max allowable time one step at a time until it can find a satisfiable solution in that number of time steps.</p>
+<h4 id="satplan-algorithm">SATPlan Algorithm<a class="headerlink" href="#satplan-algorithm" title="Permanent link">&para;</a></h4>
+<ol>
+<li>
+<p>Let maxT = 1</p>
+</li>
+<li>
+<p>Build a KB with all of the logic for time points 0 to maxT. This includes:</p>
+</li>
+<li>The initial state (at time zero)</li>
+<li>Successor state axioms for any fluents for time points 1 to maxT</li>
+<li>
+<p>Any other logic of the environment, for example, exactly one action per time point</p>
+</li>
+<li>
+<p>Formulate the goal at time maxT</p>
+</li>
+<li>
+<p>Use the SAT-solver to see if there is a model that satisfies KB and goals.</p>
+</li>
+<li>If yes, extract the sequence of actions from that model</li>
+<li>If no, increment maxT by 1 and try again, repeating steps 2-4</li>
+</ol>
+<p>Rather than looping forever, practically, we can set a limit on how high we let maxT get.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ilong4rennes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

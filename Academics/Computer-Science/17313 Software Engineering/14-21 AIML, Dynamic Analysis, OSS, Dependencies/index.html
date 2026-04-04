@@ -1,0 +1,1560 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Personal notes on CS, tech, and life.">
+      
+      
+        <meta name="author" content="Yichen Lu">
+      
+      
+        <link rel="canonical" href="https://ilong4rennes.github.io/tech-notes/Academics/Computer-Science/17313%20Software%20Engineering/14-21%20AIML%2C%20Dynamic%20Analysis%2C%20OSS%2C%20Dependencies/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>14 21 AIML, Dynamic Analysis, OSS, Dependencies - Amanda's Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-se-ethics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-header__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Amanda's Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              14 21 AIML, Dynamic Analysis, OSS, Dependencies
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Academics
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Technology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Technology
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projects
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Life/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Life
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-nav__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Amanda's Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Technology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Life/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Life
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-se-ethics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) SE Ethics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ml-in-se" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) ML in SE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2) ML in SE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mistakes-mitigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mistakes &amp; Mitigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-attributes-of-ml-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quality attributes of ML models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using LLMS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using LLMS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problems-with-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problems with LLMS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-llms-for-different-daily-tasks-evaluation-of-suitability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using LLMs for different daily tasks &amp; Evaluation of Suitability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-llms-as-part-of-the-codebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using LLMs as part of the codebase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improving-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improving LLMs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dynamic-analysis-advanced-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) Dynamic Analysis / Advanced Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3) Dynamic Analysis / Advanced Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#correctness-static-analysis-and-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correctness – Static Analysis and Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#robustness-fuzzing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Robustness – Fuzzing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-profiling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance – Profiling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scalability-stress-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scalability – Stress testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resilience-soak-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resilience – Soak testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reliability-chaos-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability – Chaos Engineering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usability-ab-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usability – A/B testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) Feedback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) Technical Debt
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5) Technical Debt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principles-of-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principles of Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-design-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Design Techniques
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Debt
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical Debt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-of-technical-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types of Technical Debt:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-open-source-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6) Open Source Software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6) Open Source Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-go-open-source-vs-proprietary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Go Open Source (vs. Proprietary) ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#license-law" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        License &amp; Law
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-dependency-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7) Dependency Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7) Dependency Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency-pinning-vs-floating" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependency Pinning vs. Floating
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-of-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types of Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>14 21 AIML, Dynamic Analysis, OSS, Dependencies</h1>
+
+<h2 id="1-se-ethics">1) SE Ethics<a class="headerlink" href="#1-se-ethics" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Human Flourishing: happiness and life satisfaction, mental and physical health, meaning and purpose, character and virtue, and close social relationships</p>
+</li>
+<li>
+<p>Algorithmic bias</p>
+</li>
+</ul>
+<p>Three questions to promote human flourishing</p>
+<ol>
+<li>
+<p>Does my software respect the humanity of the users?</p>
+</li>
+<li>
+<p>Humane design guide - Consider 6 human sensitivities: Emotional, Attention, Sense making, Decision making, Social Reasoning, and Group Dynamics </p>
+</li>
+<li>
+<ol>
+<li>In what ways does your product/feature currently engage Human Sensitivities? </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>How might your product/feature support or elevate human sensitivities? </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Action Statement</li>
+</ol>
+</li>
+<li>
+<p>Does my software amplify positive behavior, or negative behavior for users and society at large? </p>
+</li>
+<li>
+<p>should have real humans to monitor and respond to your community.</p>
+</li>
+<li>
+<p>should have community policies about what is and isn’t acceptable behavior. </p>
+</li>
+<li>
+<p>should have accountable identities. </p>
+</li>
+<li>
+<p>should have the technology to easily identify and stop bad behaviors. </p>
+</li>
+<li>
+<p>should make a budget that supports having a good community, or you should find another line of work</p>
+</li>
+<li>
+<p>Will my software’s quality impact the humanity of others?</p>
+</li>
+<li>
+<p>Example: Malpractice vs negligence</p>
+</li>
+</ol>
+<h2 id="2-ml-in-se">2) ML in SE<a class="headerlink" href="#2-ml-in-se" title="Permanent link">&para;</a></h2>
+<p>ML Development: Observation, Hypothesis, Predict, Test, Reject or Refine Hypothesis <img alt="" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfu_254NrPwSS_krAJ9xRSW_V7KR__J9pJ8MzTwkSecgZDT0owBR3MRJwaxD76Uobh_qQVyz27mnaXdrESCKqaSYHYLsD1gbrTxK71QvTs5hfBFfucMXzkdlW5XLxUg-r-gBAZiQQ?key=z7WFhs0byI7-wIAB8nf_gjfL" /></p>
+<p>Three Fundamental Differences between ML and SE</p>
+<ol>
+<li>
+<p>Data discovery and management:</p>
+</li>
+<li>
+<p>SE: Emphasis on designing algorithms and software logic; ML: More effort on discovering, transforming data</p>
+</li>
+<li>
+<p>Customization and Reuse </p>
+</li>
+<li>
+<p>SE: Can reuse modules; ML: Difficult to reuse same model as specific for certain tasks and datasets</p>
+</li>
+<li>
+<p>No modular development of model itself</p>
+</li>
+<li>
+<p>SE: Can be monolithic or microservices; ML: ML models are usually monolithic</p>
+</li>
+</ol>
+<p>Feature Engineering: Identify parameters of interest that a model may learn on </p>
+<ul>
+<li>Convert data into a useful form; Normalize data; Include context; Remove misleading things</li>
+</ul>
+<p>Evaluation: Assess prediction accuracy on unseen data using metrics like false positives vs. false negatives for binary predictors (classification), error distance for numeric (regression), and top-K relevance for ranking.</p>
+<h3 id="mistakes-mitigation">Mistakes &amp; Mitigation<a class="headerlink" href="#mistakes-mitigation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Mistakes: System outage, Model outage, model not tested, deployment and updates not reliable, file corrupt, Model errors </p>
+</li>
+<li>
+<p>Perform Hazard Analysis: What’s the worst thing that can happen? Backup strategy? Undoable? Nontechnical compensation?</p>
+</li>
+</ul>
+<p>Mitigating Mistakes</p>
+<ul>
+<li>
+<p>Investigating in ML  e.g., more training data, better data, better features, better engineers  </p>
+</li>
+<li>
+<p>Less forceful experience </p>
+</li>
+<li>
+<p>Instead of making the system automatically take actions, ask for user input (e.g., prompt the user for confirmation).</p>
+</li>
+<li>
+<p>Allow options to turn off certain features if they aren't working as expected.</p>
+</li>
+<li>
+<p>Adjust learning parameters e.g., more frequent updates, manual adjustments </p>
+</li>
+<li>
+<p>Guardrails e.g., heuristics and constraints on outputs </p>
+</li>
+<li>
+<p>Override errors e.g., hardcode specific results</p>
+</li>
+</ul>
+<h3 id="quality-attributes-of-ml-models">Quality attributes of ML models<a class="headerlink" href="#quality-attributes-of-ml-models" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Interpretability (Explainability) </p>
+</li>
+<li>
+<p>Model debugging </p>
+</li>
+<li>
+<p>Auditing - fairness, safety, security </p>
+</li>
+<li>
+<p>Trust </p>
+</li>
+<li>
+<p>Actionable insights to improve outcomes - Helps extract useful knowledge from the model’s decisions to take better actions.</p>
+</li>
+<li>
+<p>Regulation</p>
+</li>
+<li>
+<p>Fairness </p>
+</li>
+<li>
+<p>Group unaware: Ignore group data (one group could get excluded) </p>
+</li>
+<li>
+<p>Group thresholds Different rules per group (rules differ by group) </p>
+</li>
+<li>
+<p>Demographic parity: Same percentage in pool as outcomes (might result in random selection) </p>
+</li>
+<li>
+<p>Equal opportunity: Equal chance out positive outcomes regardless of groups (focus on individual, rules differ per group) </p>
+</li>
+<li>
+<p>Equal accuracy Equal chance of both outcomes per group (focus on group, rules differ per group)</p>
+</li>
+<li>
+<p>Inference latency </p>
+</li>
+<li>
+<p>Inference throughput </p>
+</li>
+<li>
+<p>Scalability</p>
+</li>
+</ul>
+<h3 id="using-llms">Using LLMS<a class="headerlink" href="#using-llms" title="Permanent link">&para;</a></h3>
+<p>Language Modeling: Measure probability of a sequence of words (Text sequence → Most likely next word)</p>
+<h4 id="problems-with-llms">Problems with LLMS<a class="headerlink" href="#problems-with-llms" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Hallucinations: Factually Incorrect Output </p>
+</li>
+<li>
+<p>High Latency: Output words generated one at a time, Larger models = slower </p>
+</li>
+<li>
+<p>Output format: Hard to structure output (e.g. extracting date from text) </p>
+</li>
+<li>
+<p>LLMs generate text in a natural language format, which can make it difficult to extract structured information like dates, numbers, or specific details.</p>
+</li>
+</ul>
+<h4 id="using-llms-for-different-daily-tasks-evaluation-of-suitability">Using LLMs for different daily tasks &amp; Evaluation of Suitability<a class="headerlink" href="#using-llms-for-different-daily-tasks-evaluation-of-suitability" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Alternative Solutions: Ask if there's a more reliable or specialized tool than the LLM for your task.</p>
+</li>
+<li>
+<p>Example: For type-checking Java code, a Java compiler is a better choice because it's deterministic and built for the task.</p>
+</li>
+<li>
+<p>Error Probability: Estimate how often the LLM will give correct results for your problem. This may improve as LLMs get better but varies by task.</p>
+</li>
+<li>
+<p>Example: Grading mathematical proofs may have a higher error probability due to the complexity of logic.</p>
+</li>
+<li>
+<p>Risk Tolerance: Assess the consequences of mistakes made by the LLM.</p>
+</li>
+<li>
+<p>Example: Errors in answering emergency medical questions can be life-threatening, so tolerance for mistakes is low.</p>
+</li>
+<li>
+<p>Risk Mitigation Strategies: Identify ways to minimize errors or their impact.</p>
+</li>
+<li>
+<p>Example: For unit test generation, review and validate the LLM's output manually to catch mistakes before deployment.</p>
+</li>
+</ul>
+<h4 id="using-llms-as-part-of-the-codebase">Using LLMs as part of the codebase<a class="headerlink" href="#using-llms-as-part-of-the-codebase" title="Permanent link">&para;</a></h4>
+<p>→ Textual Comparison Tests to check for accuracy: </p>
+<ul>
+<li>
+<p>Syntactic Checks (correct structure and grammar); </p>
+</li>
+<li>
+<p>Embeddings (Numeric representations of words that capture their meaning in context); </p>
+</li>
+<li>
+<p>Cosine Similarity (Measures how similar two embeddings are based on the angle btw them)</p>
+</li>
+</ul>
+<h4 id="improving-llms">Improving LLMs<a class="headerlink" href="#improving-llms" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Prompt Engineering</p>
+</li>
+<li>
+<p>Chain of Thought Prompting</p>
+</li>
+<li>
+<p>Fine-Tuning</p>
+</li>
+</ul>
+<h2 id="3-dynamic-analysis-advanced-testing">3) Dynamic Analysis / Advanced Testing<a class="headerlink" href="#3-dynamic-analysis-advanced-testing" title="Permanent link">&para;</a></h2>
+<h4 id="correctness-static-analysis-and-testing">Correctness – Static Analysis and Testing<a class="headerlink" href="#correctness-static-analysis-and-testing" title="Permanent link">&para;</a></h4>
+<h4 id="robustness-fuzzing">Robustness – Fuzzing<a class="headerlink" href="#robustness-fuzzing" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>What: Feed invalid, random, or unexpected inputs to a program to uncover vulnerabilities by observing crashes or abnormal behavior.</p>
+</li>
+<li>
+<p>Common Bugs:</p>
+</li>
+<li>
+<p>Causes: Invalid argument handling, type casting errors, untrusted code execution.</p>
+</li>
+<li>
+<p>Effects: Buffer overflows, memory leaks, division-by-zero, use-after-free, assertion failures.</p>
+</li>
+<li>
+<p>Impact: Affects security, reliability, performance, and correctness.</p>
+</li>
+</ul>
+<h4 id="performance-profiling">Performance – Profiling<a class="headerlink" href="#performance-profiling" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Why? Identify performance bugs (e.g., slowdowns, degradation, cross-version/platform issues).</p>
+</li>
+<li>
+<p>Challenges: Define "fast enough," set thresholds, ensure reliable measurements. Bugs are hard to diagnose (e.g., system load, hardware, network, workflows) but impact user experience heavily.</p>
+</li>
+<li>
+<p>Profiling: Measures execution time and memory to find slow code (e.g., a "resize image" function taking 80% of time).</p>
+</li>
+<li>
+<p>Tracing: Tracks event sequences to debug crashes or unexpected behaviors (e.g., identifying the step causing failure).</p>
+</li>
+</ul>
+<h4 id="scalability-stress-testing">Scalability – Stress testing<a class="headerlink" href="#scalability-stress-testing" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Why? To test the system's behavior beyond the limits of normal operation. Can apply at any level of system granularity. Often to test the error-handling capabilities of the application.</p>
+</li>
+<li>
+<p>How? throw large amounts of input / requests and see how the program behaves</p>
+</li>
+<li>
+<p>What it tests: Its breaking point. How well it recovers after failure.</p>
+</li>
+</ul>
+<h4 id="resilience-soak-testing">Resilience – Soak testing<a class="headerlink" href="#resilience-soak-testing" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Why: Test system stability under extended, slightly above-normal load to detect issues like memory leaks or resource exhaustion. Useful for major releases or infrastructure changes, despite being time-consuming.</p>
+</li>
+<li>
+<p>How: Apply continuous load over time and observe performance.</p>
+</li>
+<li>
+<p>Tests: Long-term reliability and resilience to prolonged usage without memory leaks or performance degradation.</p>
+</li>
+<li>
+<p>Example: Simulating 500 users on an e-commerce site for 48 hours to find slowdowns or errors.</p>
+</li>
+</ul>
+<h4 id="reliability-chaos-engineering">Reliability – Chaos Engineering<a class="headerlink" href="#reliability-chaos-engineering" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Why? To simulate a large-scale deployment and induce random failures in various components  – Test in Production with Chaos Engineering</p>
+</li>
+<li>
+<p>How:</p>
+</li>
+<li>
+<p>Define baseline: Understand normal behavior (e.g., response time, uptime).</p>
+</li>
+<li>
+<p>Induce failures: Turn off servers, break connections, or overload traffic.</p>
+</li>
+<li>
+<p>Observe response: Check if the system recovers gracefully and quickly enough.</p>
+</li>
+<li>
+<p>Fix weaknesses: Improve failover, load balancing, or other vulnerabilities.</p>
+</li>
+<li>
+<p>Benefits: Identify weak points before inevitable real failures; enhance system reliability.</p>
+</li>
+<li>
+<p>Examples:</p>
+</li>
+<li>
+<p>Google: Terminate networks or data centers to uncover hidden issues.</p>
+</li>
+<li>
+<p>Netflix: Use Chaos Monkey to randomly disrupt AWS instances or network links; monitor Stream Starts per Second (SPS) for availability.</p>
+</li>
+</ul>
+<h4 id="usability-ab-testing">Usability – A/B testing<a class="headerlink" href="#usability-ab-testing" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>What: Controlled experiment with two variants (A = current system, B = new version).</p>
+</li>
+<li>
+<p>How: Randomly assign users to A or B and compare outcomes.</p>
+</li>
+<li>
+<p>Use: Common for testing web or GUI changes like ads or design layouts.</p>
+</li>
+</ul>
+<h2 id="4-feedback">4) Feedback<a class="headerlink" href="#4-feedback" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Feedback is composed of: 1. Appreciation; 2. Coaching (knowledge, skill);  3. Evaluation: where you stand, aligns expectations, and informs decision making</p>
+</li>
+<li>
+<p>Effective feedback: Goal-oriented; Actionable, Specific and Timely; Supportive, Truthful and Useful; Delivered privately in a neutral, non-judgemental tone</p>
+</li>
+<li>
+<p>Developmental Feedback</p>
+<ul>
+<li>Situation: Set the context. Help the person focus on what you are referring to.</li>
+<li>Behavior: Focus on the objective behavior to be repeated or changed.</li>
+<li>Impact: Share the direct impact of the behavior.</li>
+<li>Alternative: Share an alternative behavior to use next time.</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-technical-debt">5) Technical Debt<a class="headerlink" href="#5-technical-debt" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Internal Quality: code well structured; code understandable; codebase documented</p>
+</li>
+<li>
+<p>External Quality: software does not crash; software meet requirements; UI well designed</p>
+</li>
+<li>
+<p>Failure: Deviation of the component or system from its expected delivery, service or result. Manifested inability of a system to perform required function.</p>
+</li>
+<li>
+<p>Fault/defect: Flaw in component or system that can cause the component or system to fail to perform its required function. A defect, if encountered during execution, may cause a failure of the component or system.</p>
+</li>
+<li>
+<p>Error: A human action that produces an incorrect result. </p>
+</li>
+<li>
+<p>What are bugs? Defects + Error</p>
+</li>
+</ul>
+<h3 id="principles-of-testing">Principles of Testing<a class="headerlink" href="#principles-of-testing" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Avoid the absence of defects fallacy: Testing reveals defects but cannot guarantee their absence or achieve 100% detection.</p>
+</li>
+<li>
+<p>Exhaustive testing is impossible: cannot test all inputs. </p>
+</li>
+<li>
+<p>Start testing early: Begin testing early to guide design, get quick feedback, and catch bugs when they’re cheapest and least damaging to fix.</p>
+</li>
+<li>
+<p>Defects are usually clustered: Focus testing on "hot" components with frequent changes, tricky logic, or high uncertainty, as defects tend to concentrate there.</p>
+</li>
+<li>
+<p>The pesticide paradox: Repeating the same tests on evolving software misses subtler bugs, requiring varied testing methods for effectiveness.</p>
+</li>
+<li>
+<p>Testing is context-dependent: Test goals and metrics depend on the specific requirements and acceptable risk levels of the project.</p>
+</li>
+<li>
+<p>Verification is not validation: Verification checks if the software meets specifications, while validation ensures it meets the user's real needs.</p>
+</li>
+</ol>
+<h3 id="test-design-techniques">Test Design Techniques<a class="headerlink" href="#test-design-techniques" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Exploratory Testing: Testing without scripts, using intuition to find bugs.<ul>
+<li>Pro: Flexible, good for unexpected issues.</li>
+</ul>
+</li>
+<li>Specification-Based ("Black Box") Testing: Tests based on specifications, ignoring code details.<ul>
+<li>Pro: Avoids bias, robust to code changes, requires no code familiarity.</li>
+</ul>
+</li>
+<li>Structural ("White Box") Testing: Tests designed with full code knowledge, focusing on structure.<ul>
+<li>Pro: Ensures thorough code coverage.</li>
+</ul>
+</li>
+<li>Exhaustive Testing:<ul>
+<li>Issues: Need to be small enough to finish in a useful amount of time + Need to be large enough to provide a useful amount of validation</li>
+<li>Alternatives: Heuristics (Focus on the most likely or important scenarios)</li>
+</ul>
+</li>
+<li>Equivalence Partitioning:<ul>
+<li>What: Group inputs into equivalence classes with similar behavior and test one per class.</li>
+<li>Equivalence classes derived from specifications (e.g., cases, input ranges, error conditions, fault models) </li>
+<li>Pro: Reduces test cases, requires domain knowledge.</li>
+</ul>
+</li>
+<li>Boundary-value analysis<ul>
+<li>Key Insight: Errors often occur at the boundaries of a variable value </li>
+<li>For each variable, select: minimum, min+1, medium, max-1, maximum; possibly also invalid values min-1, max+1</li>
+</ul>
+</li>
+<li>Pairwise testing (can find 50% - 90% defects)<ul>
+<li>Key Insight: some problems only occur as the result of an interaction between parameters/components </li>
+<li>E.g.: The bug occurs for senior citizens traveling on weekends (pairwise interaction) </li>
+</ul>
+</li>
+</ul>
+<h3 id="technical-debt">Technical Debt<a class="headerlink" href="#technical-debt" title="Permanent link">&para;</a></h3>
+<p>Organizations need to address the following challenges continuously:  1. Recognizing technical debt 2. Making technical debt visible 3. Deciding when and how to resolve debt 4. Living with technical debt</p>
+<h4 id="types-of-technical-debt">Types of Technical Debt:<a class="headerlink" href="#types-of-technical-debt" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Deliberate:<ul>
+<li>Reckless: "We don’t have time for design."</li>
+<li>Prudent: "We must ship now and deal with consequences later."</li>
+</ul>
+</li>
+<li>Inadvertent:<ul>
+<li>Reckless: "What’s layering?"</li>
+<li>Prudent: "Now we know how we should have done it."</li>
+</ul>
+</li>
+</ol>
+<h2 id="6-open-source-software">6) Open Source Software<a class="headerlink" href="#6-open-source-software" title="Permanent link">&para;</a></h2>
+<h3 id="why-go-open-source-vs-proprietary">Why Go Open Source (vs. Proprietary) ?<a class="headerlink" href="#why-go-open-source-vs-proprietary" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Advantages </p>
+<ul>
+<li>Transparency, gain user trust </li>
+<li>Many eyes: crowd-source bug reports and fixes </li>
+<li>Security: more likely for vulnerabilities to be quickly identified </li>
+<li>Community and adoption: get others to contribute features, build stuff around you, or fork your project</li>
+</ul>
+</li>
+<li>
+<p>Disadvantages </p>
+<ul>
+<li>Reveal implementation secrets </li>
+<li>Many eyes: users can find faults more easily </li>
+<li>Security: more likely for others to find vulnerabilities first </li>
+<li>Control: You may not be able to influence the long-term direction of your platform</li>
+</ul>
+</li>
+</ul>
+<h3 id="license-law">License &amp; Law<a class="headerlink" href="#license-law" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>License/Law</th>
+<th>Key Purpose</th>
+<th>Key Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copyright</td>
+<td>Protects expressions of work</td>
+<td>Automatic for books, music, code; exceptions for trivial ideas.</td>
+</tr>
+<tr>
+<td>Intellectual Property (IP)</td>
+<td>Protects ideas and inventions</td>
+<td>Patents, machine designs, algorithms; licenses and expiry dates.</td>
+</tr>
+<tr>
+<td>GNU General Public License (GPL)</td>
+<td>Ensures software freedom</td>
+<td>Four freedoms: use, change, share, and share modifications. Requires derivatives to use GPL.</td>
+</tr>
+<tr>
+<td>Risks of GPL (Copyleft)</td>
+<td>Enforces openness but can complicate usage</td>
+<td>Derivatives must use the same license; companies may avoid GPL due to viral effects.</td>
+</tr>
+<tr>
+<td>LGPL (Lesser GPL)</td>
+<td>Allows use of libraries in proprietary code</td>
+<td>Dynamic linking allowed; no derivative restrictions.</td>
+</tr>
+<tr>
+<td>MIT License</td>
+<td>Simple, commercial-friendly open-source</td>
+<td>Must credit author; no liability; no restrictions on usage.</td>
+</tr>
+<tr>
+<td>Apache License</td>
+<td>Industry-friendly open-source</td>
+<td>Allows use without source code sharing; no trademark permissions.</td>
+</tr>
+<tr>
+<td>BSD License</td>
+<td>Minimal restrictions</td>
+<td>Requires copyright notice; no liability; allows modifications freely.</td>
+</tr>
+<tr>
+<td>Creative Commons (CC)</td>
+<td>Licensing for non-code content</td>
+<td>Used for datasets, images, videos, documentation, etc.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-dependency-management">7) Dependency Management<a class="headerlink" href="#7-dependency-management" title="Permanent link">&para;</a></h2>
+<p>What is a Dependency?
+- Core of what most build systems do. 
+- Example: Foo-&gt;Bar: To build Foo, you need to built Bar. "Bar" is a dependency of "Foo."
+- Scopes:
+    - Compile: Use Bar’s classes/functions during compilation.
+    - Runtime: Use abstract APIs provided by Bar during execution (e.g., logging, database).
+    - Test: Use Bar for testing only (e.g., JUnit, mocks).
+- Internal: Built/maintained by your organization.
+- External: Downloaded via package managers
+- Dependencies are typically hosted on servers and downloaded using package managers, requiring unique identifiers for each package. 
+- Most package managers support custom repositories, which require proper management.</p>
+<h3 id="dependency-pinning-vs-floating">Dependency Pinning vs. Floating<a class="headerlink" href="#dependency-pinning-vs-floating" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Pinning Dependencies (e.g. 1.5.3) - Specific version of the dependency. Frozen in time. <ul>
+<li>Pro: Reproducible builds; Stable network effects</li>
+<li>Con: Can become vulnerable due to dependency bugs; Have to keep updating dependents as dependencies evolve</li>
+</ul>
+</li>
+<li>Floating Dependencies (e.g. 1.x) - Each build will pull the latest available libFoo version <ul>
+<li>Pro: Latest security patches &amp; bug fixes; Less manual maintenance </li>
+<li>Con: Flaky builds (breaking changes) ; Floats leak transitively (A pin to B floating C; then A still sees changing version of C) </li>
+</ul>
+</li>
+</ul>
+<h3 id="types-of-dependencies">Types of Dependencies<a class="headerlink" href="#types-of-dependencies" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Transitive Dependencies: a dependency that your software indirectly relies on (a dependency of your dependency)</p>
+</li>
+<li>
+<p>Diamond Dependencies: multiple intermediate dependencies have the same transitive dependency.</p>
+<ul>
+<li>Problem: Different intermediate dependencies may require different versions of the same transitive dependency.</li>
+</ul>
+</li>
+<li>
+<p>Cyclic Dependencies: Avoid at all costs, but sometimes unavoidable or intentional (e.g. GCC is written in C - needs a C compiler; Apache Maven uses the Maven build system)</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ilong4rennes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
