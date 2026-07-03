@@ -1,0 +1,1458 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Personal notes on CS, tech, and life.">
+      
+      
+        <meta name="author" content="Yichen Lu">
+      
+      
+        <link rel="canonical" href="https://ilong4rennes.github.io/tech-notes/Academics/Information-Systems/67250%20Information%20Systems%20Milieux/02%20The%20Enterprise%20Strategy%20and%20Business%20Process%20Layers/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>IS and Business Strategy - Concepts - Amanda's Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#is-and-business-strategy-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-header__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Amanda's Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              IS and Business Strategy - Concepts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Academics
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Technology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Technology
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projects
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Life/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Life
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-nav__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Amanda's Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Technology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Life/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Life
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-is-enterprise-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. IS &amp; Enterprise Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-business-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Business Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-operational-effectiveness-vs-strategic-positioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Operational Effectiveness vs. Strategic Positioning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Operational Effectiveness vs. Strategic Positioning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#competitive-advantage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Competitive Advantage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operational-effectiveness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Effectiveness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategic-positioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategic Positioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-resource-based-view-competitive-advantage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Resource-Based View &amp; Competitive Advantage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-frameworks-for-linking-is-to-business-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Frameworks for Linking IS to Business Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="is-and-business-strategy-concepts">IS and Business Strategy - Concepts<a class="headerlink" href="#is-and-business-strategy-concepts" title="Permanent link">&para;</a></h1>
+<h2 id="1-is-enterprise-architecture">1. IS &amp; Enterprise Architecture<a class="headerlink" href="#1-is-enterprise-architecture" title="Permanent link">&para;</a></h2>
+<p><strong>Why do we need an enterprise IT architecture?</strong>
+- Challenges faced by organizations 
+    1. Information Systems as islands or silos: (not enterprise-wide) 
+        - Traditionally, applications have been implemented primarily from a functional perspective, with little consideration for cross functional needs. 
+    2. Changing business objectives (Agility) 
+        - Need to keep with innovations and industry changes 
+    3. Need to partner with other companies (Extensibility) 
+        - Critical business processes cross organizational boundaries 
+        - Globalization 
+    - An enterprise-wide view of IS is crucial in addressing the above</p>
+<ul>
+<li>
+<p>Every enterprise has an IT architecture</p>
+<ul>
+<li>![[Screen Shot 2024-02-24 at 11.22.29.png]]</li>
+</ul>
+</li>
+<li>
+<p>Enterprise architecture definition</p>
+<ul>
+<li>business goals of an organization</li>
+<li>how these goals are realized by business processes</li>
+<li>how these business processes can be better served through technology</li>
+</ul>
+</li>
+<li>Five layers of enterprise architecture<ul>
+<li>Strategy (Goals and Objectives of the Business): What do you do and how do you do it? </li>
+<li>Business Processes: Support the strategy and operational organization </li>
+<li>Applications: Support the business and implement the business functions in the IT systems </li>
+<li>Information: The fuel that drives business artifacts, their flow generates value to the user.</li>
+<li>Technical infrastructure: Hardware – networks, servers, terminals, cables, comm. devices</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-business-model">2. Business Model<a class="headerlink" href="#2-business-model" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Definition<ul>
+<li>Representation of a business, its operations &amp; how it creates value for customers</li>
+</ul>
+</li>
+<li>Businesses focus on core competencies (strengths in resources, skills, experiences, collaborations) to create a successful business model</li>
+<li>Example<ul>
+<li>Internet-based businesses<ul>
+<li>to attract huge number of customers to a Web site by providing free (almost) services, and then sell others the chance to advertise products to the crowd.</li>
+</ul>
+</li>
+<li>Fresh Direct<ul>
+<li>An online grocery that provides home delivery of affordable high-quality groceries to consumers</li>
+<li>Key characteristics:<ul>
+<li>Ability to source fresh produce</li>
+<li>Cost leader</li>
+<li>Efficient distribution</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Apple<ul>
+<li>Sells a variety of tech products with a consumer-centric strategy focused on the following: </li>
+<li>Key Characteristics: <ul>
+<li>Innovation, Quality</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-operational-effectiveness-vs-strategic-positioning">3. Operational Effectiveness vs. Strategic Positioning<a class="headerlink" href="#3-operational-effectiveness-vs-strategic-positioning" title="Permanent link">&para;</a></h2>
+<h3 id="competitive-advantage">Competitive Advantage<a class="headerlink" href="#competitive-advantage" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Operational Effectiveness + Strategic Positioning = Competitive Advantage</li>
+<li>Definition<ul>
+<li>one firm possesses a competitive advantage over its rivals when it earns a persistently higher rate of profit (or the firm has higher perceived value)</li>
+</ul>
+</li>
+<li>Example<ul>
+<li>Firms cut costs, cut prices, and increase features in order to achieve competitive advantage</li>
+</ul>
+</li>
+</ul>
+<h3 id="operational-effectiveness">Operational Effectiveness<a class="headerlink" href="#operational-effectiveness" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Definition<ul>
+<li>Performing the same tasks better than rivals.<ul>
+<li>The danger lies in similarity and failure to innovate. </li>
+<li>When offerings are roughly the same, they are more commodity. <ul>
+<li>Commodity: A basic good that can be interchanged with nearly identical offerings by others</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Fast follower problem exists when competitors<ul>
+<li>Watch a pioneer’s efforts</li>
+<li>Learn from their successes and missteps</li>
+<li>Enter the market quickly with a comparable or superior product at a lower cost before the first mover can dominate</li>
+<li>Vine / Instagram case</li>
+</ul>
+</li>
+<li>Examples of how IS contributes to Operational Effectiveness? <ul>
+<li>Automation (Robotics) </li>
+<li>Process improvements (Touch payment) </li>
+<li>Better Command &amp; Control (ERP, JIT) </li>
+<li>Streamlined flow of information (dissemination of information)</li>
+</ul>
+</li>
+</ul>
+<h3 id="strategic-positioning">Strategic Positioning<a class="headerlink" href="#strategic-positioning" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Strategy in Organizational Context<ul>
+<li>the direction and scope of an organization, generally over the long-term: which achieves advantage for the organization through its configuration of resources within a challenging environment, to meet the needs of markets and to fulfill stakeholder expectations.</li>
+</ul>
+</li>
+<li>Definition<ul>
+<li>Performing different activities than rivals, or the same activities in a different way (Resource-based view-VRIS Value, Rare, Inimitable, NonSubstitutable)</li>
+</ul>
+</li>
+<li>Technology should create and enable novel business approaches that are defensibly different and can be difficult for others to copy (At least in the short term).</li>
+<li>Strategic value of IS: <ul>
+<li>investing in a new information system helps a company differentiate itself from its competitor</li>
+<li>Example: British Airways developed their applications inhouse and customized the application to their unique circumstances. Mobile apps provided strategic value for BA.</li>
+</ul>
+</li>
+<li>Strategy Triangle![[Screen Shot 2024-02-25 at 17.38.38.png]]<ul>
+<li>Example: FreshDirect &amp; the Strategy Triangle![[Screen Shot 2024-02-25 at 17.39.21.png]]</li>
+<li>Traditional grocers can't easily compete with Fresh Direct because this would them <strong>straddling</strong><ul>
+<li>Attempts to occupy more than one position, while failing to match the benefits of a more efficient, singularly focused rival. </li>
+<li>Two markets (low-margin storefront and high-margin delivery) </li>
+<li>Unable to gain optimal benefits from either.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-resource-based-view-competitive-advantage">4. Resource-Based View &amp; Competitive Advantage<a class="headerlink" href="#4-resource-based-view-competitive-advantage" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Resources<ul>
+<li>Definition: things firms use to create its products and services and deliver them to customers</li>
+<li>Key characteristics: For sustainable competitive advantage, a firm must control an exploitable resource that have four critical characteristics: (VRIS)<ul>
+<li>Produce Value</li>
+<li>Be Rare</li>
+<li>Imperfectly imitable</li>
+<li>Nonsubstitutable </li>
+</ul>
+</li>
+<li>Examples:<ul>
+<li>Intangible <ul>
+<li>Brand, customer relationship, product designs, quality </li>
+<li>Knowledge/Competency (secret Coke formula as example) </li>
+<li>Patents &amp; copyrights  </li>
+</ul>
+</li>
+<li>Tangible <ul>
+<li>Manufacturing facilities </li>
+<li>Supply chain </li>
+<li>Financial Resources (cash in hand, ability to borrow money) </li>
+<li>Plant and Infrastructure </li>
+<li>Organizational structure and capabilities, Effective business processes</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Example: Fresh Direct<ul>
+<li>FreshDirect has the ability to source fresh produce <ul>
+<li>Fresh produce is of value to the customer </li>
+<li>Straight from farm- It has rarity </li>
+<li>Selection of the best (expert rating) &amp; most fresh – Not easily imitable (set it up with great effort) </li>
+<li>Substitutes (for fresh product) are not as good </li>
+</ul>
+</li>
+<li>Resource-based thinking helps to avoid entering markets because growth is spotted. </li>
+<li>During Covid, sales went up by 60% in March 2020 but has diminished with increasing competition.</li>
+</ul>
+</li>
+<li>Powerful Resources<ul>
+<li>Brand: symbolic embodiment of all the information connected with a product or service </li>
+<li>Scale: Advantages related to size (economies of scale) </li>
+<li>Switching costs: Costs incurred by consumers when switching from one product to another. </li>
+<li>Differentiation: Offer unique product or service that customers will find better than or in another way distinctive from products or services offered by competitors</li>
+<li>Network effects: When the value of a product or service increases as its number of users expands. (Metcalfe Law) </li>
+<li>Distribution channels: The path through which products or services get to customers. </li>
+<li>Intellectual property: Patents provide firms a degree of protection from copycats</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-frameworks-for-linking-is-to-business-strategy">5. Frameworks for Linking IS to Business Strategy<a class="headerlink" href="#5-frameworks-for-linking-is-to-business-strategy" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Tools<ul>
+<li>Value Chain <ul>
+<li>Definition: Set of activities through which a product or service is created and delivered to customers![[Screen Shot 2024-02-25 at 21.26.05.png]]</li>
+</ul>
+</li>
+<li>Porter’s Five Competitive Forces Model</li>
+<li>Information Systems SWOT Analysis</li>
+</ul>
+</li>
+</ul>
+<h1 id="is-and-business-strategy-zara-case">IS and Business Strategy - Zara Case<a class="headerlink" href="#is-and-business-strategy-zara-case" title="Permanent link">&para;</a></h1>
+<h2 id="1-porters-five-forces">1. Porter's Five Forces<a class="headerlink" href="#1-porters-five-forces" title="Permanent link">&para;</a></h2>
+<p>![[Screen Shot 2024-02-25 at 21.28.58.png]]</p>
+<h3 id="1-industry-rivalry">(1) Industry Rivalry<a class="headerlink" href="#1-industry-rivalry" title="Permanent link">&para;</a></h3>
+<ul>
+<li>What leads to increased rivalry?  <ul>
+<li>Many sellers, small &amp; large: more companies must compete for the same customers  </li>
+<li>Slow market growth: Need to fight for market share  </li>
+<li>Undifferentiated products: Increases incentive to cut price to steal share  </li>
+<li>High exit barriers: companies must compete, cannot leave without a high penalty  </li>
+</ul>
+</li>
+<li>The Internet has certainly intensified competition in all sectors of business  (eg. the hotel and travel industry)</li>
+</ul>
+<h3 id="2-buyer-power">(2) Buyer Power<a class="headerlink" href="#2-buyer-power" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Buyers need better quality items at lower price </li>
+<li>Buyer power – high when buyers have many choices and low when their choices are few </li>
+<li>Strategies to induce buyers to stay with a given company (i.e., reduce buyer power &amp; increase switching costs) <ul>
+<li>Amazon – One-click, recommender systems, Prime, Returns </li>
+<li>NetFlix – set up and maintain your movie list </li>
+<li>United Airlines – frequent flyer program </li>
+<li>Apple iTunes – buy/manage your music </li>
+<li>Dell – customize a computer purchase</li>
+</ul>
+</li>
+<li>The internet can increase buyer power by increasing price transparency in markets where commodity products are sold. </li>
+<li>The more differentiated and valuable an offering, the more the Internet shifts bargaining power to sellers. </li>
+<li><strong>Price transparency</strong>: Degree to which complete information is available. </li>
+<li><strong>Information asymmetry</strong>: Decision situation where one party has more or better information than its counterparty.</li>
+<li>First-mover advantage – significant impact on gaining market share by being the first to market with a competitive advantage </li>
+<li>In the case of the first-mover, all competitive advantages are temporary <ul>
+<li>E.g., all airlines now have frequent flyer programs / tablet market / mobile phone market</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-supplier-power">(3) Supplier Power<a class="headerlink" href="#3-supplier-power" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Supplier power – high when choices are few and low when choices are many </li>
+<li>The opposite of buyer power </li>
+<li>Small and big companies can interact with suppliers with the same ease due to the Internet </li>
+<li>How is supplier power increased? <ul>
+<li>Patents/Trademarks </li>
+<li>Cartels and Consortia (OPEC) </li>
+</ul>
+</li>
+<li>How can we decrease supplier power? <ul>
+<li>Building networks/finding marketplaces </li>
+<li>Effective payment systems</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-threat-of-substitute-products-and-services">(4) Threat of Substitute Products and Services<a class="headerlink" href="#4-threat-of-substitute-products-and-services" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The threat of substitutes is high when there are many alternatives for buyers and low when there are few alternatives </li>
+<li>High switching costs can reduce this threat </li>
+<li>Switching cost – a cost that makes buyers reluctant to switch to another product/service <ul>
+<li>Long-term contract with financial penalty (cell phone companies) </li>
+<li>Personalized products based on purchase history (Eg. Amazon</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-threat-of-new-entrants">(5) Threat of New Entrants<a class="headerlink" href="#5-threat-of-new-entrants" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Threat of new entrants – high when it is easy for competitors to enter the market and low when entry barriers are significant <ul>
+<li>Eg., Travel websites have virtually eliminated the need for regular travel agencies </li>
+</ul>
+</li>
+<li>Entry barrier – product or service feature that customers have come to expect and that must be offered by an entering organization <ul>
+<li>Eg., Info. Tech. required to start a bank is nontrivial. Need to set up ATMs, online bill payment etc.</li>
+</ul>
+</li>
+</ul>
+<p>![[Screen Shot 2024-02-25 at 21.59.45.png]]</p>
+<p>Example:![[Screen Shot 2024-02-25 at 23.05.49.png]]</p>
+<h2 id="2-zara-fast-fashion">2. Zara - Fast Fashion<a class="headerlink" href="#2-zara-fast-fashion" title="Permanent link">&para;</a></h2>
+<h3 id="0-speedy-supply-chain-to-cater-new-trends-25-days">(0) Speedy supply chain to cater new trends (25 days)<a class="headerlink" href="#0-speedy-supply-chain-to-cater-new-trends-25-days" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Designer sketches to capture latest trends</li>
+<li>Pattern maker creates a prototype</li>
+<li>Sew 8000+ new pieces at nearby factory</li>
+<li>Apparel driven to distribution center</li>
+<li>New items arrive</li>
+</ul>
+<h3 id="1-zaras-strategic-positioning">(1) Zara's strategic positioning<a class="headerlink" href="#1-zaras-strategic-positioning" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The majority of Zara’s merchandise is produced in-house, with an eye on leveraging technology in areas that speed up complex tasks, lower cycle time, and reduces errors.</li>
+<li>The Problem with Contract Manufacturing<ul>
+<li>Conventional practice is to outsource manufacturing to low-cost locations </li>
+<li>This is easily imitable and doesn't provide competitive advantage </li>
+<li>Most concerning is the use of sweatshop labor in such locations <ul>
+<li>Note: The Fair Factories Clearing House compiles audit information from different businesses about their manufacturing practices
+![[Screen Shot 2024-02-25 at 23.52.12.png]]
+![[Screen Shot 2024-02-25 at 23.52.27.png]]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-zara-and-four-critical-characteristics-of-resources">(2) Zara and Four Critical Characteristics of Resources<a class="headerlink" href="#2-zara-and-four-critical-characteristics-of-resources" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Intangible resources: brand, customer relationship, product designs</li>
+<li>Tangible resources: manufacturing facilities, supply chain, organizational structure![[Screen Shot 2024-02-25 at 23.57.56.png]]</li>
+</ul>
+<h4 id="brand">Brand<a class="headerlink" href="#brand" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Def: Symbolic embodiment of all the information connected with a product or service</li>
+<li>Brands are about perception, communication, aspiration, and identity</li>
+<li>High fashion but are relatively inexpensive, prices vary by country, cheaper in Spain &amp; Europe </li>
+<li>102 weeks of fast fashion, Every week new arrivals twice delivering latest trends, Cater to local tastes </li>
+<li>No contract manufacturing in low-income countries</li>
+</ul>
+<h4 id="distribution-channels">Distribution Channels<a class="headerlink" href="#distribution-channels" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Def: The path through which products or services get to customers. This can be critical to a firm’s success.</li>
+<li>Their primary outlet is the set of exclusive stores </li>
+<li>Also, online presence that is tied to their brick &amp; mortar for pickup &amp; returns </li>
+<li>Store displays are directed from the Cube (their HQ in Spain) <ul>
+<li>Use of Virtual Reality </li>
+</ul>
+</li>
+<li>RFID-based inventory tracking</li>
+</ul>
+<h3 id="3-zara-it-in-the-value-chain">(3) Zara – IT in the Value Chain<a class="headerlink" href="#3-zara-it-in-the-value-chain" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Industry Value Chain<ul>
+<li>Raw Materials</li>
+<li>Intermediate Goods</li>
+<li>Manufacturing</li>
+<li>Marketing &amp; Sales</li>
+<li>After-Sales Service</li>
+</ul>
+</li>
+<li>IT roles in Zara's value chain<ul>
+<li>Staff equipped with handhelds for intelligence gathering. POS connected to headquarters to monitor sales and trends. (Sales) </li>
+<li>Extensive use of IS for SCM (Inbound logistics) </li>
+<li>RFID-based Inventory Management (Outbound logistics, Sales) </li>
+<li>Virtual reality adoption at storefronts (Sales)</li>
+<li>Effective e-commerce strategy with robots for delivery at warehouses (Manufacturing)</li>
+<li>Ensures ROI on tech investment</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-porters-five-forces-zara">(4) Porter’s Five Forces - Zara<a class="headerlink" href="#4-porters-five-forces-zara" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Competitors: <ul>
+<li>Many competitors (H&amp;M, Gap) in the market, so competitive rivalry is high. But Zara is the fastest to deliver products and are the market leaders. (Moderate force). </li>
+</ul>
+</li>
+<li>Threat of new entrants: <ul>
+<li>Barriers are low to enter this market. However, Zara already has an advantage in terms of well-established supply chain, manufacturing, and real estate. (Moderate to Low force)</li>
+</ul>
+</li>
+<li>Threat of substitutes: <ul>
+<li>A product that meets the same economic need is a substitute. Cheaper garments might be a substitute product, but Zara's customers are primarily 'fashion conscious.'  (Low force)</li>
+</ul>
+</li>
+<li>Buyer power is moderate: <ul>
+<li>Buyers can switch easily, but the Zara mindset is what neutralizes that. Fast fashion at affordable prices, limited stock availability and biweekly arrivals adding to some shopping excitement, plus word of mouth helps reduce buyer power.  (Moderate force). </li>
+</ul>
+</li>
+<li>Supplier power: <ul>
+<li>Zara has licensed contracts and established supply chains with suppliers. Also, they have access to local suppliers. But there is a switching cost for Zara to change suppliers (Moderate to Low force)</li>
+</ul>
+</li>
+</ul>
+<h1 id="is-and-business-strategy-netflix-case">IS and Business Strategy - Netflix Case<a class="headerlink" href="#is-and-business-strategy-netflix-case" title="Permanent link">&para;</a></h1>
+<h2 id="1-netflixs-business-model">1. Netflix's Business Model<a class="headerlink" href="#1-netflixs-business-model" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Netflix is the largest subscription streaming service that allows subscribers to watch from anywhere a variety of content including movies, TV shows, documentaries etc. on various types of devices.</li>
+<li>Netflix provides its subscribers a highly customized viewing experience </li>
+<li>Netflix streaming is available on PCs, tablets, smartphones, Internetconnected TVs, DVD players, video game consoles, etc… </li>
+<li>Netflix ends its DVD mailing service (Sep 23)</li>
+</ul>
+<h2 id="2-strategic-positioning-or-operational-effectiveness">2. Strategic Positioning or Operational Effectiveness<a class="headerlink" href="#2-strategic-positioning-or-operational-effectiveness" title="Permanent link">&para;</a></h2>
+<h3 id="economies-of-scale">Economies of Scale<a class="headerlink" href="#economies-of-scale" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Scale economies can be attained by leveraging the cost of an investment across increasing units of production</li>
+<li>Having a bigger customer base enables firms to: Have better cost structure / Have better profit prospects / Offer better pricing</li>
+</ul>
+<h3 id="the-long-tail">The Long Tail<a class="headerlink" href="#the-long-tail" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Netflix’s advantage came from the scale of the firm’s selection. </li>
+<li>Long tail: Large selection of content beneficial for Internet retailers. </li>
+<li>Selection attracts customers.</li>
+<li>The Internet allows large-selection inventory efficiencies that offline firms can’t match.  ![[Screen Shot 2024-02-26 at 01.11.23.png]]</li>
+</ul>
+<h3 id="streaming-and-scale-advantage">Streaming and Scale Advantage<a class="headerlink" href="#streaming-and-scale-advantage" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Size-based advantages come from both the scale of a firm’s streaming library (a longer tail) and the scale of the customer base (the ability to pay for that tail). </li>
+<li>A larger, more profitable firm also gains pricing advantages. </li>
+<li>Netflix can spend so much more than competitors because it has more subscribers than its rivals have. </li>
+<li>Netflix is seeing roughly five times more usage—scale economies in action</li>
+</ul>
+<h3 id="digital-products-and-marginal-costs">Digital Products and Marginal Costs<a class="headerlink" href="#digital-products-and-marginal-costs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Fixed costs: Costs that do not vary according to production volume. </li>
+<li>Marginal costs: Costs associated with each individual unit produced<ul>
+<li>Marginal costs are (effectively) zero for content owners</li>
+</ul>
+</li>
+<li>Coopetition (frenemies): Situation where firms both cooperate &amp; compete with one another.<ul>
+<li>To deliver streaming video, Netflix uses computers provided by the cloud computing services of Amazon (making Amazon and Netflix both partners and competitors)</li>
+</ul>
+</li>
+</ul>
+<h3 id="the-qwikster-debacle">The Qwikster Debacle<a class="headerlink" href="#the-qwikster-debacle" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Netflix displaced Blockbuster with their mail-in DVD service. </li>
+<li>Then in 2011, the firm was split into two distinct services: <ul>
+<li>Internet-based streaming / Traditional DVD-by-mail, which was renamed Qwikster </li>
+</ul>
+</li>
+<li>Transition from a DVD-based service to Internet-based video streaming business resulted in: <ul>
+<li>Drop in customer base + Drastic fall of share prices</li>
+</ul>
+</li>
+</ul>
+<h3 id="global-expansion">Global Expansion<a class="headerlink" href="#global-expansion" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Global expansion plays a key role in the Netflix drive for scale-driven dominance. </li>
+<li>Entering new markets usually involves heavy up-front expenses, such as legal fees. </li>
+<li>The Netflix global bet has paid off. </li>
+</ul>
+<h2 id="3-the-data-asset-collaborative-filtering-churn">3. The Data Asset - Collaborative Filtering, Churn<a class="headerlink" href="#3-the-data-asset-collaborative-filtering-churn" title="Permanent link">&para;</a></h2>
+<h3 id="data-asset-collaborative-filtering">Data Asset &amp; Collaborative FIltering<a class="headerlink" href="#data-asset-collaborative-filtering" title="Permanent link">&para;</a></h3>
+<ul>
+<li>User data: provide better customer experience &amp; build brands. </li>
+<li>Netflix recommendation system - Cinematch - uses collaborative filtering. <ul>
+<li>Collaborative filtering: Classification of software that monitors trends among many users and uses this data to personalize an individual customer’s experience. </li>
+<li>Advantages of Cinematch <ul>
+<li>Netflix could tailor recommendations based on availability of products and individual taste. </li>
+<li>Studios also found an audience for their back catalog of movies and television shows. </li>
+</ul>
+</li>
+<li>Data provided by Cinematch creates a switching cost. <ul>
+<li>Reduces churn rate: Rate at which customers leave a product or service</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-disintermediation-and-vertical-integration">4. Disintermediation(去中介化) and Vertical Integration(垂直整合)<a class="headerlink" href="#4-disintermediation-and-vertical-integration" title="Permanent link">&para;</a></h2>
+<h3 id="content-acquisition-escalating-costs-limited-availability">Content Acquisition: Escalating Costs, Limited Availability<a class="headerlink" href="#content-acquisition-escalating-costs-limited-availability" title="Permanent link">&para;</a></h3>
+<ul>
+<li>First Sale Doctrine: rule in copyright law that says once a copyrighted item (like a book, DVD, or video game) is sold for the first time, the person who bought it can then sell, lend, or give it away without needing to get permission from the copyright holder<ul>
+<li>Applicable only to the atoms of the physical product and not to the bits needed in streaming</li>
+</ul>
+</li>
+<li>Windowing: content is released to different platforms or markets at different times<ul>
+<li>Film release windows: first be released in theaters, then available for purchase on DVD or digital download after a few months, followed by streaming services, and finally broadcast on TV</li>
+</ul>
+</li>
+</ul>
+<h3 id="disintermediation-netflix-strategy">Disintermediation &amp; Netflix Strategy<a class="headerlink" href="#disintermediation-netflix-strategy" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Def: Removing an organization from a firm’s distribution channel, collapses the path between supplier and customer. <ul>
+<li>Why should Disney allow Netflix to stream its content? </li>
+</ul>
+</li>
+<li>Netflix is combating rivals with exclusive content by offering exclusive content of its own. <ul>
+<li>Acquiring or developing original content is an expensive proposition. </li>
+<li>But it gives a firm exclusive first-window streaming rights </li>
+<li>Allows Netflix to pursue additional revenue streams, such as DVD sales or licensing to other channels and services.</li>
+</ul>
+</li>
+</ul>
+<h3 id="disintermediation-netflix-vertical-integration">Disintermediation &amp; Netflix – Vertical Integration<a class="headerlink" href="#disintermediation-netflix-vertical-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Netflix’s move into the content creation business is a form of vertical integration as it moves backward in the value chain. ![[Screen Shot 2024-02-26 at 02.20.28.png]]</li>
+<li>Disintermediation in the video industry offers two potentially big benefits. <ol>
+<li>First, studios don’t need to share revenue with third parties; they can keep all the money generated through new windows. </li>
+<li>Also, critically important, if a studio goes directly to consumers, then studios get to collect and keep a potentially valuable data asset.</li>
+</ol>
+</li>
+</ul>
+<h2 id="3-netflix-and-porters-five-forces">3. Netflix and Porter's Five Forces<a class="headerlink" href="#3-netflix-and-porters-five-forces" title="Permanent link">&para;</a></h2>
+<p>![[Screen Shot 2024-02-26 at 02.23.01.png]]
+![[Screen Shot 2024-02-26 at 02.23.27.png]]
+![[Screen Shot 2024-02-26 at 02.23.40.png]]
+![[Screen Shot 2024-02-26 at 02.25.08.png]]
+![[Screen Shot 2024-02-26 at 02.25.33.png]]</p>
+<h2 id="4-how-netflix-has-leveraged-the-web-it-to-counter-the-forces">4. How Netflix has leveraged the Web &amp; IT to counter the forces<a class="headerlink" href="#4-how-netflix-has-leveraged-the-web-it-to-counter-the-forces" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Competition / rivalry in the industry <ul>
+<li>Data asset, large customer base </li>
+</ul>
+</li>
+<li>Threat / potential of new entrants <ul>
+<li>Streaming infrastructure </li>
+<li>Data Asset </li>
+</ul>
+</li>
+<li>Power of suppliers = content suppliers not Netflix <ul>
+<li>Original content (e.g., vertical integration)</li>
+</ul>
+</li>
+<li>Power of buyers = consumers <ul>
+<li>Original content (e.g., vertical integration) </li>
+<li>Collaborative filtering (e.g., Netflix Cinematch) </li>
+<li>User profiles (e.g., data analytics and tailored ads) </li>
+<li>Variety of devices for access </li>
+</ul>
+</li>
+<li>Threat of Substitute Products = alternate methods of media consumption + substitute leisure activities <ul>
+<li>Binge watching countered with customization </li>
+<li>Movie theater experience countered with convenient home viewing and large selection</li>
+</ul>
+</li>
+</ul>
+<h1 id="is-and-business-strategy-amazon-case">IS and Business Strategy - Amazon Case<a class="headerlink" href="#is-and-business-strategy-amazon-case" title="Permanent link">&para;</a></h1>
+<h2 id="1-types-of-business-strategies">1. Types of Business Strategies<a class="headerlink" href="#1-types-of-business-strategies" title="Permanent link">&para;</a></h2>
+<p>![[Screen Shot 2024-02-26 at 02.30.45.png]]
+![[Screen Shot 2024-02-26 at 02.35.22.png]]</p>
+<h3 id="focus">Focus<a class="headerlink" href="#focus" title="Permanent link">&para;</a></h3>
+<ul>
+<li>focusing on offering products or services <ul>
+<li>To a particular segment or buyer group </li>
+<li>Within a segment of a product line </li>
+<li>To a specific geographic market</li>
+</ul>
+</li>
+<li>Examples <ul>
+<li>Italian Restaurant –Olive Gardens </li>
+<li>The Web facilitates identifying such segments of customers</li>
+</ul>
+</li>
+</ul>
+<h3 id="differentiation">Differentiation<a class="headerlink" href="#differentiation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>offering a product or service that is perceived as being “unique” or ‘niche’ in a broad marketplace </li>
+<li>Examples<ul>
+<li>Hummer – Like Nothing Else (Being revived now) </li>
+<li>Audi and Michelin – safety </li>
+<li>Zara – Fast fashion at affordable prices </li>
+<li>Porsche, Christian Dior – style </li>
+<li>Enterprise– We’ll pick you up</li>
+</ul>
+</li>
+</ul>
+<h3 id="overall-cost-leadership">Overall Cost Leadership<a class="headerlink" href="#overall-cost-leadership" title="Permanent link">&para;</a></h3>
+<ul>
+<li>offering the same or better quality product or service at a price that is less than what any of the competition is able to do </li>
+<li>Examples<ul>
+<li>Wal-Mart (Always Low Prices, Every Day Low Prices) </li>
+<li>Dell – a computer the way you want it at an affordable price </li>
+<li>Hyundai and Kia – reliable low-cost cars </li>
+<li>Grocery stores – high-volume, low-margin (Costco), minimal overheads (ALDI)</li>
+</ul>
+</li>
+</ul>
+<h3 id="how-to-apply-it-to-gain-cost-leadership">How to Apply IT to gain Cost Leadership?<a class="headerlink" href="#how-to-apply-it-to-gain-cost-leadership" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Reduce inventory (JIT) </li>
+<li>Reduce manpower costs per sale through automation </li>
+<li>Reduce transaction costs for suppliers/customers through online systems </li>
+<li>Reduce manufacturing costs (process control eliminates waste)</li>
+</ul>
+<h3 id="other-strategies">Other Strategies<a class="headerlink" href="#other-strategies" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Innovation: new ways (products / reduce time to market / new distribution)</li>
+<li>Growth: expand (product capacity / global market / diversify)</li>
+<li>Strategic Alliance<ul>
+<li>Mergers, acquisitions, joint ventures, “virtual companies” </li>
+<li>Marketing, manufacturing, or distribution agreements.</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-network-effects">2. Network Effects<a class="headerlink" href="#2-network-effects" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Def: mechanisms in a product and business where every new user makes the product/service/experience more valuable to every other user</li>
+<li>3 Value-adding sources of Networking Effects:<ul>
+<li>
+<ol>
+<li>Exchange: </li>
+<li>Metcalf effect resulting in enhanced exchange of information</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Staying Power: Long-term viability of a product or service.</li>
+<li>Tech products are long-term investments </li>
+<li>Long term viability due to switching costs and total cost of ownership</li>
+<li>Switching costs: Incurred when moving from one product to another. </li>
+<li>Total cost of ownership (TCO): Economic measure of the full cost of owning a product. (E.g., HP printers)</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Complementary benefits: Products or services that add additional value to the primary product or service that makes up a network</li>
+<li>iOS products</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Network structures<ul>
+<li>One-sided market: Market that derives most of its value from a single class of users. (e.g., Instant messaging) <ul>
+<li>Same-side exchange benefits: Benefits derived by interaction among members of a single class of participants.</li>
+</ul>
+</li>
+<li>Two-sided market: Network markets comprised of two distinct categories of participant. Both need to deliver value for the network to function. <ul>
+<li>E.g. Video game players and game producers </li>
+<li>Cross-side exchange benefit: An increase in the number of users on one side of the market, creating a rise in the other side.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Network Effects are responsible for 70% of the value created by tech companies</li>
+<li>Network effects are bad for innovation because it result in a dominant player and therefore a dominant standard. This limits competition against the dominant standard</li>
+</ul>
+<h2 id="3-the-amazon-case">3. The Amazon Case<a class="headerlink" href="#3-the-amazon-case" title="Permanent link">&para;</a></h2>
+<h3 id="1-how-should-amazon-strategically-position-itself-to-protect-its-market-share">(1) How should Amazon strategically position itself to protect its market share?<a class="headerlink" href="#1-how-should-amazon-strategically-position-itself-to-protect-its-market-share" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Amazon's current strategy: Overall cost leadership + Innovation + Growth<ul>
+<li>Amazon's Cost Leadership<ul>
+<li>advanced computing and networking technologies </li>
+<li>maximum operational efficiency</li>
+<li>minimization of operational costs</li>
+</ul>
+</li>
+<li>Growth<ul>
+<li>Global market</li>
+<li>Market Penetration (low cost, customer service, aggressive market campaign)</li>
+<li>product development (in-car AI, AWS) heavy investment on R&amp;D</li>
+<li>Diversification through strategic acquisitions (e.g. Robots, Audible)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Amazon's current strengths: Scale / Data asset / Brand / IT-enabled supply chain management / Cloud Computing</p>
+</li>
+<li>
+<p>Moving forward</p>
+<ul>
+<li>Cost Leader</li>
+<li>Growth: Grow business in specific sectors they are strong in (Web services, B toB, AI, Healthcare etc.)</li>
+<li>Innovation (Continue to innovate being a tech company)</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-amazon-inhouse-is-development">(2) Amazon, Inhouse IS development<a class="headerlink" href="#2-amazon-inhouse-is-development" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Why?<ul>
+<li>Absolutely Mission Critical </li>
+<li>High Market Differentiation</li>
+</ul>
+</li>
+<li>Amazon web services (AWS) <ul>
+<li>Allows firms to rent industrial-strength computing capacity on an asneeded basis. </li>
+<li>Goal was to monetize the firm’s expertise in scalability and reliability.</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-strategies-to-compete-in-network-market">(3) Strategies to compete in network market<a class="headerlink" href="#3-strategies-to-compete-in-network-market" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Exchange &amp; Staying Power <ul>
+<li>Leverage viral promotion </li>
+<li>Strengthen Prime </li>
+<li>Enhance Customization </li>
+<li>Establish more distribution channels </li>
+</ul>
+</li>
+<li>Encourage the development of complementary goods </li>
+</ul>
+<h1 id="business-process-reengineering">Business Process Reengineering<a class="headerlink" href="#business-process-reengineering" title="Permanent link">&para;</a></h1>
+<h2 id="1-functional-view-of-a-business">1. Functional View of a Business<a class="headerlink" href="#1-functional-view-of-a-business" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Def: organizes a company along functional lines (operations / marketing / accounting / finance / administration). <ul>
+<li>Goal: Optimize within a function </li>
+<li>Optimizing one functional unit may adversely affect another function</li>
+</ul>
+</li>
+<li>Problems with Functional View <ul>
+<li>No overall ‘enterprise’ (organizational) perspective </li>
+<li>Application Silos (incompatible software applications within different business units of an organization.)</li>
+<li>No common source of enterprise data</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-process-view-of-a-business">2. Process View of a Business<a class="headerlink" href="#2-process-view-of-a-business" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Goal: Optimize each process typically spanning multiple functions, Provides a holistic view of the organization ![[Screen Shot 2024-02-26 at 03.53.15.png]]</li>
+<li>Business Process Reengineering (BPR) takes a critical look at core processes to spot areas that need improvement (especially with IT)</li>
+<li>How IS Improves Business Processes<ul>
+<li>Transactional <ul>
+<li>Convert unstructured processes into routine transactions </li>
+<li>Payment processes (e.g. Movie theater) </li>
+</ul>
+</li>
+<li>Automational <ul>
+<li>Replace manual processes by computerized processes  </li>
+<li>E.g. Face Recognition for verifying identity </li>
+</ul>
+</li>
+<li>Informational <ul>
+<li>Provide vast amounts of information quickly </li>
+<li>E.g., Search engines, Recommendation Systems</li>
+</ul>
+</li>
+<li>Analytical <ul>
+<li>Enabling analytics to improve processes </li>
+<li>E.g. Sales analysis by stores or regions </li>
+</ul>
+</li>
+<li>Sequential to Parallel • <ul>
+<li>Convert sequential tasks to parallel </li>
+<li>E.g., While a patient is being attended to in an emergency ward depending on initial assessment (Triage) level a bed may be scheduled for allocation or surgery may be scheduled </li>
+</ul>
+</li>
+<li>Knowledge management <ul>
+<li>Capture of expertise and knowledge for improvement of processes </li>
+<li>E.g., Push maintenance information to mobile devices to help technicians conduct repairs </li>
+</ul>
+</li>
+<li>Geographical <ul>
+<li>Make processes independent of geographical locations </li>
+<li>E.g. Amazon moving products in advance to warehouses</li>
+</ul>
+</li>
+<li>Tracking <ul>
+<li>Detailed tracking of task status, input and output </li>
+<li>E.g. Just in time inventory, shipment tracking </li>
+</ul>
+</li>
+<li>Disintermediation <ul>
+<li>Connect two parties in a transaction directly which otherwise would have required an intermediary </li>
+<li>E.g., Book flight tickets directly on the airline website</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-modeling-business-processes">3. Modeling Business Processes<a class="headerlink" href="#3-modeling-business-processes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Def: A business process is a collection of related, structured activities or tasks that produce a specific service or product (serve a particular goal) for a particular customer or customers</li>
+<li>BPMN ![[Screen Shot 2024-02-26 at 04.19.49.png]]</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ilong4rennes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

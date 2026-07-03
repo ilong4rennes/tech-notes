@@ -1,0 +1,1599 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Personal notes on CS, tech, and life.">
+      
+      
+        <meta name="author" content="Yichen Lu">
+      
+      
+        <link rel="canonical" href="https://ilong4rennes.github.io/tech-notes/Academics/Computer-Science/15281%20Artificial%20Intelligence/01-Search/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Search - Amanda's Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#search" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-header__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Amanda's Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Search
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Academics
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Technology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Technology
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projects
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Life/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Life
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-nav__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Amanda's Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Technology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Life/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Life
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Agents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Search Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Algorithms
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Search Algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tree-vs-graph-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tree vs Graph Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninformed-search-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uninformed Search Algorithms
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Uninformed Search Algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#informed-search-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Informed Search Algorithms
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Informed Search Algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heuristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heuristics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#greedy-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Greedy Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A*
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consistency-implies-admissibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistency Implies Admissibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-algorithm-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Algorithm Properties
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Search Algorithm Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brief-explanations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Brief Explanations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adversarial-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adversarial Search
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adversarial Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Games
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimax-expectimax-expectiminimax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimax, Expectimax, Expectiminimax
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Minimax, Expectimax, Expectiminimax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimax-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimax Runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chance-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chance Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bounded-lookahead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bounded Lookahead
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alpha-beta-pruning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alpha-Beta Pruning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alpha-Beta Pruning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="search">Search<a class="headerlink" href="#search" title="Permanent link">&para;</a></h1>
+<h3 id="learning-objectives">Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Understand how to formulate and define problems as search problems.</p>
+</li>
+<li>
+<p>Describe and implement various search algorithms.</p>
+</li>
+<li>
+<p>Understand how search algorithms run on a given problem.</p>
+</li>
+<li>
+<p>Analyze the time and space complexity of a variety of search algorithms.</p>
+</li>
+<li>
+<p>Give example search applications where one search algorithm would outperform others, e.g. a situation where DFS would outperform BFS.</p>
+</li>
+<li>
+<p>Verify or create admissible/consistent heuristics for a given search problem</p>
+</li>
+<li>
+<p>Describe the trade-offs between computationally cheap, inaccurate heuristics and computationally expensive heuristics</p>
+</li>
+<li>
+<p>Understand both the algorithmic differences and the distinct use cases for tree search vs graph search.</p>
+</li>
+<li>
+<p>Define a game, zero-sum game, standard form, and a game search tree</p>
+</li>
+<li>
+<p>Trace and implement Minimax, Expectimax, and Expectiminimax given a start state, player list, and actions.</p>
+</li>
+<li>
+<p>Describe the bounded lookahead algorithm</p>
+</li>
+<li>
+<p>Define and create evaluation functions</p>
+</li>
+<li>
+<p>Analyze a minimax tree using alpha-beta pruning to determine pruned nodes</p>
+</li>
+<li>
+<p>Discuss the ethical implications of a given real-world application involving search algorithms.</p>
+</li>
+</ol>
+<h3 id="search-agents">Search Agents<a class="headerlink" href="#search-agents" title="Permanent link">&para;</a></h3>
+<p>An <strong>agent</strong> is an entity that perceives and acts.</p>
+<p>For example, Pacman is an agent that perceives where the ghosts and food are and decides which direction to go in based on that information.</p>
+<p>We consider an agent to be <strong>rational</strong> if the agent <strong>maximizes its expected utility</strong>.  </p>
+<p>Rationality depends on:</p>
+<ul>
+<li>
+<p>Performance measure</p>
+</li>
+<li>
+<p>The prior knowledge that the agent has</p>
+</li>
+<li>
+<p>The actions available to the agent</p>
+</li>
+<li>
+<p>What the agent has already perceived and done</p>
+</li>
+</ul>
+<p>Another type of agent is a <strong>Reflex agent</strong>:</p>
+<ul>
+<li>
+<p>Chooses actions based on current percept</p>
+</li>
+<li>
+<p>May have intuition about the world's current state</p>
+</li>
+<li>
+<p>Does not consider the future consequences of their actions</p>
+</li>
+</ul>
+<p>A final type of agent to consider is a <strong>Planning agent</strong>, which considers how the world would be based on a transitional model and a goal in mind.</p>
+<h3 id="search-problem">Search Problem<a class="headerlink" href="#search-problem" title="Permanent link">&para;</a></h3>
+<p>A <strong>search problem</strong> is defined by</p>
+<ul>
+<li>
+<p>State Space</p>
+</li>
+<li>
+<p>For each state <strong>s</strong>, a set of allowable actions: <strong>Actions(s)</strong></p>
+</li>
+<li>
+<p>Transition Model: <strong>Result(s,a)</strong></p>
+</li>
+<li>
+<p>Step Cost Function: <strong>c(s,a,s')</strong></p>
+</li>
+<li>
+<p>Start State</p>
+</li>
+<li>
+<p>Goal Test</p>
+</li>
+</ul>
+<p>A <strong>solution</strong> to a search problem is defined by the sequence of actions from the start to goal state.  </p>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>State Space  </p>
+<p><img alt="image" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/pacman4states.png" /></p>
+</li>
+<li>
+<p>For each state <strong>s</strong>, a set of allowable actions: <strong>Actions(s)</strong>  </p>
+<p>Suppose the agent can <em>rotate</em> 180 degrees clockwise or <em>move forward</em> in the agent's current direction.</p>
+<p>Actions(A) = {Rotate, Move Forward}<br />
+Actions(B) = {Rotate}<br />
+Actions(C) = {Rotate}<br />
+Actions(D) = {Rotate, Move Forward}</p>
+</li>
+<li>
+<p>Transition Model: <strong>Result(s,a)</strong></p>
+<p>Result(A, Rotate) = B<br />
+Result(A, Move Forward) = C<br />
+Result(B, Rotate) = A<br />
+Result(C, Rotate) = D<br />
+Result(D, Rotate) = C<br />
+Result(D, Move Forward) = B  </p>
+</li>
+<li>
+<p>Step Cost Function: <strong>c(s,a,s')</strong></p>
+<p>c(s, Rotate, s') = 1<br />
+c(s, Move Forward, s') = 2</p>
+</li>
+<li>
+<p>Start State: A</p>
+</li>
+<li>
+<p>Goal Test: Is the current state the same as state C?</p>
+</li>
+</ul>
+<h3 id="search-algorithms">Search Algorithms<a class="headerlink" href="#search-algorithms" title="Permanent link">&para;</a></h3>
+<p>A <strong>state space graph</strong> is a mathematical representation of a search problem.</p>
+<ul>
+<li>
+<p>Nodes are (abstracted) world configurations</p>
+</li>
+<li>
+<p>Arcs represent transitions resulting from actions</p>
+</li>
+<li>
+<p>The goal test is a set of goal nodes</p>
+</li>
+<li>
+<p>Each state occurs only once</p>
+</li>
+</ul>
+<p>For example, consider the example given for defining a search problem. The corresponding <strong>state space graph</strong> is below.</p>
+<p><img alt="" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/stategraph.png" /></p>
+<p>We can rarely build this full graph in memory, but it is a useful idea.  </p>
+<p><strong>Motivation</strong>: We can use a <strong>search algorithms</strong> to find a solution to a search problem. In particular, we can find a path (i.e. sequence of actions) from the start state to the goal state in the state space graph.  </p>
+<p>Search algorithms can be <strong>uninformed search methods</strong> or <strong>informed search methods</strong>.</p>
+<h4 id="tree-vs-graph-search">Tree vs Graph Search<a class="headerlink" href="#tree-vs-graph-search" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>def tree_search(problem):    
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    initialize frontier as specific work list # (stack, queue, priority queue)  
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    add initial state of problem to frontier  
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    while frontier not empty:  
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        choose a node and remove it from frontier  
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        if node contains goal state:  
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>            return the corresponding solution  
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        for each resulting child from node:  
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            add child to frontier  
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    return failure  
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>def graph_search(problem):    
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    initialize the explored set to be empty  
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    initialize frontier as specific work list # (stack, queue, priority queue)  
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    add intial state of problem to frontier  
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    while frontier not empty:  
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        choose a node and remove it from frontier  
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        if node contains goal state:  
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>            return the corresponding solution  
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        add node to explored set  
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        for each resulting child from node:  
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>            if child state not in frontier and child state not in explored set:  
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>                add child to the frontier  
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    return failure  
+</code></pre></div>
+<p>Based on the pseudo-code for tree search vs. graph search, we can see that the main differences are:</p>
+<ul>
+<li>
+<p>Graph search includes an additional <strong>explored</strong> set to keep track of nodes we have already visited</p>
+</li>
+<li>
+<p>When adding new nodes to the frontier, <strong>graph search</strong> will additionally check that the node has not been previously visited (node is not already in the explored set)</p>
+<p><img alt="" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/frontiervendiagram.png" /></p>
+<p>Note that the explored set, the frontier, and never seen have no overlaps (no node is added to a frontier if it has been explored, and once a node is popped off of the frontier, it is added to the explored set)</p>
+</li>
+<li>
+<p>Graph search detects cycles (able to check if a node has already been visited)</p>
+</li>
+<li>
+<p>Tree search cannot detect cycles (no way of knowing if a node has already been visited)</p>
+</li>
+</ul>
+<h4 id="uninformed-search-algorithms">Uninformed Search Algorithms<a class="headerlink" href="#uninformed-search-algorithms" title="Permanent link">&para;</a></h4>
+<p><strong>Uninformed search methods</strong> have no additional information about the cost from the current node to the goal node.</p>
+<p><img alt="" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/UCScirclesearch.png" /></p>
+<p>Examples of uninformed search methods include:</p>
+<ul>
+<li>
+<p>Breadth First Search</p>
+</li>
+<li>
+<p>Depth First Search</p>
+</li>
+<li>
+<p>Uniform Cost Search</p>
+</li>
+<li>
+<p>Iterative Deepening</p>
+</li>
+</ul>
+<p><strong>Breadth First Search</strong></p>
+<ul>
+<li>
+<p>Strategy: expand a shallowest node first</p>
+</li>
+<li>
+<p>Frontier Data Structure: FIFO Queue</p>
+</li>
+</ul>
+<p><strong>Depth First Search</strong></p>
+<ul>
+<li>
+<p>Strategy: expand a deepest node first</p>
+</li>
+<li>
+<p>Frontier Data Structure: LIFO Stack</p>
+</li>
+</ul>
+<p><strong>Iterative Deepening</strong></p>
+<ul>
+<li>
+<p>Strategy: repeatedly expand a deepest node first (up to a fixed depth)</p>
+</li>
+<li>
+<p>Frontier Data Structure: LIFO Stack</p>
+</li>
+<li>
+<p>combines space efficiency of DFS with completeness of BFS</p>
+</li>
+</ul>
+<p>Note: Breadth first search is complete (meaning it will find a path from the start node to the goal node if it exists). In a graph with equal edge weights, breadth first search can be used to find the shortest path from the start node to the goal node. However, depth first search stores less information in the frontier and is therefore more space efficient.</p>
+<h5 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h5>
+<p>To see these characteristics in action, consider the following graph:</p>
+<p><img alt="" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/smallBFSgraph.png" /></p>
+<p>Suppose we run BFS and DFS to find a path from node S to node G (using graph search and breaking ties alphabetically).  </p>
+<p><strong>BFS</strong></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~, ~~S-A~~, ~~S-B~~, ~~S-A-C~~, ~~S-B-D~~, S-B-D-G</p>
+</li>
+<li>
+<p>Explored Set: S, A, B, C, D</p>
+</li>
+<li>
+<p>Path: S-B-D-G</p>
+</li>
+</ul>
+<p><strong>DFS</strong></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~, ~~S-A~~, S-B, ~~S-A-C~~, ~~S-A-C-D~~, S-A-C-D-G</p>
+</li>
+<li>
+<p>Explored Set: S, A, C, D</p>
+</li>
+<li>
+<p>Path: S-A-C-D-G</p>
+</li>
+</ul>
+<p><strong>IDS</strong>  </p>
+<p><em>Limit = 0</em></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~</p>
+</li>
+<li>
+<p>Explored Set: S</p>
+</li>
+</ul>
+<p><em>Limit = 1</em></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~, ~~S-A~~, ~~S-B~~</p>
+</li>
+<li>
+<p>Explored Set: S, A, B</p>
+</li>
+</ul>
+<p><em>Limit = 2</em></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~, ~~S-A~~, ~~S-B~~, ~~S-A-C~~, ~~S-B-D~~</p>
+</li>
+<li>
+<p>Explored Set: S, A, C, B, D</p>
+</li>
+</ul>
+<p><em>Limit = 3</em></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~, ~~S-A~~, ~~S-B~~, ~~S-A-C~~, ~~S-A-C-D~~</p>
+</li>
+<li>
+<p>Explored Set: S, A, C, D, B</p>
+</li>
+</ul>
+<p><em>Limit = 4</em></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~, ~~S-A~~, S-B, ~~S-A-C~~, ~~S-A-C-D~~, S-A-C-D-G</p>
+</li>
+<li>
+<p>Explored Set: S, A, C, D</p>
+</li>
+<li>
+<p>Path: S-A-C-D-G</p>
+</li>
+<li>
+<p>Path Cost: 10</p>
+</li>
+</ul>
+<p>Notice that BFS returns a shorter path, while DFS has fewer nodes on the frontier. Though DFS found a path to the goal, this is not always the case. We can combine the space-efficiency of DFS with the completeness of BFS. This is the motivation behind iterative deepening.</p>
+<p><strong>Uniform Cost Search</strong></p>
+<ul>
+<li>
+<p>Strategy: expand a cheapest node first</p>
+</li>
+<li>
+<p>Frontier Data Structure: Priority Queue (priority given by cumulative cost)</p>
+</li>
+</ul>
+<p>Note: If we want to find the cheapest path from the start node to the goal node, search algorithms such as BFS and DFS are not guaranteed to give us the right answer. This is where uniform cost search comes in.</p>
+<h5 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h5>
+<p>Consider the graph from earlier (now with different edge weights):</p>
+<p><img alt="" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/smallUCSgraph.png" /></p>
+<p><strong>BFS</strong></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~, ~~S-A~~, ~~S-B~~, ~~S-A-C~~, ~~S-B-D~~, S-B-D-G</p>
+</li>
+<li>
+<p>Explored Set: S, A, B, C, D</p>
+</li>
+<li>
+<p>Path: S-B-D-G</p>
+</li>
+<li>
+<p>Path cost: 8</p>
+</li>
+</ul>
+<p><strong>DFS</strong></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~, ~~S-A~~, S-B ~~S-A-C~~, ~~S-A-C-D~~, S-A-C-D-G</p>
+</li>
+<li>
+<p>Explored Set: S, A, C, D</p>
+</li>
+<li>
+<p>Path: S-A-C-D-G</p>
+</li>
+<li>
+<p>Path Cost: 10</p>
+</li>
+</ul>
+<p><strong>IDS</strong>  </p>
+<p><em>Max Depth = 0</em></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~</p>
+</li>
+<li>
+<p>Explored Set: S</p>
+</li>
+</ul>
+<p><em>Max Depth = 1</em></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~, ~~S-A~~, ~~S-B~~</p>
+</li>
+<li>
+<p>Explored Set: S, A, B</p>
+</li>
+</ul>
+<p><em>Max Depth = 2</em></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~, ~~S-A~~, ~~S-B~~, ~~S-A-C~~, ~~S-B-D~~</p>
+</li>
+<li>
+<p>Explored Set: S, A, C, B, D</p>
+</li>
+</ul>
+<p><em>Max Depth = 3</em></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~, ~~S-A~~, ~~S-B~~, ~~S-A-C~~, ~~S-A-C-D~~</p>
+</li>
+<li>
+<p>Explored Set: S, A, C, D, B</p>
+</li>
+</ul>
+<p><em>Max Depth = 4</em></p>
+<ul>
+<li>
+<p>Frontier: ~~S~~, ~~S-A~~, S-B, ~~S-A-C~~, ~~S-A-C-D~~, S-A-C-D-G</p>
+</li>
+<li>
+<p>Explored Set: S, A, C, D</p>
+</li>
+<li>
+<p>Path: S-A-C-D-G</p>
+</li>
+<li>
+<p>Path Cost: 10</p>
+</li>
+</ul>
+<p><strong>UCS</strong></p>
+<ul>
+<li>
+<p>Frontier: ~~(S, 0)~~, ~~(S-A, 1)~~, ~~(S-B, 4)~~, ~~(S-A-C, 3)~~, ~~<strong>(S-A-C-D, 7)</strong>~~, ~~(S-B-D, 5)~~, (S-B-D-G, 8)</p>
+<p><em>Note:</em> Bolded strike through means node was replaced on the frontier. Specifically, ~~<strong>(S-A-C-D, 7)</strong>~~ was replaced by ~~(S-B-D, 5)~~</p>
+</li>
+<li>
+<p>Explored Set: S, A, C, B, D</p>
+</li>
+<li>
+<p>Path: S-B-D-G</p>
+</li>
+<li>
+<p>Path Cost: 8</p>
+</li>
+</ul>
+<p><strong>Note:</strong> It would be a good idea to go through these search algorithms on your own to see how the frontier, order of the explored set, and path were determined</p>
+<h4 id="informed-search-algorithms">Informed Search Algorithms<a class="headerlink" href="#informed-search-algorithms" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/informedsearchoval.png" /></p>
+<h5 id="heuristics">Heuristics<a class="headerlink" href="#heuristics" title="Permanent link">&para;</a></h5>
+<p>When it comes to informed search, we use something called a <strong>heuristic</strong> that will estimate how close we are to a goal. The actual function being used to estimate will be designed for the particular search problem.  </p>
+<p>For each heuristic, we care about two things:</p>
+<ul>
+<li>
+<p><strong>Admissibility:</strong> 0≤h(n)≤h∗(n), where h∗(n) is the true smallest path cost to the nearest goal</p>
+</li>
+<li>
+<p><strong>Consistency:</strong> Estimated heuristic costs ≤ actual costs; If we have a path from A → C then h(A)−h(C)≤cost(A→C)</p>
+</li>
+</ul>
+<p>Special heuristics:</p>
+<ul>
+<li>
+<p><strong>Zero</strong> heuristic: h=0 for all nodes</p>
+</li>
+<li>
+<p><strong>Exact</strong> heuristic: great, but too expensive to compute, or hard to define!</p>
+</li>
+</ul>
+<p><strong>Dominant</strong> heuristic: ha dominates hc, i.e., ha≥hc if ∀n, ha(n)≥hc(n)</p>
+<h5 id="greedy-search">Greedy Search<a class="headerlink" href="#greedy-search" title="Permanent link">&para;</a></h5>
+<p>Strategy: expand the node that seems closest to the goal state according to the heuristic h.  </p>
+<p>Since this is a <strong>greedy</strong> search, there are a couple of problems with this algorithm:</p>
+<ul>
+<li>
+<p>It will choose a node even if it is at the end of a very long path because the heuristic will see the node as close to the goal</p>
+</li>
+<li>
+<p>It relies on the heuristic even if the heuristic is wrong</p>
+</li>
+</ul>
+<h5 id="a">A*<a class="headerlink" href="#a" title="Permanent link">&para;</a></h5>
+<p>In order to get the benefits of informed search while getting some of the nice properties of uninformed search, we introduce <strong>A∗ search</strong>.  </p>
+<p><img alt="" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/astaranimalcombined.png" /></p>
+<p><strong>Uniform-cost</strong> orders by path cost, or backward cost: <strong>g(n)</strong><br />
+<strong>Greedy</strong> orders by goal proximity, or forward cost: <strong>h(n)</strong><br />
+Combining these two, <strong>A∗ Search</strong> orders by the sum of the two: <strong>f(n) = g(n) + h(n)</strong></p>
+<p><img alt="" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/fexplanation.png" /></p>
+<h4 id="consistency-implies-admissibility">Consistency Implies Admissibility<a class="headerlink" href="#consistency-implies-admissibility" title="Permanent link">&para;</a></h4>
+<p>A heuristic is admissible if it never overestimates the true cost to a nearest goal.  </p>
+<p>A heuristic is consistent if, when going from neighboring nodes a to b, the heuristic difference/step cost never overestimates the actual step cost.  </p>
+<p>Let h(n) be the heuristic value at node n and c(n,n+1) be the cost from node n to n+1. We assume that h(g)=0. Informally, we want to backtrack from the goal node, showing that if we start with an admissible node (which h(g)=0 is), its parent nodes will be admissible through the rule of consistency, and this pattern continues.  </p>
+<p>Consider some node n and assume the heuristic value at n is admissible. We want to show that any of its parent nodes, say n−1, will also be admissible by the definition of consistency.  </p>
+<p>By consistency, we get that:h(n−1)−h(n)≤c(n−1,n)=h(n−1)≤c(n−1,n)+h(n)c(n−1,n) is the actual path cost from n−1 to n. Since we know h(n) is admissible, we know that h(n) has to be less than or equal to the path cost from n to goal node g.  </p>
+<p>Thus, h(n−1)≤ the path cost from (n−1 to n) <strong>+</strong> h(n).  </p>
+<p>Since h(n) is less than or equal to path cost from (n to g), h(n−1)≤ path cost from (n−1 to g).  </p>
+<p>This by definition is admissible.</p>
+<h3 id="search-algorithm-properties">Search Algorithm Properties<a class="headerlink" href="#search-algorithm-properties" title="Permanent link">&para;</a></h3>
+<p>The following properties are assuming that we are searching a state space graph with a FINITE number of states. For this course, you should assume that this is the case, unless stated otherwise.
+![[Screenshot 2026-03-09 at 10.05.21 PM.png]]</p>
+<p>where</p>
+<ul>
+<li>“depth" / “depth level" of a node = # of edges between the node and the start node</li>
+<li>b = branching factor, the max number of neighbors each node has.</li>
+<li>s = the depth level of the shallowest goal node.</li>
+<li>m = the maximum depth level in the graph.</li>
+<li>C∗ = cost of optimal solution.</li>
+<li>ϵ = minimum cost of an edge in the graph.</li>
+</ul>
+<h5 id="brief-explanations">Brief Explanations<a class="headerlink" href="#brief-explanations" title="Permanent link">&para;</a></h5>
+<p>A search algorithm is <strong>complete</strong> if it finds a path from the start to the goal if one exists.</p>
+<p>A search algorithm is <strong>optimal</strong> if it finds the shortest cost path from the start to the goal.</p>
+<p>In some of these explanations we’ll use the term search tree, which is a tree structure illustrating the nodes visited by an algorithm as it searches through the graph.</p>
+<p>Note: Other classes you’ve studied these algorithms in may have specified their complexities in terms of the number of vertices/edges in the graph. In AI, we’re more concerned with quantities like b and m because it gives a more search agent-centric perspective (e.g., focusing more on the number of actions one can take at a given point).</p>
+<p>Note: We’ve provided these explanations just to help establish an intuitive understanding behind the table above. These are in no way a formal proof, but feel free to follow up if you’re interested in something like that.</p>
+<p><strong>BFS</strong>  </p>
+<p><strong>Time:</strong> BFS will only search up to the depth level of the solution. At worst it'll expand all O(bs) such nodes bounded by that depth level:</p>
+<p><img alt="" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/BFSsearchtime.png" /></p>
+<p><strong>Space:</strong> BFS must keep track of all expanded paths it's considering, which also gets up to bs in size.  </p>
+<p><strong>Completeness:</strong> BFS will always terminate because it's guaranteed to find the shallowest goal node, at which point it stops searching.  </p>
+<p><strong>Optimality:</strong> BFS finds the path to the shallowest goal node. If all edges have the same cost, then this path is also the cheapest cost path (and thus the solution found is optimal).  </p>
+<p>One way to think about BFS is using a priority queue where the priority is the number of edges in the path. You would pull off the path with the smallest number of edges first, so if there are ties, the ties would be broken between paths with the same number of edges. This is NOT an entirely accurate representation of BFS, however, because a priority queue allows you to replace a path already in the queue if you find one with a better priority, which is not representative of the BFS algorithm we use in class, so please use the algorithm presented in class, <strong>not</strong> a priority queue when running BFS.</p>
+<p><strong>DFS</strong>  </p>
+<p><strong>Time:</strong> In the worst case, DFS may search all other potential paths in the search tree before finding the solution. The size of this tree is O(bm).</p>
+<p><img alt="" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/DFStierpart1.png" /></p>
+<p><strong>Space:</strong> Unlike BFS, DFS only keeps the "current" path it's considering on the frontier at a given time. Each level it traverses down the search tree, DFS expands (and adds to the frontier) up to b nodes, making the space complexity O(bm).</p>
+<p><img alt="" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/DFStierpart2.png" /></p>
+<p><strong>Completeness:</strong> Without keeping track of explored nodes, DFS can get stuck in an infinite loop visiting the same nodes again and again. Thus it only terminates when using graph search.  </p>
+<p><strong>Optimality:</strong> DFS is not optimal. Try to think of a simple example where this is the case.  </p>
+<p>Similarly to BFS, you could also think of DFS as using a priority queue where the priority is the number of edges in the path, but instead you would pull off the path with the highest number of edges first. Once again, this allows for tie breaking between paths with the same number of edges, but it also has the flaw in that it allows for replacements of paths in the priority queue. Just like BFS, this is NOT an accurate representation of DFS because of this, and it is not representative of the DFS algorithm we use in class, so please use the algorithm presented in class, <strong>not</strong> a priority queue when running DFS.</p>
+<p><strong>UCS</strong>  </p>
+<p><strong>Time:</strong> Since UCS follows path costs rather than depth levels, we bound the depth of the optimal solution by s≤⌊C∗/ϵ⌋ (as this is the total cost / minimum cost of one edge). Thus it must visit O(b⌊C∗/ϵ⌋) nodes.  </p>
+<p><strong>Space:</strong> Similar to BFS, UCS' space complexity is equal to its time complexity because it must keep track of all paths along the current cost contour as it visits nodes.</p>
+<p><img alt="" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/UCStiers.png" /></p>
+<p><strong>Completeness:</strong> UCS will get stuck in an infinite loop if there is a loop of zero-cost edges, so all edge costs must be &gt;0.  </p>
+<p><strong>Optimality:</strong> Note that UCS assumes no edges have negative cost - otherwise, it's possible that UCS would exclude an optimal path which has a high positive cost in its earlier edges (but a negative cost later on).  </p>
+<p>So assuming all edges are non-negative, because nodes are expanded in increasing cost order, when the algorithm gets to a goal node, it must be the lowest cost goal (i.e., must have reached it via the optimal path).</p>
+<p><strong>Iterative Deepening</strong>  </p>
+<p><strong>Time:</strong> IDS has the same time complexity as BFS, since we are now bounded by the solution's depth level s (we'll never go deeper than s).  </p>
+<p><strong>Space:</strong> IDS has the same space complexity as DFS, as we're literally running DFS as a subprocess.  </p>
+<p><strong>Completeness:</strong> Since we’re bounded by depth, IDS doesn't fall into the same stuck-in-a-loop trap that DFS does, and will always terminate.  </p>
+<p><strong>Optimality:</strong> IDS also finds the shallowest goal if using tree search (not necessarily graph search - the example used previously serves as a counterexample to this), which is the optimal goal if all edge costs are equal.</p>
+<p>Note: While a ton of repeat work is done/space is used in IDS for the lower “failed" depth levels, we can simply consider the work done (space used) at the solution’s depth level (thanks big-O!), because this is where the bulk of the work (space) is, and # of nodes increases exponentially as we go down the search tree.</p>
+<p><strong>The time and space complexities of heuristic-based searches depend heavily on the heuristic chosen (surprise, surprise). The listed bounds are worst case scenarios.</strong></p>
+<p><strong>Greedy</strong>  </p>
+<p><strong>Time:</strong> In the worst case, greedy may visit all nodes in the graph before finding a goal. Thus the time complexity is O(bm).  </p>
+<p><strong>Space:</strong> In the worst case, greedy search could keep all paths of the nodes visited on the frontier - thus the space complexity is also O(bm).  </p>
+<p><strong>Completeness:</strong> With certain heuristic values, greedy search could get stuck in a loop of expanding the same nodes - try making an example!</p>
+<p><strong>Optimality:</strong> Without the right heuristic values, greedy search is not guaranteed to find the optimal solution.</p>
+<p><strong>A</strong>*  </p>
+<p><strong>Time:</strong> Recalling the idea of cost contours from UCS, A<em> instead visits nodes along f-contours. In the worst</em> case, suppose we have a constant heuristic (h estimates that all nodes are equally far away from the goal). Then A<em> functions like UCS, expanding all nodes shallower or at the same depth level of the solution: O(b⌊C∗/ϵ⌋).<br />
+_</em>One could construct a misleading/adversarial heuristic which actually forces A* to expand all nodes before finding the goal. We’re not really interested in such cases in this class, so we’ll ignore such analyses here._  </p>
+<p><strong>Space:</strong> In the case of constant heuristic, A* must keep all nodes and paths up until the solution’s contour in the frontier at once. Thus the space complexity is also O(b⌊C∗/ϵ⌋).  </p>
+<p><strong>Completeness:</strong> A<em>, no matter the heuristic or tree/graph search, will always find a solution as long as all edge costs are positive (otherwise it would get stuck in a loop of constant or ever-decreasing f values) and terminate. A</em> will also always find a solution if using graph search, as it will eventually add every reachable node (once!) to the explored set.  </p>
+<p><strong>Optimality:</strong> A<em> with tree search + an admissible heuristic leads to an optimal solution by mechanics of A</em> - no other node has a f(n)=g(n)+h(n) value lower than the one being currently expanded. Since h is admissible, the first path to the goal found must be the cheapest of all possible paths.<br />
+With graph search, however, since we have the potential for cycles (and the explored set to account for that), we need the additional constraint that no "heuristic-estimated step cost" (difference in heuristic value between two nodes) overestimates the actual cost of that edge. If this is not satisfied, we could potentially expand some path A → C when A → B → C would’ve been cheaper, and we wouldn’t be able to revisit C and find this cheaper path after exploring C - thereby returning a suboptimal solution.<br />
+(Consider the following example with heuristic values h(A)=7,h(B)=6,h(C)=2,h(G)=0. Let A be our start state, and G the goal. Note that consistency is broken between B and C, because cost(B to C) &lt;h(B)−h(C).).</p>
+<p><img alt="image" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/smallerUCSimage.png" /></p>
+<p>If the heuristic were <em>consistent</em>, however, such a case would not happen, and the algorithm is guaranteed to be optimal.</p>
+<h3 id="adversarial-search">Adversarial Search<a class="headerlink" href="#adversarial-search" title="Permanent link">&para;</a></h3>
+<h4 id="games">Games<a class="headerlink" href="#games" title="Permanent link">&para;</a></h4>
+<p>There are many different kinds of games. In this course, we will be covering "standard" games, which are deterministic, observable, two-player, turn-taking, and zero-sum.  </p>
+<p>Two types of games are:</p>
+<ul>
+<li>
+<p><strong>General games</strong>: agents have independent utilities.</p>
+</li>
+<li>
+<p><strong>Zero-sum games</strong>: agents have opposite utilities. A gain in utility for one player will result in a decrease in utility for others.</p>
+</li>
+</ul>
+<p>Our goal is to define a strategy/policy that recommends a move for every possible eventuality.</p>
+<h4 id="minimax-expectimax-expectiminimax">Minimax, Expectimax, Expectiminimax<a class="headerlink" href="#minimax-expectimax-expectiminimax" title="Permanent link">&para;</a></h4>
+<p>Minimax is typically used for two-player, zero-sum game in which one player is trying to maximize their utility and the other player is trying to minimize their utility.<br />
+The value and action for a maximizing node are:</p>
+<ul>
+<li>V(s)=maxaV(s′)</li>
+<li>â = argmaxaV(s′)</li>
+</ul>
+<p>The value and action for a minimizing node are:</p>
+<ul>
+<li>V(s)=minaV(s′)</li>
+<li>â = argminaV(s′)</li>
+</ul>
+<p>Where s′ = result(s, a), i.e., the resulting state when an agent takes action a from state s.  </p>
+<p>In the case that the game is not two-player or zero-sum, minimax can be generalized. In this scenario, each node will have a tuple of utility values, representing the utility for each player. Each player will maximize their own component.</p>
+<h5 id="minimax-runtime">Minimax Runtime<a class="headerlink" href="#minimax-runtime" title="Permanent link">&para;</a></h5>
+<p>We can think of minimax as an exhaustive DFS. Thus, the space and time complexities are as follows:</p>
+<ul>
+<li>
+<p>Time: O(bm)</p>
+</li>
+<li>
+<p>Space: O(bm)</p>
+</li>
+</ul>
+<h5 id="chance-node">Chance Node<a class="headerlink" href="#chance-node" title="Permanent link">&para;</a></h5>
+<p>Chance nodes are nodes that return the expected value over all possible resulting states. For example, an expectimax game consists of chance nodes and maximizing nodes. The maximizing nodes will choose an action with the highest expected value.  </p>
+<p>The expected value of a node is the average of the values of the different outcomes weighted by the probability of that outcome. The value of a chance is thus given by V(s)=∑s′P(s′)V(s′).</p>
+<h4 id="bounded-lookahead">Bounded Lookahead<a class="headerlink" href="#bounded-lookahead" title="Permanent link">&para;</a></h4>
+<p>In reality, it is often infeasible or inefficient to search to all the leaves. Thus, one solution would be to search only to a <strong>preset depth limit</strong> or <strong>horizon</strong>. We would use an evaluation function to determine a return value for non-terminal positions instead.</p>
+<p><strong>Evaluation functions</strong> score non-terminal nodes in depth-limited search. Ideally, we want a function that will return the actual minimax value of the position.  </p>
+<p>In practice, these functions are often a weighted linear sum of features, ie. EVAL(s) = w1f1(s)+w2f2(s)+...+wnfn(s).</p>
+<h4 id="alpha-beta-pruning">Alpha-Beta Pruning<a class="headerlink" href="#alpha-beta-pruning" title="Permanent link">&para;</a></h4>
+<p>Alpha beta pruning is an algorithm that aims to decrease the number of nodes minimax needs to evaluate.  </p>
+<p>For each node, we keep track of two values:</p>
+<ul>
+<li>
+<p>α: the best option so far for any MAX node on this path</p>
+</li>
+<li>
+<p>β: the best option so far for any MIN node on this path</p>
+</li>
+</ul>
+<p>The algorithm at a maximizing node looks as follows:</p>
+<p><img alt="image" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/alphabetamax.png" /></p>
+<p>The algorithm at a minimizing node looks as follows:</p>
+<p><img alt="image" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/alphabetamin.png" /></p>
+<p><strong>Important:</strong> Alpha beta pruning has no effect on the minimax value computed for the root. The ordering of child branches improves the efficiency of pruning. With "perfect" ordering, the time complexity becomes O(bm/2).</p>
+<p>The following is a table to summarize αβ pruning.  </p>
+<p>x≤αα&lt;x&lt;βx≥βMaxieIgnoreUpdate αPruneMinniePruneUpdate βIgnore </p>
+<h5 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h5>
+<p><img alt="image" src="https://www.cs.cmu.edu/~15281/coursenotes/search/images/alphabetatree.png" /></p>
+<ol>
+<li>
+<p>Initialize v=−∞, (α,β)=(−∞,∞) for node x because it is maximizing</p>
+</li>
+<li>
+<p>Initialize v=∞, (α,β)=(−∞,∞) for node y because it is minimizing</p>
+</li>
+<li>
+<p>Traverse down branch b and return 15 to y. Update v=15, β=15 for y. The updated αβ values for y are (−∞,15)</p>
+</li>
+<li>
+<p>Traverse down branch c and return 8 to y. Update v=8, β=min(15,8)=8 for y. The updated αβ values for y are (−∞,8)</p>
+</li>
+<li>
+<p>Node y returns v=8 to node x. Update v=8, α=8 for x. The updated αβ values for x are (8,∞)</p>
+</li>
+<li>
+<p>Traverse down branch d and initialize v=∞, (α,β)=(8,∞) for node z. (Note: the αβ values are passed down from x)</p>
+</li>
+<li>
+<p>Traverse down branch e and return 2 to z. We see that this value is outside of the αβ range (ie. 2≤α). Thus, we prune the rest of node z's child branches.</p>
+</li>
+<li>
+<p>Node z returns 2 to x. x's value remains 8 and x returns 8.</p>
+</li>
+</ol>
+<p>Let us think about what just occurred intuitively. When node x visited its left branches, a value of 8 was returned. Then it traverses down d-e and sees the value 2. x knows that it can guarantee at least a value of 8 by going down the left branch. However, x also reasons that it can only get a value of at most two by going down the right branch.</p>
+<ul>
+<li>
+<p>If the unvisited branch (f) has a value &gt;2, then z will return 2 since z is trying to minimize</p>
+</li>
+<li>
+<p>If the unvisited branch has a value ≤2, then z will return that value.</p>
+</li>
+</ul>
+<p>Therefore, x knows that it will get a better deal by traversing down branch a and does not care about the value down branch d-f. This allows us to prune branch f.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ilong4rennes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

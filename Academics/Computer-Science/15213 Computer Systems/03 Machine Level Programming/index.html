@@ -1,0 +1,1023 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Personal notes on CS, tech, and life.">
+      
+      
+        <meta name="author" content="Yichen Lu">
+      
+      
+        <link rel="canonical" href="https://ilong4rennes.github.io/tech-notes/Academics/Computer-Science/15213%20Computer%20Systems/03%20Machine%20Level%20Programming/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>3.1 A Historical Perspective - Amanda's Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#31-a-historical-perspective" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-header__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Amanda's Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3.1 A Historical Perspective
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Academics
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Technology/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Technology
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Projects/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Projects
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Life/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Life
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Amanda&#39;s Notes" class="md-nav__button md-logo" aria-label="Amanda's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Amanda's Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ilong4rennes/tech-notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ilong4rennes/tech-notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Academics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Technology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Life/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Life
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="31-a-historical-perspective">3.1 A Historical Perspective<a class="headerlink" href="#31-a-historical-perspective" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Computers execute machine code (sequences of bytes encoding low-level operations)</li>
+<li>
+<p>A compiler generates machine code through a series of stages</p>
+<ul>
+<li>The <code>gcc</code> C compiler generates its output in the form of assembly code (a textual representation of the machine code giving the individual instructions in the program)</li>
+</ul>
+</li>
+<li>
+<p>Moore's Law: the number of transistors on a microchip doubles about every 26 months</p>
+</li>
+</ul>
+<h1 id="32-program-encodings">3.2 Program Encodings<a class="headerlink" href="#32-program-encodings" title="Permanent link">&para;</a></h1>
+<h2 id="machine-level-code">Machine-level Code<a class="headerlink" href="#machine-level-code" title="Permanent link">&para;</a></h2>
+<ul>
+<li>To compile code using command line: <code>gcc -O1 -o p p1.c p2.c</code></li>
+</ul>
+<p>Two forms of abstraction important for machine level programming: 
+1. <strong>Instruction set architecture (ISA)</strong>: defines the format and behavior of a machine-level program. Defines the processor state, the format of the instructions, and the effect each of these instructions will have on the state.
+2. <strong>Virtual addresses</strong>: The memory addresses used by a machine-level program, providing a memory model that is a very large byte array.</p>
+<p>Assembly / Machine Code View: ![[Screen Shot 2024-05-19 at 18.29.42.png]]</p>
+<p>Machine code visible processor state:
+1. <strong>Program Counter (PC)</strong>: address in memory of next instruction
+2. <strong>Register file</strong>: heavily used program data
+    1. Integer register file: contains 8 named locations storing 32-bit values
+    2. Floating-point registers: store floating-point data
+3. <strong>Condition codes</strong>: status information about the most recently executed arithmetic or logical instruction. Used for conditional branching</p>
+<p>Memory:
+- the executable machine code for the program
+- some information required by the operating system
+- a run-time stack for managing procedure calls and returns
+- blocks of memory allocated by the user (for example, by using the malloc library function)</p>
+<ul>
+<li>Arrays and structures are represented in machine code as contiguous collections of bytes.</li>
+<li>汇编代码不区分有符号数和无符号数，不区分指针的不同类型，不区分指针和整数。</li>
+<li>一条机器指令只执行一个非常基本的操作。</li>
+</ul>
+<h2 id="code-examples">Code Examples<a class="headerlink" href="#code-examples" title="Permanent link">&para;</a></h2>
+<h3 id="c-code">C Code<a class="headerlink" href="#c-code" title="Permanent link">&para;</a></h3>
+<p><code>code.c</code>: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">accum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kt">int</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">{</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">accum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="c-to-assembly">C to Assembly<a class="headerlink" href="#c-to-assembly" title="Permanent link">&para;</a></h3>
+<p>To see the assembly code generated by the C compiler, we can use the “-S” option on the command line: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>unix&gt; gcc -O1 -S code.c
+</code></pre></div>
+This will cause gcc to run the compiler, generating an assembly file <code>code.s</code>, and go no further. (Normally it would then invoke the assembler to generate an objectcode file.) </p>
+<p><code>code.s</code>: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sum: 
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    pushl %ebp 
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    movl %esp, %ebp 
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    movl 12(%ebp), %eax 
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    addl 8(%ebp), %eax 
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    addl %eax, accum 
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    popl %ebp 
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    ret
+</code></pre></div></p>
+<h3 id="assembly-to-machine-code">Assembly to Machine Code<a class="headerlink" href="#assembly-to-machine-code" title="Permanent link">&para;</a></h3>
+<p>If we use the ‘-c’ command-line option, gcc will both compile and assemble the code: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>unix&gt; gcc -O1 -c code.c 
+</code></pre></div></p>
+<p>This will generate an object-code file <code>code.o</code> that is in binary format and hence cannot be viewed directly. Embedded within the 800 bytes of the file <code>code.o</code> is a 17-byte sequence having hexadecimal representation 
+<code>code.o</code>: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>55 89 e5 8b 45 0c 03 45 08 01 05 00 00 00 00 5d c3 
+</code></pre></div></p>
+<h3 id="machine-code-to-assembly-disassemblers">Machine Code to Assembly - Disassemblers<a class="headerlink" href="#machine-code-to-assembly-disassemblers" title="Permanent link">&para;</a></h3>
+<p>With Linux systems, the program <code>objdump</code> (for “object dump”) can serve this role given the ‘-d’ command-line flag: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>unix&gt; objdump -d code.o
+</code></pre></div></p>
+<h1 id="33-data-formats">3.3 Data Formats<a class="headerlink" href="#33-data-formats" title="Permanent link">&para;</a></h1>
+<p>![[Screen Shot 2024-05-19 at 23.13.56.png]]
+![[Screen Shot 2024-05-21 at 00.26.19.png]]
+Most assembly-code instructions generated by gcc have a single-character suffix denoting the size of the operand.
+Floating point involves an entirely different set of instructions and registers</p>
+<h1 id="34-accessing-information">3.4 Accessing Information<a class="headerlink" href="#34-accessing-information" title="Permanent link">&para;</a></h1>
+<ul>
+<li>An IA32 CPU contains a set of 8 registers storing 32-bit values.  ![[Screen Shot 2024-05-19 at 23.41.18.png]]</li>
+<li>An x86-64 central processing unit (CPU) contains a set of 16 general-purpose registers storing 64-bit values. ![[Screen Shot 2024-05-19 at 23.54.18.png]]</li>
+</ul>
+<h2 id="operand-specifiers">Operand Specifiers<a class="headerlink" href="#operand-specifiers" title="Permanent link">&para;</a></h2>
+<p>Different ways operands can be used in computer instructions:
+1. <strong>Immediate</strong>: The operand is a constant value directly in the instruction. 
+2. <strong>Register</strong>: The operand is a value stored in a specific register.
+3. <strong>Memory</strong>: We access some memory location according to a computed address (effective address). Since we view the memory as a large array of bytes, we use the notation $M_b[Addr]$ to denote a reference to the b-byte value stored in memory starting at address $Addr$. To simplify things, we will generally drop the subscript b.</p>
+<p>![[Screen Shot 2024-05-20 at 00.13.37.png]]</p>
+<p><strong>General form of computing effective address:</strong> $$Imm(r_b, r_i, s)=Imm+R[r_b]+R[r_i]\cdot s$$
+- immediate offset $Imm$
+- base register $r_b$
+- index register $r_i$
+- scale factor $s$</p>
+<h2 id="data-movement-instructions">Data Movement Instructions<a class="headerlink" href="#data-movement-instructions" title="Permanent link">&para;</a></h2>
+<h3 id="mov-class"><code>mov</code> class<a class="headerlink" href="#mov-class" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-05-20 at 15.25.26.png]]
+- x86-64 imposes the restriction that a move instruction cannot have both operands refer to memory locations. 
+- The <code>movabsq</code> instruction can have an arbitrary 64-bit immediate value as its source operand and can only have a register as a destination.</p>
+<h3 id="movz-class-and-movs-class"><code>movz</code> class and <code>movs</code> class<a class="headerlink" href="#movz-class-and-movs-class" title="Permanent link">&para;</a></h3>
+<ul>
+<li>movz 系列和 movs 系列可以把较小的源值复制到较大的目的，目的都是寄存器。</li>
+<li>movz 将目的寄存器剩余字节做零扩展，movs 做符号扩展
+![[Screen Shot 2024-05-20 at 15.36.53.png]]
+![[Screen Shot 2024-05-20 at 15.37.06.png]]</li>
+</ul>
+<h2 id="data-movement-example">Data Movement Example<a class="headerlink" href="#data-movement-example" title="Permanent link">&para;</a></h2>
+<ul>
+<li>A function returns a value by storing it in register <code>%rax</code>, or in one of the low-order portions of this register.</li>
+<li>Pointers are addresses, dereferencing a pointer involves copying that pointer into a register, and then using this register in a memory reference. <ul>
+<li>Dereference a pointer in Assembly: <code>(%rdi)</code></li>
+</ul>
+</li>
+<li>Local variables are often kept in registers rather than stored in memory locations. Register access is much faster than memory access</li>
+</ul>
+<h2 id="pushing-and-popping-stack-data">Pushing and Popping Stack Data<a class="headerlink" href="#pushing-and-popping-stack-data" title="Permanent link">&para;</a></h2>
+<ul>
+<li>stack: last in, first out</li>
+<li>The stack grows downward such that the top element of the stack has the lowest address of all stack elements.</li>
+<li>The stack pointer <code>%rsp</code> holds the address of the top stack element.</li>
+</ul>
+<p>![[Screen Shot 2024-05-20 at 19.05.28.png]]</p>
+<h1 id="35-arithmetic-and-logical-operations">3.5 Arithmetic and Logical Operations<a class="headerlink" href="#35-arithmetic-and-logical-operations" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Most of the operations are given as instruction classes, as they can have different variants with different operand sizes.
+![[Screen Shot 2024-05-20 at 22.44.03.png]]</li>
+</ul>
+<h3 id="load-effective-address">Load Effective Address<a class="headerlink" href="#load-effective-address" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The load effective address instruction <code>leaq</code> is actually a variant of the <code>movq</code> instruction.</li>
+<li>Reads from memory to a register</li>
+<li>Uses<ul>
+<li>Computing addresses without a memory reference<ul>
+<li>translation of <code>p = &amp;x[i];</code></li>
+</ul>
+</li>
+<li>Computing arithmetic expressions of the form $x+k\cdot y$<ul>
+<li>k = 1, 2, 4, 8</li>
+<li>if register <code>%rdx</code> contains value x, then the instruction <code>leaq 7(%rdx,%rdx,4), %rax</code> will set register <code>%rax</code> to <code>5x + 7</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="unary-and-binary-operations">Unary and Binary Operations<a class="headerlink" href="#unary-and-binary-operations" title="Permanent link">&para;</a></h2>
+<p>Unary operations
+- the single operand serving as both source and destination. 
+- This operand can be either a register or a memory location.</p>
+<p>Binary operations
+- the second operand is used as both a source and a destination</p>
+<h2 id="shift-operations">Shift Operations<a class="headerlink" href="#shift-operations" title="Permanent link">&para;</a></h2>
+<p>The different shift instructions can specify the shift amount either as an immediate value or with the single-byte register <code>%cl</code>.</p>
+<h1 id="36-control">3.6 Control<a class="headerlink" href="#36-control" title="Permanent link">&para;</a></h1>
+<h2 id="condition-codes">Condition Codes<a class="headerlink" href="#condition-codes" title="Permanent link">&para;</a></h2>
+<p>In addition to the integer registers, CPU maintains a set of <strong>single-bit condition code registers</strong>, describing <strong>attributes of the most recent arithmetic or logical operation</strong>. 
+- <code>CF</code>: Carry flag. Most recent operation has <strong>carry out bit</strong>. (Overflow for unsigned operations)
+- <code>ZF</code>: Zero flag. Most recent operation yielded <strong>zero</strong>. 
+- <code>SF</code>: Sign flag. Most recent operation yielded a <strong>negative value</strong>.
+- <code>OF</code>: Overflow flag. Most recent operation caused a <strong>two's-complement overflow</strong> - either negative or positive. 
+These flags are set implicitly by operations (Exception: <code>leaq</code> doesn't alter condition codes)</p>
+<p><strong>Comparison and test instructions</strong>
+![[Screen Shot 2024-05-21 at 18.00.50.png]]</p>
+<h2 id="accessing-the-condition-codes">Accessing the Condition Codes<a class="headerlink" href="#accessing-the-condition-codes" title="Permanent link">&para;</a></h2>
+<p>Three common ways of using the condition codes:
+1. set a single byte to 0 or 1 depending on some combination of the condition codes
+2. conditionally jump to some other part of the program
+3. conditionally transfer data</p>
+<p><code>SET</code> instructions - first way
+- A <code>SET</code> instruction has either one of the low-order single-byte register elements or a single-byte memory location as its destination, setting this byte to either 0 or 1. 
+![[Screen Shot 2024-05-21 at 18.11.27.png]]</p>
+<h2 id="jump-instructions">Jump Instructions<a class="headerlink" href="#jump-instructions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>A jump instruction can cause the execution to switch to a completely new position in the program. These jump destinations are generally indicated in assembly code by a label.
+![[Screen Shot 2024-05-21 at 18.52.17.png]]</li>
+</ul>
+<h2 id="implementing-conditional-branches-with-conditional-control">Implementing Conditional Branches with Conditional Control<a class="headerlink" href="#implementing-conditional-branches-with-conditional-control" title="Permanent link">&para;</a></h2>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>addq    $1, ge_cnt(%rip)
+</code></pre></div>
+- <strong><code>ge_cnt(%rip)</code></strong>: This specifies the memory location of the variable <code>ge_cnt</code> relative to the Instruction Pointer (RIP). This mode of addressing is known as RIP-relative addressing, commonly used in x86-64 assembly to access global variables or static data.</p>
+<h3 id="conditional-control">Conditional Control<a class="headerlink" href="#conditional-control" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>How it works</strong>: Uses jump instructions to skip parts of code based on a condition.</li>
+<li><strong>Example</strong>: <code>if</code> statements that use <code>goto</code> or jump to execute different code sections.</li>
+</ul>
+<h3 id="conditional-moves">Conditional Moves<a class="headerlink" href="#conditional-moves" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>How it works</strong>: Uses special instructions to move data based on a condition without jumping.</li>
+<li><strong>Example</strong>: <code>cmov</code> instructions that copy values into registers only if a condition is met.</li>
+</ul>
+<h3 id="key-difference">Key Difference<a class="headerlink" href="#key-difference" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Conditional Control</strong>: Changes the flow of the program.</li>
+<li><strong>Conditional Moves</strong>: Keeps the program flow linear but conditionally updates data.</li>
+</ul>
+<h2 id="implementing-conditional-branches-with-conditional-moves">Implementing Conditional Branches with Conditional Moves<a class="headerlink" href="#implementing-conditional-branches-with-conditional-moves" title="Permanent link">&para;</a></h2>
+<p>![[Screen Shot 2024-05-22 at 02.51.20.png]]
+general form of if-else structure in C:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>v = test-expr ? then-expr : else-expr;
+</code></pre></div></p>
+<p>general form of the conditional control using goto code:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>t = test_expr;
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>if (!t)
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    goto false;
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>then-statement
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>goto done;
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>false:
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    else-statement
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>done:
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    return
+</code></pre></div></p>
+<p>general form of conditional moves:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>v = then-expr;
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ve = else-expr;
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>t = test-expr;
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>if (!t) v = ve;
+</code></pre></div></p>
+<h2 id="loops">Loops<a class="headerlink" href="#loops" title="Permanent link">&para;</a></h2>
+<h3 id="do-while"><code>do-while</code><a class="headerlink" href="#do-while" title="Permanent link">&para;</a></h3>
+<p>The general form of a do-while statement: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>do 
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    body-statement 
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    while (test-expr); 
+</code></pre></div></p>
+<p>goto statements: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>loop: 
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    body-statement 
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    t = test-expr; 
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    if (t) 
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>        goto loop;
+</code></pre></div></p>
+<h3 id="while"><code>while</code><a class="headerlink" href="#while" title="Permanent link">&para;</a></h3>
+<p>The general form of a while statement is: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>while (test-expr) 
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    body-statement
+</code></pre></div></p>
+<p>goto statements:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>    goto test; 
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>loop: 
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    body-statement 
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>test: 
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    t = test-expr; 
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    if (t) 
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>        goto loop;
+</code></pre></div></p>
+<h3 id="for"><code>for</code><a class="headerlink" href="#for" title="Permanent link">&para;</a></h3>
+<p>The general form of a for loop is: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>for (init-expr; test-expr; update-expr) 
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    body-statement
+</code></pre></div></p>
+<p>goto statements:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>    init-expr; 
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    t = test-expr; 
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    if (!t) 
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>        goto done; 
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>loop: 
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    body-statement 
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    update-expr; 
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    t = test-expr; 
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    if (t) 
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>        goto loop; 
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>done:
+</code></pre></div></p>
+<h2 id="switch-statements">Switch Statements<a class="headerlink" href="#switch-statements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The key step in executing a switch statement is to access a code location through the jump table.
+![[Screen Shot 2024-05-22 at 12.55.31.png]]</li>
+</ul>
+<h1 id="37-procedures">3.7 Procedures<a class="headerlink" href="#37-procedures" title="Permanent link">&para;</a></h1>
+<h2 id="the-run-time-stack">The Run-Time Stack<a class="headerlink" href="#the-run-time-stack" title="Permanent link">&para;</a></h2>
+<p>![[Screen Shot 2024-05-24 at 16.18.21.png]]</p>
+<h2 id="control-transfer">Control Transfer<a class="headerlink" href="#control-transfer" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Passing control from function P to function Q involves simply setting the program counter (PC) to the starting address of the code for Q.</li>
+<li>When it later comes time for Q to return, the processor must have some record of the code location where it should resume the execution of P.
+![[Screen Shot 2024-05-24 at 15.50.42.png]]</li>
+<li><code>call</code> instruction: has a target indicating the address of the instruction where the called procedure starts (direct / indirect)</li>
+</ul>
+<h2 id="data-transfer">Data Transfer<a class="headerlink" href="#data-transfer" title="Permanent link">&para;</a></h2>
+<ul>
+<li>When procedure P calls procedure Q, the code for P must first copy the arguments into the proper registers. Similarly, when Q returns back to P, the code for P can access the returned value in register <code>%rax</code>. </li>
+<li>most of these data passing to and from procedures take place via registers.</li>
+<li>With x86-64, <strong>up to six integral</strong> (i.e., integer and pointer) arguments can be passed via registers.![[Screen Shot 2024-05-24 at 16.12.05.png]]</li>
+<li>When a function has more than six integral arguments, the other ones are passed on the stack.</li>
+<li>Assume that procedure P calls procedure Q with n integral arguments, such that n &gt; 6. Then the code for P must allocate a stack frame with enough storage for arguments 7 through n, as illustrated in Figure 3.25. </li>
+<li>It copies arguments 1–6 into the appropriate <strong>registers</strong>, and it puts arguments 7 through n onto the <strong>stack</strong>, with argument 7 at the top of the stack. <ul>
+<li>When passing parameters on the stack, all data sizes are rounded up to be multiples of eight. </li>
+</ul>
+</li>
+<li>With the arguments in place, the program can then execute a call instruction to transfer control to procedure Q. Procedure Q can access its arguments via registers and possibly from the stack. If Q, in turn, calls some function that has more than six arguments, it can allocate space within its stack frame for these, as is illustrated by the area labeled <strong>“Argument build area”</strong> in Figure 3.25.</li>
+</ul>
+<h2 id="local-storage-on-the-stack">Local Storage on the Stack<a class="headerlink" href="#local-storage-on-the-stack" title="Permanent link">&para;</a></h2>
+<p>Common cases when local data must be stored in memory:
+- There are <strong>not enough registers</strong> to hold all of the local data. 
+- The <strong>address operator ‘&amp;’</strong> is applied to a local variable, and hence we must be able to generate an address for it. 
+- Some of the local variables are <strong>arrays or structures</strong> and hence must be accessed by array or structure references.</p>
+<h1 id="38-array-allocation-and-access">3.8 Array Allocation and Access<a class="headerlink" href="#38-array-allocation-and-access" title="Permanent link">&para;</a></h1>
+<h2 id="basic-principles">Basic Principles<a class="headerlink" href="#basic-principles" title="Permanent link">&para;</a></h2>
+<p>For data type T and integer constant N, the form is: <code>T A[N]</code>
+- allocates a contiguous region of $L \cdot N$ bytes in memory, L = size (in bytes) of data type T
+- introduces an identifier $A$ that is used as a pointer to the beginning of the array: $x_A$
+- index: $0$ to $N-1$
+- array element i will stored at address $x_A+L\cdot i$
+Examples: ![[Screen Shot 2024-06-03 at 22.05.57.png]]</p>
+<h2 id="pointer-arithmetic">Pointer Arithmetic<a class="headerlink" href="#pointer-arithmetic" title="Permanent link">&para;</a></h2>
+<ul>
+<li>generation of pointer: <code>&amp;</code></li>
+<li>dereferencing pointer: <code>*</code></li>
+<li>For an expression <code>Expr</code> denoting some object, <code>&amp;Expr</code> is a pointer giving the address of the object. </li>
+<li>For an expression <code>AExpr</code> denoting an address, <code>*AExpr</code> gives the value at that address. </li>
+<li>
+<p>The expressions <code>Expr</code> and <code>*&amp;Expr</code> are therefore equivalent.</p>
+</li>
+<li>
+<p><strong>Array reference</strong>: <code>A[i]</code> is identical to the expression <code>*(A+i)</code></p>
+<ul>
+<li>It computes the address of the $i^{th}$ array element and then accesses this memory location.</li>
+</ul>
+</li>
+<li>if <code>p</code> is a pointer to data of type <code>T</code> , and the value of <code>p</code> is <code>xp</code>, then the expression <code>p+i</code> has value $x_p + L \cdot i$, where L is the size of data type T .</li>
+</ul>
+<p>![[Screen Shot 2024-06-04 at 11.44.37.png]]</p>
+<h2 id="nested-arrays">Nested Arrays<a class="headerlink" href="#nested-arrays" title="Permanent link">&para;</a></h2>
+<p>In general, for an array declared as <code>T D[R][C];</code> array element <code>D[i][j]</code> is at memory address $\&amp;D[i][j] = x_D + L(C \cdot i + j)$ </p>
+<h2 id="fixed-size-arrays">Fixed-Size Arrays<a class="headerlink" href="#fixed-size-arrays" title="Permanent link">&para;</a></h2>
+<p>Suppose we declare data type <code>fix_matrix</code> to be 16 × 16 arrays of integers as follows: 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>#define N 16 
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>typedef int fix_matrix[N][N];
+</code></pre></div></p>
+<ul>
+<li>To compute the inner product of row i from A and column k from B<ul>
+<li>(1) generating a pointer, which we have named <code>Aptr</code>, that points to successive elements in row i of A, </li>
+<li>(2) generating a pointer, which we have named <code>Bptr</code>, that points to successive elements in column k of B</li>
+<li>(3) generating a pointer, which we have named <code>Bend</code>, that equals the value <code>Bptr</code> will have when it is time to terminate the loop</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example: fixed matrix product</strong>
+![[Screen Shot 2024-06-05 at 02.44.15.png]]
+![[Screen Shot 2024-06-05 at 02.48.59.png]]![[Screen Shot 2024-06-05 at 02.50.28.png]]
+- <strong><code>salq $6, %rdx</code></strong>
+    - <code>salq</code> stands for "Shift Arithmetic Left Quadword". It multiplies <code>%rdx</code> by 64 (2^6) and stores the result back in <code>%rdx</code>. This is used to compute the offset for accessing the correct row in matrix A based on the index <code>i</code>.</p>
+<h2 id="variable-size-arrays">Variable-Size Arrays<a class="headerlink" href="#variable-size-arrays" title="Permanent link">&para;</a></h2>
+<ul>
+<li>variable-size arrays: allocate using <code>malloc</code> or <code>calloc</code></li>
+<li>declare an array: <code>int A[expr1][expr2]</code></li>
+</ul>
+<p>![[Screen Shot 2024-06-05 at 05.19.45.png]]
+<strong>Example: variable matrix product</strong>
+![[Screen Shot 2024-06-05 at 05.21.49.png]]![[Screen Shot 2024-06-05 at 05.21.59.png]]</p>
+<h1 id="39-heterogeneous-data-structures">3.9 Heterogeneous Data Structures<a class="headerlink" href="#39-heterogeneous-data-structures" title="Permanent link">&para;</a></h1>
+<h2 id="structures">Structures<a class="headerlink" href="#structures" title="Permanent link">&para;</a></h2>
+<p>The C struct declaration creates a data type that groups objects of possibly different types into a single object.</p>
+<ul>
+<li>Structure represented as block of memory <ul>
+<li>Big enough to hold all the fields </li>
+</ul>
+</li>
+<li>Fields ordered according to declaration <ul>
+<li>Even if another ordering could be more compact </li>
+</ul>
+</li>
+<li>Compiler determines overall size + positions of fields <ul>
+<li>In assembly, we see only offsets, not field names</li>
+</ul>
+</li>
+</ul>
+<p><strong>Generating pointer to structure member</strong>
+![[Screen Shot 2024-06-05 at 08.02.53.png]]
+<strong>Linked List</strong>
+![[Screen Shot 2024-06-05 at 08.05.35.png]]
+![[Screen Shot 2024-06-05 at 08.06.06.png]]</p>
+<h2 id="unions">Unions<a class="headerlink" href="#unions" title="Permanent link">&para;</a></h2>
+<h2 id="data-alignment">Data Alignment<a class="headerlink" href="#data-alignment" title="Permanent link">&para;</a></h2>
+<p>![[Screen Shot 2024-06-05 at 08.45.56.png]]
+![[Screen Shot 2024-06-05 at 09.14.22.png]]
+![[Screen Shot 2024-06-05 at 09.16.19.png]]
+<strong>Saving Space</strong>: Put large data types first</p>
+<p><strong>Byte Ordering</strong>: ![[Screen Shot 2024-06-05 at 09.22.04.png]]</p>
+<h1 id="310-combining-control-and-data-in-machine-level-programs">3.10 Combining Control and Data in Machine-Level Programs<a class="headerlink" href="#310-combining-control-and-data-in-machine-level-programs" title="Permanent link">&para;</a></h1>
+<h2 id="memory-layout">Memory Layout<a class="headerlink" href="#memory-layout" title="Permanent link">&para;</a></h2>
+<p>![[Screen Shot 2024-06-05 at 09.36.34.png]]</p>
+<h2 id="buffer-overflow">Buffer Overflow<a class="headerlink" href="#buffer-overflow" title="Permanent link">&para;</a></h2>
+<h3 id="vulnerability">Vulnerability<a class="headerlink" href="#vulnerability" title="Permanent link">&para;</a></h3>
+<p>![[Screen Shot 2024-06-05 at 10.12.28.png]]
+![[Screen Shot 2024-06-05 at 10.07.31.png]]</p>
+<p>“buffer overflow”: When exceeding the memory size allocated for an array</p>
+<h3 id="protection">Protection<a class="headerlink" href="#protection" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Avoid overflow vulnerabilities <ul>
+<li>use library routines that limit string lengths </li>
+<li><code>fgets</code> instead of <code>gets</code> </li>
+<li><code>strncpy</code> instead of <code>strcpy</code> </li>
+<li>Don’t use <code>scanf</code> with <code>%s</code> conversion specification <ul>
+<li>Use <code>fgets</code> to read the string </li>
+<li>Or use <code>%ns</code> where <code>n</code> is a suitable integer</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Employ system-level protections </li>
+<li>Have compiler use “stack canaries”</li>
+</ol>
+<h3 id="bypassing-protection">Bypassing Protection<a class="headerlink" href="#bypassing-protection" title="Permanent link">&para;</a></h3>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ilong4rennes" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
